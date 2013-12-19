@@ -29,6 +29,8 @@
     return instance;
 }
 
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     self.alert = nil;
@@ -36,7 +38,7 @@
 
 - (void)noSignal
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PauseNotification object:nil];   
+    [[NSNotificationCenter defaultCenter] postNotificationName:PauseNotification object:nil];
     if (self.alert) {
         return;
     }
