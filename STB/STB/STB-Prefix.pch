@@ -1,0 +1,32 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "DataManager.h"
+#import "SingleAlert.h"
+#endif
+
+#import "../../CommonUtil/CommonUtil/LogUtility/SimpleLogger.h"
+#import "../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
+
+#define RGBColor(aRed,aGreen,aBlue) [UIColor colorWithRed:(aRed/255.0f) green:(aGreen/255.0f) blue:(aBlue/255.0f) alpha:1]
+#define MyLocalizedString(key) [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:@"MultiLanguage"]
+
+#define PlayNotification @"PlayNotification"
+#define PauseNotification @"PauseNotification"
+#define RefreshChannelListNotification @"RefreshChannelListNotification"
+#define DeleteAllChannelListNotification @"DeleteAllChannelListNotification"
+//有最新版本
+#define HasLastVersion @"HasLastVersion"
+#define LocStbFileName @"flashrom.bin"

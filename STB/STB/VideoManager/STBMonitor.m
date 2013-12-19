@@ -1,0 +1,228 @@
+//
+//  STBMonitor.m
+//  STB
+//
+//  Created by shulianyong on 13-10-23.
+//  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+//
+
+#import "STBMonitor.h"
+#import "CommonUtil.h"
+#import "GCDAsyncSocket.h"
+#import "UPNPTool.h"
+#import "LockInfo.h"
+
+#import "ScanStatusInfo.h"
+#import "SearchChannelTool.h"
+#import "CommandClient.h"
+
+
+//事件注册
+#import "SignalTool.h"
+
+@interface STBMonitor ()<GCDAsyncSocketDelegate>
+
+@property (nonatomic,strong) GCDAsyncSocket *eventMonitorSocket;
+
+@end
+
+@implementation STBMonitor
+
++ (STBMonitor*)shareInstance
+{
+    static STBMonitor *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[STBMonitor alloc] init];
+    });
+    return instance;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.eventMonitorSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    }
+    return self;
+}
+#pragma mark ------搜索监听事件
+
+- (void)searchChannelProgress:(NSNumber*)aProgress
+{
+    INFO(@"搜索进度:%@",aProgress);
+    MBProgressHUD *searchAlert = [SearchChannelTool shareInstance].searchAlert;
+    if (searchAlert==nil) {
+        [[SearchChannelTool shareInstance] initSearchAlert];
+        searchAlert = [SearchChannelTool shareInstance].searchAlert;
+    }
+    searchAlert.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    searchAlert.progress = aProgress.floatValue/100.f;
+//    if (aProgress.integerValue==100) {
+//        [self searchChannelCompleted];
+//    }
+}
+
+//同步节目到机顶盒
+- (void)syncProgame
+{
+    [CommandClient syncProgramWithCallback:^(id info, HTTPAccessState isSuccess) {
+        MBProgressHUD *searchAlert = [SearchChannelTool shareInstance].searchAlert;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
+        searchAlert.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+        searchAlert.mode = MBProgressHUDModeCustomView;
+        searchAlert.labelText = MyLocalizedString(@"Completed");
+        [searchAlert hide:YES afterDelay:3];
+    }];
+}
+
+//收到搜索结果的监听
+- (void)searchChannelCompleted
+{
+    
+    if ([SearchChannelTool shareInstance].searchAlert) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            sleep(3);
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
+                [SearchChannelTool shareInstance].searchAlert.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+                [SearchChannelTool shareInstance].searchAlert.mode = MBProgressHUDModeCustomView;
+                [SearchChannelTool shareInstance].searchAlert.labelText = MyLocalizedString(@"Completed");
+                [[SearchChannelTool shareInstance].searchAlert hide:YES];
+            });
+        });
+        
+    }
+    
+//    STBMonitor *weakSelf = self;
+//    [CommandClient commandScanSaveWithCallback:^(id info, HTTPAccessState isSuccess) {
+//        MBProgressHUD *searchAlert = [SearchChannelTool shareInstance].searchAlert;
+//        if (searchAlert) {
+//            if (isSuccess==HTTPAccessStateSuccess) {
+//                INFO(@"完成搜索保存，发起同步命令");
+//            }
+//            else
+//            {
+//                INFO(@"scan_save 失败");
+//            }
+//            [weakSelf syncProgame];
+//        }
+//    }];
+}
+
+
+
+- (void)searchChannelEvent:(ScanStatusInfo*)aStatusInfo
+{
+    switch (aStatusInfo.status.integerValue) {
+        case 0://正常
+            INFO(@"正常");
+            break;
+        case 1://搜索完成
+            INFO(@"搜索完成");
+            [self searchChannelCompleted];
+            break;
+        case 2://下在搜索，提示进度
+            INFO(@"进度条");
+            [self searchChannelProgress:aStatusInfo.progress];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark 事件注册
+
+- (void)eventMonitor
+{
+    if (self.eventMonitorSocket) {
+        [self.eventMonitorSocket disconnect];
+    }
+    
+    NSString *host = [UPNPTool shareInstance].stbIP;
+
+    NSError *error = nil;
+    [self.eventMonitorSocket connectToHost:host onPort:8100 error:&error];
+    [self.eventMonitorSocket readDataWithTimeout:-1 tag:0];
+    
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"command"] = @"register_event";
+    parameters[@"commandId"] = @0;
+    parameters[@"event"] =  @[@"SCAN_STATUS",@"FRONTEND_LOCK_STATE",@"BS_UPDATE_CHANNEL_LSIT",@"BS_UPDATE_LOCK_CONTROL"];
+    
+    NSData *commandData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];    
+    [self.eventMonitorSocket writeData:commandData withTimeout:2 tag:1];
+    [self.eventMonitorSocket enableBackgroundingOnSocket];
+    
+    if (error) {
+        ERROR(@"监听联接失败:%@",error);
+    }
+}
+
+-(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
+{
+    [self.eventMonitorSocket readDataWithTimeout:-1 tag:0];
+}
+
+-(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    [self.eventMonitorSocket readDataWithTimeout:-1 tag:0];
+    NSString *reviceData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    INFO(@"接收到的数据:%@",reviceData);
+//#warning 测试    
+//    dispatch_sync(dispatch_get_main_queue(), ^{
+//        [CommonUtil showMessage:reviceData];
+//    });
+    
+    NSError *error = nil;
+    if (reviceData) {
+        NSData *jsonData = [reviceData dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dicValue = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                 options:kNilOptions
+                                                                   error:&error];
+        
+        NSString *event = [dicValue objectForKey:@"event"];
+        if ([event isEqualToString:@"FRONTEND_LOCK_STATE"])//信息质量
+        {
+            NSString *state = [dicValue objectForKey:@"state"];
+            
+            static BOOL hadProcessNoSignal = NO;//去除重复提示没信号
+            if ([state isEqualToString:@"unlock"]) {
+                if (!hadProcessNoSignal) {
+                    [[SignalTool shareInstance] noSignal];
+                    hadProcessNoSignal = YES;
+                }
+            }
+            else
+            {
+                [[SignalTool shareInstance] hasSignal];
+                hadProcessNoSignal = NO;
+            }
+        }
+        else if ([event isEqualToString:@"BS_UPDATE_LOCK_CONTROL"])//锁信息
+        {
+            [[LockInfo shareInstance] reflectDataFromOtherObject:dicValue];
+        }
+        else if ([event isEqualToString:@"SCAN_STATUS"])
+        {
+            ScanStatusInfo *aStatusInfo = [[ScanStatusInfo alloc] init];
+            [aStatusInfo reflectDataFromOtherObject:dicValue];
+            INFO(@"SCAN_STATUS event");
+            [self searchChannelEvent:aStatusInfo];
+        }
+        else if ([event isEqualToString:@"BS_UPDATE_CHANNEL_LSIT"])//刷新列表监听
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
+        }
+    }
+    
+}
+
+-(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+    INFO(@"发送成功:%ld",tag);
+}
+
+@end

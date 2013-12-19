@@ -1,0 +1,100 @@
+/* 
+  MultiLanguage.strings
+  STB
+
+  Created by shulianyong on 13-10-18.
+  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+*/
+//common
+"Alert"="Alert";
+"Network Disconection"="Network Disconection";
+"OK"="OK";
+"Cancel"="Cancel";
+"TV box not found，please check!"="TV box not found，please check!";
+"Error:Channel List Command"="Error:Channel List Command";
+"Channel List is empty"="Channel List is empty";
+"Version is expired"="Version is expired";
+"NO Channel"="NO Channel";
+"Loading..."="Load...";
+"Please connect internet"="Please connect internet";
+
+//setting
+"SETUP"="SETUP";
+//main setting
+"WIFI"="WIFI";
+"Parent Lock"="Parent Lock";
+"Menu Password"="Menu Password";
+"Version"="Firmware Upgrade";
+"Firmware Upgrade"="Firmware Upgrade";
+"Signal"="Signal";
+"CA Check"="CA Check";
+"Language"="Language";
+"Program Search"="Program Search";
+"Factory Reset"="Factory Reset";
+"System Info"="System Info";
+
+"NO Signal"="NO Signal";
+"Signal quality:"="Signal quality:";
+"Signal strength:"="Signal strength:";
+
+"Please enter the menu password"="Please enter the menu password";
+"The password is not correct,please reenter"="The password is not correct,please reenter";
+
+//parent lock
+"Please select the channel needs to be locked"="Please select the channel needs to be locked";
+
+//menu password
+"Please input the primitive password"="Please input the primitive password";
+"Please input the new password"="Please input the new password";
+"Please input the channel password"="Please input the channel password";
+"Primitive is not correct,please reenter"="Primitive is not correct,please reenter";
+"Password lenth is 4,please reenter"="Password lenth is 4,please reenter";
+"Are you sure to change the password"="Are you sure to change the password";
+"Change password fail"="Change password fail";
+
+//CA
+"The CA will expire on "="The CA will expire on ";
+"MMM-dd-yyyy"="yyyy-MM-dd";
+//System Info
+"Loader version:"="Loader version:";
+"Software version:"="Software version:";
+"Release date:"="Release date:";
+"Default DB:"="Default DB:";
+"Lib:"="Lib:";
+"Version:"="Version:";
+
+//Search Channel
+"Program Search"="Program Search";
+"Frequency"="Frequency";
+"Symbol Rate"="Symbol Rate";
+"Polar"="Polar";
+
+"Searching..."="Searching...";
+"Search fail"="Search fail";
+"Completed"="Completed";
+//factory reset
+"Are you really want to run the factory reset?"="Are you really want to run the factory reset?";
+"Warning"="Warning";
+"Factory reset success"="Factory reset success";
+
+//version upgrade
+"Do you want to download the latest firmware"="Do you want to download the latest firmware";
+"Download Fail"="Download Fail";
+"Download Completed"="Download Completed";
+"MWatch upgrade success"="MWatch upgrade success,please reset wifi in iOS Setting";
+"MWatch upgrade failed"="MWatch upgrade failed";
+"Do you want to download the latest firmware"="Do you want to download the latest firmware";
+"Doownloading..."="Doownloading...";
+"had a latest firmware,do you want to update firmware"="had a latest firmware,do you want to update firmware";
+"Is the latest firmware"="Is the latest firmware";
+"Connect Internet to downloade firmware"="Connect Internet to downloade firmware";
+"Connect STB to upgrade firmware"="Connect STB to upgrade firmware";
+"Please don't remind me to upgrade the firmware"="Please don't remind me to upgrade the firmware";
+
+//WIFI 设置
+"WIFI Name"="WIFI Name";
+"ENCODE TYPE"="ENCODE TYPE";
+"Are you really want to modify the WIFI Password"="Are you really want to modify the WIFI Password";
+"WIFI password shall not be less than 8"="WIFI password shall not be less than 8";
+"Password"="Password";
+"Need Password"="Need Password";

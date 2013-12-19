@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:UploadSoft/UploadSoft.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ASIHTTP/ASIHTTP.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:CommonUtil/CommonUtil.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:STB/STB.xcodeproj">
+   </FileRef>
+</Workspace>

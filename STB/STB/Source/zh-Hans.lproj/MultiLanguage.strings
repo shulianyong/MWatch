@@ -1,0 +1,99 @@
+/* 
+  MultiLanguage.strings
+  STB
+
+  Created by shulianyong on 13-10-18.
+  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+*/
+//公共
+"Alert"="提示";
+"Network Disconection"="已经断网";
+"OK"="确定";
+"Cancel"="取消";
+"TV box not found，please check!"="未找到机顶盒，请检查！";
+"Error:Channel List Command"="获取列表失败!";
+"Channel List is empty"="节目列表为空";
+"Version is expired"="版本已经过期";
+"NO Channel"="无节目";
+"Loading..."="加载中...";
+"Please connect internet"="请连接互联网";
+
+//设置
+"SETUP"="设置";
+//设置主页
+"WIFI"="无线设置";
+"Parent Lock"="父母锁";
+"Menu Password"="主机密码设置";
+"Version"="版本更新";
+"Firmware Upgrade"="版本更新";
+"Signal"="信号质量";
+"CA Check"="CA信息";
+"Language"="语言选择";
+"Program Search"="节目搜索";
+"Factory Reset"="恢复出厂设置";
+"System Info"="系统信息";
+
+"NO Signal"="无信号";
+"Signal quality:"="信号质量:";
+"Signal strength:"="信号强度:";
+
+"Please enter the menu password"="请输入主机密码";
+"The password is not correct,please reenter"="密码不正确，请重新输入";
+
+//父母锁
+"Please select the channel needs to be locked"="请在需要加锁的节目后面挑勾";
+
+//主机密码
+"Please input the primitive password"="请输入原始密码";
+"Please input the new password"="请输入新密码";
+"Please input the channel password"="请输入节目密码";
+"Primitive is not correct,please reenter"="原始密码不正确，请重新输入";
+"Password lenth is 4,please reenter"="请输入4位长度密码";
+"Are you sure to change the password"="是否确定更新密码";
+"Change password fail"="更新密码失败";
+
+//CA
+"The CA will expire on "="CA过期时间";
+"MMM-dd-yyyy"="yyyy-MM-dd";
+//System Info
+"Loader version:"="Loader version:";
+"Software version:"="Software version:";
+"Release date:"="Release date:";
+"Default DB:"="Default DB:";
+"Lib:"="Lib:";
+"Version:"="Version:";
+
+//Search Channel
+"Program Search"="节目搜索";
+"Frequency"="Frequency";
+"Symbol Rate"="Symbol Rate";
+"Polar"="Polar";
+"Searching..."="搜索中...";
+"Search fail"="搜索失败";
+"Completed"="完成";
+//factory reset
+"Are you really want to run the factory reset?"="是否确认恢复出厂设置?";
+"Warning"="警告";
+"Factory reset success"="恢复出厂设置成功";
+
+//version upgrade
+"Do you want to download the latest firmware"="是否确定下载最新固件";
+"Download Fail"="下载失败";
+"Download Completed"="下载完成";
+"MWatch upgrade success"="版本升级成功,请在iOS系统中重新设置机顶盒WIFI";
+"MWatch upgrade failed"="版本升级失败";
+"Do you want to download the latest firmware"="是否确定下载最新固件";
+"Doownloading..."="下载中...";
+"had a latest firmware,do you want to update firmware"="有最新固件，是否更新最新固件";
+"Is the latest firmware"="已经是最新固件";
+"Connect Internet to downloade firmware"="连接因特网下载固件";
+"Connect STB to upgrade firmware"="连接机顶盒升级固件";
+"Please don't remind me to upgrade the firmware"="请勿提醒我升级固件";
+
+//WIFI 设置
+"WIFI Name"="WIFI名";
+"ENCODE TYPE"="编码方式";
+"Are you really want to modify the WIFI Password"="确定更改WIFI密码";
+"WIFI password shall not be less than 8"="WIFI密码不得少于8位";
+"Password"="密码";
+"Need Password"="需要密码";
