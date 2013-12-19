@@ -276,20 +276,20 @@
 - (void)scanOneKey
 {
     __weak SearchChannelTool *weakSelf = self;
-    __weak MBProgressHUD *alert = self.searchAlert;
+//    __weak MBProgressHUD *alert = self.searchAlert;
     [CommandClient scanOneKeyCommandWithTPInfo:self.defaultTPInfo withCallback:^(id info, HTTPAccessState isSuccess) {
         if (isSuccess==HTTPAccessStateSuccess) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                sleep(5);
-                if (alert) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
-                    
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                    alert.labelText = MyLocalizedString(@"Completed");
-                    [alert hide:YES afterDelay:3];
-                    });
-                }
-            });          
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                sleep(5);
+//                if (alert) {
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
+//                    
+//                    dispatch_sync(dispatch_get_main_queue(), ^{
+//                    alert.labelText = MyLocalizedString(@"Completed");
+//                    [alert hide:YES afterDelay:3];
+//                    });
+//                }
+//            });          
         }
         else
         {
