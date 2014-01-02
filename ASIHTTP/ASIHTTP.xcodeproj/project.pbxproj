@@ -24,7 +24,6 @@
 		A68E6906183AF3BB001654C2 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E68BB183AF3BB001654C2 /* ASIHTTPRequest.m */; };
 		A68E6907183AF3BB001654C2 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E68BF183AF3BB001654C2 /* ASIInputStream.m */; };
 		A68E6908183AF3BB001654C2 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E68C1183AF3BB001654C2 /* ASINetworkQueue.m */; };
-		A68E6909183AF3BB001654C2 /* ASIWebPageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E68C5183AF3BB001654C2 /* ASIWebPageRequest.m */; };
 		A68E690A183AF3BB001654C2 /* ASICloudFilesCDNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E68C8183AF3BB001654C2 /* ASICloudFilesCDNRequest.m */; };
 		A68E690B183AF3BB001654C2 /* ASICloudFilesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E68CA183AF3BB001654C2 /* ASICloudFilesContainer.m */; };
 		A68E690C183AF3BB001654C2 /* ASICloudFilesContainerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E68CC183AF3BB001654C2 /* ASICloudFilesContainerRequest.m */; };
@@ -482,7 +481,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A68E6902183AF3BB001654C2 /* ASIDataCompressor.m in Sources */,
-				A68E6909183AF3BB001654C2 /* ASIWebPageRequest.m in Sources */,
 				A68E6916183AF3BB001654C2 /* ASIS3ServiceRequest.m in Sources */,
 				A68E690E183AF3BB001654C2 /* ASICloudFilesObject.m in Sources */,
 				A68E6905183AF3BB001654C2 /* ASIFormDataRequest.m in Sources */,
@@ -612,6 +610,7 @@
 		A68E68AA183AF38B001654C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/ASIHTTP.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -630,6 +629,7 @@
 		A68E68AB183AF38B001654C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/ASIHTTP.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -716,6 +716,7 @@
 				A68E68AB183AF38B001654C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A68E68AC183AF38B001654C2 /* Build configuration list for PBXNativeTarget "ASIHTTPTests" */ = {
 			isa = XCConfigurationList;
@@ -724,6 +725,7 @@
 				A68E68AE183AF38B001654C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

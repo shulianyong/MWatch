@@ -16,17 +16,99 @@
 @interface VCSetting ()
 
 @property (strong, nonatomic) IBOutlet UIButton *btnTitle;
+//自动退出timer
+@property (strong,nonatomic) NSTimer *outSetTimer;
+@property (strong,nonatomic) UIAlertView *exitAlert;
+@property (strong,nonatomic) NSTimer *exitAlertTimer;
+@property (nonatomic) NSInteger alertTimeout;
 
 @end
 
 @implementation VCSetting
+
+- (void)autoExitTimerAction
+{
+    if (self.alertTimeout>0) {
+        self.alertTimeout--;
+        if (self.alertTimeout==0) {
+            [self.exitAlertTimer invalidate];
+            self.exitAlertTimer = nil;
+            [self.exitAlert dismissWithClickedButtonIndex:self.exitAlert.firstOtherButtonIndex animated:YES];
+        }
+        else
+        {
+            NSString *msg = [NSString stringWithFormat:@"%@ %d",MyLocalizedString(@"Box Setup will exit"),self.alertTimeout];
+            self.exitAlert.message = msg;
+        }
+    }    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==alertView.cancelButtonIndex) {
+        [self configAutoExitTimer];
+    }
+    else
+    {
+        [self click_barBack:nil];
+    }
+    
+    //倒计时关闭
+    if (self.exitAlertTimer) {
+        if (self.exitAlertTimer.isValid) {
+            [self.exitAlertTimer invalidate];
+        }
+        self.exitAlertTimer = nil;
+    }
+    self.exitAlert = nil;
+}
+
+- (void)autoExit
+{
+    
+    self.alertTimeout = 10;
+    
+    NSString *msg = [NSString stringWithFormat:@"%@ %d",MyLocalizedString(@"Box Setup will exit"),self.alertTimeout];
+    self.exitAlert = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert") message:msg delegate:self cancelButtonTitle:MyLocalizedString(@"Cancel") otherButtonTitles:MyLocalizedString(@"OK"), nil];
+    [self.exitAlert show];
+    
+    self.exitAlertTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(autoExitTimerAction) userInfo:nil repeats:YES];
+    
+    
+}
+
+- (void)configAutoExitTimer
+{
+    if (self.outSetTimer) {
+        if (self.outSetTimer.isValid) {
+            [self.outSetTimer invalidate];
+        }
+    }
+    self.outSetTimer = [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(autoExit) userInfo:nil repeats:NO];
+}
+
+- (void)dealloc
+{
+    if (self.outSetTimer.isValid) {
+        [self.outSetTimer invalidate];
+    }
+    self.outSetTimer = nil;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
     [self configLanguage];
+    
+    [self configAutoExitTimer];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(configAutoExitTimer)];
+    tapGesture.numberOfTapsRequired = 1;
+    tapGesture.numberOfTouchesRequired=1;
+    [self.navigationController.view addGestureRecognizer:tapGesture];
 }
+
 
 //语言设置
 - (void)configLanguage
@@ -37,7 +119,7 @@
             txtTitle.text = MyLocalizedString(txtTitle.text);
         }
     }
-    [self.btnTitle setTitle:MyLocalizedString(@"SETUP") forState:UIControlStateNormal];
+    [self.btnTitle setTitle:MyLocalizedString(@"Box Setup") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,28 +142,19 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+    if (self.outSetTimer.isValid) {
+        [self.outSetTimer invalidate];
+    }
+    self.outSetTimer = nil;
 }
 
 //设置wifi
 - (IBAction)click_btnWifi:(id)sender {
+    [self configAutoExitTimer];
     
-    [[PasswordAlert shareInstance] alertPassword:nil withMessage:MyLocalizedString(@"Please enter the menu password") withValidPasswordCallback:^BOOL(PasswordAlert *aAlert,NSString *password) {
-        BOOL success = NO;
-        if (![NSString isEmpty:[LockInfo shareInstance].passwd]
-            &&
-            ([[LockInfo shareInstance].passwd isEqualToString:password]
-             || [[LockInfo shareInstance].univeral_passwd isEqualToString:password]
-             ))
-        {
-            success = YES;
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
-            UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"WIFISetting"];
-            [self.navigationController pushViewController:wifiSetting animated:YES];
-        }
-        
-        return success;
-        
-    }];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
+    UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"WIFISetting"];
+    [self.navigationController pushViewController:wifiSetting animated:YES];
     
 }
 - (IBAction)click_btnParentLock:(id)sender {
@@ -106,54 +179,33 @@
 }
 
 - (IBAction)click_btnMenuPassword:(id)sender {
+    [self configAutoExitTimer];
     
-    [[PasswordAlert shareInstance] alertPassword:nil withMessage:MyLocalizedString(@"Please enter the menu password") withValidPasswordCallback:^BOOL(PasswordAlert *aAlert,NSString *password) {
-        BOOL success = NO;
-        if (![NSString isEmpty:[LockInfo shareInstance].passwd]
-            && ([[LockInfo shareInstance].passwd isEqualToString:password]
-                || [[LockInfo shareInstance].univeral_passwd isEqualToString:password])
-            )
-        {
-            success = YES;
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
-            UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"MenuPassword"];
-            [self.navigationController pushViewController:wifiSetting animated:YES];
-        }
-        
-        return success;
-        
-    }];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
+    UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"MenuPassword"];
+    [self.navigationController pushViewController:wifiSetting animated:YES];
     
 }
 
 //
 - (IBAction)click_btnSearchChannel:(id)sender {
+    [self configAutoExitTimer];
     
-    [[PasswordAlert shareInstance] alertPassword:nil withMessage:MyLocalizedString(@"Please enter the menu password") withValidPasswordCallback:^BOOL(PasswordAlert *aAlert,NSString *password) {
-        BOOL success = NO;
-        if (![NSString isEmpty:[LockInfo shareInstance].passwd]
-            && ([[LockInfo shareInstance].passwd isEqualToString:password]
-                || [[LockInfo shareInstance].univeral_passwd isEqualToString:password]
-                ))
-        {
-            success = YES;
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
-            UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"ChannelSearchView"];
-            [self.navigationController pushViewController:wifiSetting animated:YES];            
-        }
-        
-        return success;
-        
-    }];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
+    UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"ChannelSearchView"];
+    [self.navigationController pushViewController:wifiSetting animated:YES];
     
 }
 - (IBAction)click_Version:(id)sender
 {
+    [self configAutoExitTimer];
+    
     [[VersionUpdate shareInstance] uploadFile];
 }
 
 //恢复出厂设置
 - (IBAction)click_btnFactoryReset:(id)sender {
+    [self configAutoExitTimer];
     [[FactoryReset shareInstance] factoryReset];
 }
 
@@ -162,6 +214,7 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [self configAutoExitTimer];
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }

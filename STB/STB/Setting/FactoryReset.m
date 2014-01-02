@@ -10,6 +10,13 @@
 #import "CommandClient.h"
 #import "LockInfo.h"
 #import "CommonUtil.h"
+#import "MBProgressHUD.h"
+
+@interface FactoryReset ()<MBProgressHUDDelegate>
+
+@property (nonatomic,strong) MBProgressHUD *updateAlert;
+
+@end
 
 @implementation FactoryReset
 
@@ -27,7 +34,7 @@
 - (void)factoryReset
 {
     
-    [self alertPassword:NO];
+    [self alertFactorReset];
 }
 
 - (void)alertPassword:(BOOL)isnotCorrect
@@ -75,18 +82,38 @@
             }
         }//用户确定恢复出厂设置
         else
-        {            
+        {
+            
+            UIWindow *window = [[UIApplication sharedApplication].delegate window];
+            self.updateAlert = [[MBProgressHUD alloc] initWithView:window];
+            [window addSubview:self.updateAlert];
+            self.updateAlert.delegate = self;
+            self.updateAlert.labelText = MyLocalizedString(@"Loading...");
+            [self.updateAlert show:YES];
+            __weak FactoryReset *weakSelf = self;
             [CommandClient commandFactoryReset:^(id info, HTTPAccessState isSuccess) {
                 if (isSuccess==HTTPAccessStateSuccess) {
-                    [CommonUtil showMessage:MyLocalizedString(@"Factory reset success")];
+                    weakSelf.updateAlert.labelText= MyLocalizedString(@"Factory reset success");
                     //清空节目单
                     [[NSNotificationCenter defaultCenter] postNotificationName:DeleteAllChannelListNotification object:nil];
                     //请求更新节目单事件
                     [CommandClient postRefreshChannelEvent];
                 }
+                else
+                {
+                    weakSelf.updateAlert.labelText=MyLocalizedString(@"Factory reset fail");
+                }
+                [weakSelf.updateAlert hide:YES afterDelay:2];
             }];
         }
     }
+}
+
+#pragma mark 提示框
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [hud removeFromSuperview];
+    self.updateAlert = nil;
 }
 
 @end

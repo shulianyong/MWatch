@@ -13,7 +13,7 @@
 #import "ChannelCell.h"
 
 #import "CommandClient.h"
-#import "../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
+#import "../../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
 
 #import "AFNetworkReachabilityManager.h"
 
@@ -30,7 +30,7 @@
         self.delegate = self;
         self.dataSource = self;
         
-        [self deleteAllChannel];
+//        [self deleteAllChannel];
     }
     return self;
 }
@@ -260,19 +260,21 @@
 
 - (void)refreshChannel
 {
-    
     __weak VCManager *weakSelf = self;
     [CommandClient commandChannelListWithCallback:^(id info, HTTPAccessState isSuccess) {
         if (isSuccess==HTTPAccessStateSuccess)
         {
             CommandResult *result = [[CommandResult alloc] init];
             [result reflectDataFromOtherObject:info];
-            [CommonUtil setChannelCount:result.count.integerValue];            
             
             NSArray *channels = [(NSDictionary*)info objectForKey:@"channel"];
-            [weakSelf insertNewObjects:channels];
             if (channels.count==0) {
                 [CommonUtil showMessage:MyLocalizedString(@"Channel List is empty")];
+            }
+            else
+            {
+                [CommonUtil setChannelCount:result.count.integerValue];
+                [weakSelf insertNewObjects:channels];
             }
         }
         else

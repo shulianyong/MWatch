@@ -54,9 +54,9 @@ static MBProgressHUD *updateAlert;
     
     NSNumber *isRemind = [[NSUserDefaults standardUserDefaults] objectForKey:STB_RemindUpgrade];
     if (isRemind==nil) {
-        isRemind = [NSNumber numberWithBool:YES];
-        [[NSUserDefaults standardUserDefaults] setObject:isRemind forKey:STB_RemindUpgrade];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        isRemind = [NSNumber numberWithBool:NO];
+//        [[NSUserDefaults standardUserDefaults] setObject:isRemind forKey:STB_RemindUpgrade];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     return isRemind.boolValue;
 }
@@ -159,6 +159,7 @@ static MBProgressHUD *updateAlert;
     [self downloadConfigWithResultCallback:^(id info, FileDownState isSuccess) {
         if (isSuccess==FileDownStateSuccess) {
             NSString *STB_FILE_NAME = [info objectForKey:@"STB_FILE_NAME"];
+//            NSString *STB_FILE_NAME = [info objectForKey:@"STB_FILE_NAME_DEV"];
             serverSTBVersion = [info objectForKey:STB_SOFTWARE_VER];
             NSString *transTrantype = [info objectForKey:@"STB_SOFTWARE_TYPE"];
             if (![NSString isEmpty:transTrantype]) {
@@ -174,7 +175,8 @@ static MBProgressHUD *updateAlert;
             if (![NSString isEmpty:serverSTBVersion]) {
                 NSComparisonResult verResult = [serverSTBVersion compare:[VersionUpdate STBSoftwareVersion]];
                 
-                if (verResult==NSOrderedDescending) {
+                if (verResult==NSOrderedDescending)
+                {
                     UIAlertView *downAlert = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert")
                                                                         message:MyLocalizedString(@"Do you want to download the latest firmware")
                                                                        delegate:self
@@ -207,7 +209,7 @@ static MBProgressHUD *updateAlert;
 - (void)updateSTB
 {
     [self initAlert];
-    updateAlert.labelText = MyLocalizedString(@"Doownloading...");
+    updateAlert.labelText = MyLocalizedString(@"Downloading...");
     [updateAlert show:YES];
     [self downloadSoftFileWithResultCallback:^(id info, FileDownState isSuccess) {
         if (isSuccess==FileDownStateSuccess)
@@ -228,7 +230,7 @@ static MBProgressHUD *updateAlert;
     NSString *stbFirmwarePath = [VersionUpdate STBFilePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:stbFirmwarePath]==NO)
     {
-        [CommonUtil showMessage:MyLocalizedString(@"Connect Internet to downloade firmware")];
+        [CommonUtil showMessage:MyLocalizedString(@"Connect Internet to download firmware")];
         return;
     }
     
@@ -259,6 +261,7 @@ static MBProgressHUD *updateAlert;
                         switch (aStatus) {
                             case CMD_RET_TRANSFER_OK:
                                 weakAlert.mode = MBProgressHUDModeDeterminateHorizontalBar;
+                                weakAlert.labelText = MyLocalizedString(@"Do not power off or turn off");
                                 break;
                             case CMD_RET_UPDATE_SUCCESS:
                                 weakAlert.labelText = MyLocalizedString(@"MWatch upgrade success");

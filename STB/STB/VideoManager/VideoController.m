@@ -32,11 +32,16 @@
 
 #import "PasswordAlert.h"
 #import "SingleAlert.h"
+#import "InputAlert.h"
+#import "YDSlider.h"
 
+#import "ConfirmMunePassword.h"
 
 @interface VideoController ()<MovieViewDelegate,VideoControllerDelegate>
 {
     CGFloat volumeValue;
+    BOOL searchedChannel;//现在状态是，已经经过搜索，但是没有播放
+    BOOL isAppearView;//是否在本界面
 }
 
 @property (strong, nonatomic) IBOutlet UIView *tbarBottom;
@@ -60,12 +65,24 @@
 
 //音量选择器
 @property (strong, nonatomic) IBOutlet UISlider *sldVolume;
+@property (strong, nonatomic) IBOutlet YDSlider *csldVolume;
+
 @property (strong, nonatomic) IBOutlet UIButton *btnVolume;
 
 - (NSString*)stbServer;
 
 //音频控制器
 @property (nonatomic,strong)MPMusicPlayerController *volumeController;
+
+//播放timer
+@property (nonatomic,strong) NSTimer *playTimer;
+
+#warning 测试代码
+@property (nonatomic,strong) NSString *tempPlayAddress;
+@property (nonatomic) float minBuffer;
+@property (nonatomic) float maxBuffer;
+@property (nonatomic) int analyzeTime;
+
 
 @end
 
@@ -98,6 +115,13 @@
     //声音控制
     volumeValue = self.volumeController.volume;
     self.sldVolume.value = volumeValue;
+    [self configSlideVolume];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    [self.player didReceiveMemoryWarning];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -109,24 +133,29 @@
     return ret;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.player pause];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
+    isAppearView = YES;
     [super viewDidAppear:animated];
     self.movieViewerFrame = self.vMovie.frame;
     self.player.frame = self.vMovie.bounds;
     //设置不让系统变黑屏
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    [self.player play];
+    if (searchedChannel&&self.tblChannel.fetchedResultsController.fetchedObjects.count>0) {
+        [self playChannel:self.tblChannel.selectedChannel];
+    }
+    else
+    {
+        if (self.tblChannel.fetchedResultsController.fetchedObjects.count>0) {
+            [self.player play];
+        }
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    isAppearView = NO;
     //设置不让系统变黑屏
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [self.player pause];
@@ -163,7 +192,7 @@
     }
     else
     {
-        if (self.player) {
+        if (isAppearView && self.player) {
             [self.player play];
         }
 
@@ -216,7 +245,7 @@
 #pragma mark -----------------------播放消息
 - (void)playNotifycation:(NSNotification*)obj
 {
-    if (self.player) {
+    if (isAppearView && self.player) {
         [self.player play];
     }
 }
@@ -229,6 +258,7 @@
 - (void)refreshNotifiycation:(NSNotification*)obj
 {
     [self.tblChannel refreshChannel];
+    searchedChannel = YES;
 }
 
 - (void)deleteAllChannelNotification:(NSNotification*)obj
@@ -240,8 +270,11 @@
 #pragma mark -----------------------切换切目的代理
 - (void)playChannel:(Channel*)aChannel
 {
-    [CommonUtil changeCurrentChannel:aChannel.channelId.integerValue];
-    [self switchChannel:[self currentPlayPath]];
+    if (isAppearView) {
+        [CommonUtil changeCurrentChannel:aChannel.channelId.integerValue];
+        [self switchChannel:[self currentPlayPath]];
+        searchedChannel = NO;
+    }
 }
 
 - (void)stopChannel
@@ -256,7 +289,7 @@
 {
     //设置有效期
 	NSDateFormatter *formatter = [self dateFormatter];
-    NSString *validString =@"2013-12-23";
+    NSString *validString =@"2014-02-05";
     NSDate *validDate = [formatter dateFromString:validString];
     
     NSDate *nowtime = [NSDate date];
@@ -286,27 +319,43 @@
     }
     NSString *path = [self stbServer];
     path = [NSString stringWithFormat:@"%@%d",path,currentChannel];
+    if ([NSString isEmpty:[UPNPTool shareInstance].stbIP]) {
+        path = nil;
+    }
+//#warning 测试代码
+//    if (![NSString isEmpty:self.tempPlayAddress]) {
+//        path = self.tempPlayAddress;
+//    }
+    
     NSLog(@"path:%@",path);
     return path;
+}
+
+#pragma mark ------- timer,一个半小时候，重新播放
+- (void)setPlayTimer:(NSTimer *)playTimer
+{
+    if (_playTimer) {
+        [_playTimer invalidate];
+    }
+    _playTimer = playTimer;
+}
+
+- (void)timeout:(NSTimer*)sender
+{
+    _playTimer = nil;
+    if (isAppearView) {
+        [self switchChannel:[self currentPlayPath]];
+    }
+    else
+    {
+        searchedChannel = YES;
+    }
 }
 
 #pragma mark ---- 正式切换播放
 - (void)switchChannel:(NSString*)path
 {
-    //设置让系统变黑屏
-    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
-    
-    if ([NSString isEmpty:path]) {
-        return;
-    }
-    if (![self timeValid]) {
-        return;
-    }
-    
-    if (self.player) {
-        [self.player stopVideo];
-    }
-    
+    //播放方法
     dispatch_block_t playBlock = ^{
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
         parameters[ParameterDisableDeinterlacing] = @(YES);
@@ -319,10 +368,21 @@
         [player setBackgroundColor:[UIColor blackColor]];
         
         //设置缓存
-        parameters[ParameterMaxBufferedDuration] = @(50.0);//最大缓存
-        parameters[ParameterMinBufferedDuration] = @(4.0);//最小缓存
+        parameters[ParameterMaxBufferedDuration] = @(30.0);//最大缓存
+        parameters[ParameterMinBufferedDuration] = @(1.0);//最小缓存
         //设置最大分析时间
-        player.maxAnalyzeDuration = 2;
+        player.maxAnalyzeDuration = 4;
+        
+//#warning 测试代码
+//        if (self.minBuffer>0) {
+//            parameters[ParameterMinBufferedDuration] = @(self.minBuffer);//最小缓存
+//        }
+//        if (self.maxBuffer>0) {
+//            parameters[ParameterMaxBufferedDuration] = @(self.maxBuffer);
+//        }
+//        if (self.analyzeTime>0) {
+//            player.maxAnalyzeDuration = self.analyzeTime;
+//        }
         
         //播放
         [self setPlayer:player];
@@ -330,30 +390,51 @@
         [self.player initWithContentPath:path parameters:parameters];
     };
     
-    Channel *currentChannel = [self.tblChannel selectedChannel];
     
+    //设置让系统变黑屏
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     
-    if (currentChannel.lock.boolValue) {
-        [[PasswordAlert shareInstance] alertPassword:nil withMessage:MyLocalizedString(@"Please enter the menu password") withValidPasswordCallback:^BOOL(PasswordAlert *aAlert, NSString *password) {
-            BOOL success = NO;
-            if (![NSString isEmpty:[LockInfo shareInstance].passwd]
-                &&![NSString isEmpty:[LockInfo shareInstance].passwd_channel]
-                && ([[LockInfo shareInstance].passwd isEqualToString:password]
-                    || [[LockInfo shareInstance].passwd_channel isEqualToString:password]
-                    || [[LockInfo shareInstance].univeral_passwd isEqualToString:password]
-                    )
-                )
-            {
-                success = YES;
-                playBlock();
-            }
-            return success;
-        }];
+    if ([NSString isEmpty:path]) {
+        return;
     }
-    else
-    {
-        playBlock();
+    
+//#warning 测试代码
+//    playBlock();
+//    return;
+    
+    if (![self timeValid]) {
+        return;
     }
+    //设置播放时间，
+    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(timeout:) userInfo:nil repeats:NO];
+    if (self.player) {
+        [self.player stopVideo];
+    }
+    playBlock();
+  
+    
+//    Channel *currentChannel = [self.tblChannel selectedChannel];
+//    if (currentChannel.lock.boolValue) {
+//        [[PasswordAlert shareInstance] alertPassword:nil withMessage:MyLocalizedString(@"Please enter the menu password") withValidPasswordCallback:^BOOL(PasswordAlert *aAlert, NSString *password) {
+//            BOOL success = NO;
+//            if (![NSString isEmpty:[LockInfo shareInstance].passwd]
+//                &&![NSString isEmpty:[LockInfo shareInstance].passwd_channel]
+//                && ([[LockInfo shareInstance].passwd isEqualToString:password]
+//                    || [[LockInfo shareInstance].passwd_channel isEqualToString:password]
+//                    || [[LockInfo shareInstance].univeral_passwd isEqualToString:password]
+//                    )
+//                )
+//            {
+//                success = YES;
+//                playBlock();
+//            }
+//            return success;
+//        }];
+//    }
+//    else
+//    {
+//        playBlock();
+//    }
     
     
 }
@@ -560,6 +641,24 @@
     volumeValue = sender.value;
     self.btnVolume.selected = volumeValue==0;
 }
+- (IBAction)cslideVolume:(YDSlider *)sender {
+    self.volumeController.volume = sender.value;
+    volumeValue = sender.value;
+    self.btnVolume.selected = volumeValue==0;
+}
+
+- (void)configSlideVolume
+{
+    self.csldVolume.value = self.volumeController.volume;
+    
+    [self.csldVolume setThumbImage:[UIImage imageNamed:@"player-progress-point.png"] forState:UIControlStateNormal];
+    [self.csldVolume setThumbImage:[UIImage imageNamed:@"player-progress-point-h.png"] forState:UIControlStateHighlighted];
+    //设置slider最左边一段的颜色
+    self.csldVolume.minimumTrackTintColor = [UIColor orangeColor];
+    //设置slider最右边一段的颜色
+    self.csldVolume.maximumTrackTintColor = RGBColor(57,60,86);
+    
+}
 
 #pragma mark 静音设置
 - (IBAction)click_volume:(id)sender
@@ -575,12 +674,12 @@
     self.btnVolume.selected = ismuted;
     if (ismuted) {
         self.volumeController.volume = 0.0f;
-        self.sldVolume.value = 0.0f;
+        self.csldVolume.value = 0.0f;
     }
     else
     {
         self.volumeController.volume = volumeValue;
-        self.sldVolume.value = volumeValue;
+        self.csldVolume.value = volumeValue;
     }
 }
 
@@ -588,13 +687,64 @@
 - (IBAction)clickBtnSetting:(id)sender
 {
     if ([NSString isEmpty:[UPNPTool shareInstance].stbIP]) {
-       [SingleAlert showMessage:MyLocalizedString(@"TV box not found，please check!")];
+       [SingleAlert showMessage:MyLocalizedString(@"Please connect TV Box")];
     }
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
-    UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"VCSetingController"];
-    [self presentViewController:wifiSetting animated:YES completion:^{
+    else
+    {
+        __weak VideoController *weakSelf = self;
+        [[ConfirmMunePassword shareInstance] confirmMunePassword:^(BOOL aResult) {
+            if (aResult) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
+                UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"VCSetingController"];
+                [weakSelf presentViewController:wifiSetting animated:YES completion:^{
+                }];
+            }
+        }];
+        
+       
+    }
+}
+
+#pragma mark --------------测试代码
+- (IBAction)click_Minbuffer:(id)sender
+{
+    [InputAlert alertMessage:@"请输入MinBuffer" withResultBlock:^(NSString *aResult) {
+        float result = [aResult floatValue];
+        if (result>0) {
+            self.minBuffer = result;
+            [self switchChannel:[self currentPlayPath]];
+        }
     }];
 }
+- (IBAction)click_MaxBuffer:(id)sender
+{
+    [InputAlert alertMessage:@"请输入MaxBuffer" withResultBlock:^(NSString *aResult) {
+        float result = [aResult floatValue];
+        if (result>0) {
+            self.maxBuffer = result;
+            [self switchChannel:[self currentPlayPath]];
+        }
+    }];
+}
+- (IBAction)click_AnalyzeTime:(id)sender
+{
+    [InputAlert alertMessage:@"请输入分析时间" withResultBlock:^(NSString *aResult) {
+        int result = [aResult intValue];
+        if (result>0) {
+            self.analyzeTime = result;
+            [self switchChannel:[self currentPlayPath]];
+        }
+    }];
+}
+- (IBAction)click_PlayAddress:(id)sender
+{
+    [InputAlert alertMessage:@"请输入播放地址" withResultBlock:^(NSString *aResult) {
+        self.tempPlayAddress = aResult;
+        [self switchChannel:[self currentPlayPath]];
+    }];
+}
+
+
+
 
 @end

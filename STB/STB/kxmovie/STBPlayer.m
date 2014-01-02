@@ -1115,7 +1115,7 @@ static CGFloat NETWORK_MAX_BUFFERED_DURATION = 3.0;
     if (_decoder.duration != MAXFLOAT)
         _leftLabel.text = formatTimeInterval(duration - position, YES);
     
-#ifdef DEBUG
+#ifdef DEBUG1
     const NSTimeInterval timeSinceStart = [NSDate timeIntervalSinceReferenceDate] - _debugStartTime;
     NSString *subinfo = _decoder.validSubtitles ? [NSString stringWithFormat: @" %d",_subtitles.count] : @"";
     

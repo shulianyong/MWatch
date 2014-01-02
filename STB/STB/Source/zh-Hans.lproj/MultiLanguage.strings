@@ -11,6 +11,7 @@
 "OK"="确定";
 "Cancel"="取消";
 "TV box not found，please check!"="未找到机顶盒，请检查！";
+"Please connect TV Box"="请连接机顶盒";
 "Error:Channel List Command"="获取列表失败!";
 "Channel List is empty"="节目列表为空";
 "Version is expired"="版本已经过期";
@@ -20,6 +21,8 @@
 
 //设置
 "SETUP"="设置";
+"Box Setup"="机顶盒设置";
+"Box Setup will exit"="机顶盒设置将退出";
 //设置主页
 "WIFI"="无线设置";
 "Parent Lock"="父母锁";
@@ -75,6 +78,7 @@
 "Are you really want to run the factory reset?"="是否确认恢复出厂设置?";
 "Warning"="警告";
 "Factory reset success"="恢复出厂设置成功";
+"Factory reset fail"="恢复出厂设置失败";
 
 //version upgrade
 "Do you want to download the latest firmware"="是否确定下载最新固件";
@@ -83,12 +87,13 @@
 "MWatch upgrade success"="版本升级成功,请在iOS系统中重新设置机顶盒WIFI";
 "MWatch upgrade failed"="版本升级失败";
 "Do you want to download the latest firmware"="是否确定下载最新固件";
-"Doownloading..."="下载中...";
+"Downloading..."="下载中...";
 "had a latest firmware,do you want to update firmware"="有最新固件，是否更新最新固件";
 "Is the latest firmware"="已经是最新固件";
-"Connect Internet to downloade firmware"="连接因特网下载固件";
+"Connect Internet to download firmware"="连接因特网下载固件";
 "Connect STB to upgrade firmware"="连接机顶盒升级固件";
-"Please don't remind me to upgrade the firmware"="请勿提醒我升级固件";
+"Remind me of the firmware upgrade"="提醒固件更新";
+"Do not power off or turn off"="切勿断电或关机";
 
 //WIFI 设置
 "WIFI Name"="WIFI名";
@@ -97,3 +102,4 @@
 "WIFI password shall not be less than 8"="WIFI密码不得少于8位";
 "Password"="密码";
 "Need Password"="需要密码";
+"Please Input WIFI Name"="请输入WIFI名";

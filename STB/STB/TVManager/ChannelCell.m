@@ -58,10 +58,9 @@
     //    self.detailTextLabel.textColor = RGBColor(81, 81, 81);
     
     //设置位置
-    CGRect textLabelFrame = self.textLabel.frame;
     CGFloat X = 5+28+5;
     CGFloat width = self.bounds.size.width;
-    textLabelFrame = CGRectMake(X
+    CGRect textLabelFrame = CGRectMake(X
                                 , 5
                                 , width-X
                                 , self.frame.size.height-10);

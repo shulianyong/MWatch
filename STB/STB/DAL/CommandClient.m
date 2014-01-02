@@ -135,6 +135,7 @@
 //wifi 设置
 + (void)configWifiName:(NSString*)aName withPassword:(NSString*)aPassword withNeedPwd:(BOOL)isNeed withResult:(HttpCallback)aCallback
 {
+    aPassword = isNeed?aPassword:@"12345678";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"command"] = @"bs_set_wifi_ap_infor";
     parameters[@"commandId"] = @3005;
@@ -153,7 +154,6 @@
             {
                 aCallback(nil,HTTPAccessStateFail);
             }
-            
         }
         else
         {
@@ -220,7 +220,7 @@
     parameters[@"commandId"] = @111;
     parameters[@"passwd"]=aNewPassword;
     parameters[@"passwd_old"]=[LockInfo shareInstance].passwd;
-    parameters[@"passwd_channel"]=aChannelPwd;
+//    parameters[@"passwd_channel"]=aChannelPwd;
     
     [self command:parameters withCallback:^(id info, HTTPAccessState isSuccess) {
         aCallback(info,isSuccess);

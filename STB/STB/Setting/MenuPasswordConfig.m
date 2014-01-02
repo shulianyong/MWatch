@@ -57,7 +57,7 @@ static NSInteger menuTagOffset = 100;
 - (void)boundMultiLanWithView:(UIView*)supView
 {
     for (UIView *sub in supView.subviews) {
-        if (sub.subviews.count>0) {
+        if (![sub isKindOfClass:[UIButton class]] && sub.subviews.count>0) {
             [self boundMultiLanWithView:sub];
         }
         else
@@ -96,7 +96,7 @@ static NSInteger menuTagOffset = 100;
     }
     
     self.lblTitle.text = MyLocalizedString(@"Menu Password");
-    [self.btnBack setTitle:MyLocalizedString(@"SETUP") forState:UIControlStateNormal];
+    [self.btnBack setTitle:MyLocalizedString(@"Box Setup") forState:UIControlStateNormal];
 }
 
 #pragma mark ------------------------- 设置键盘问题
@@ -195,17 +195,17 @@ static NSInteger menuTagOffset = 100;
     {
         [CommonUtil showMessage:MyLocalizedString(@"Please input the new password")];
     }
-    else if ([NSString isEmpty:self.txtChannelPassword.text])
-    {
-        [CommonUtil showMessage:MyLocalizedString(@"Please input the channel password")];
-    }
+//    else if ([NSString isEmpty:self.txtChannelPassword.text])
+//    {
+//        [CommonUtil showMessage:MyLocalizedString(@"Please input the channel password")];
+//    }
     //验证是否通过
     else if (![self.txtPrimitivePassword.text isEqualToString:[LockInfo shareInstance].univeral_passwd]
              && ![self.txtPrimitivePassword.text isEqualToString:[LockInfo shareInstance].passwd])
     {
         [CommonUtil showMessage:MyLocalizedString(@"Primitive is not correct,please reenter")];
     }//验证长度
-    else if (self.txtNewPassword.text.trim.length!=4 || self.txtChannelPassword.text.trim.length!=4)
+    else if (self.txtNewPassword.text.trim.length!=4) //|| self.txtChannelPassword.text.trim.length!=4)
     {
         [CommonUtil showMessage:MyLocalizedString(@"Password lenth is 4,please reenter")];
     }

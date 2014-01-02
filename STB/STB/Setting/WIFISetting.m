@@ -62,7 +62,7 @@
 - (void)boundMultiLanWithView:(UIView*)supView
 {
     for (UIView *sub in supView.subviews) {
-        if (sub.subviews.count>0) {
+        if (![sub isKindOfClass:[UIButton class]] && sub.subviews.count>0) {
             [self boundMultiLanWithView:sub];
         }
         else
@@ -100,6 +100,11 @@
     [sender resignFirstResponder];
 }
 - (IBAction)click_btnOK:(id)sender {
+    if ([NSString isEmpty:self.txtWifiName.text.trim]) {
+        [CommonUtil showMessage:MyLocalizedString(@"Please Input WIFI Name")];
+        return;
+    }
+    
     if (self.txtPassword.text.trim.length>7 || self.switchNeedPwd.on==NO) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert")
                                                             message:MyLocalizedString(@"Are you really want to modify the WIFI Password")

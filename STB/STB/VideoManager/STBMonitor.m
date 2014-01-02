@@ -169,55 +169,59 @@
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
     [self.eventMonitorSocket readDataWithTimeout:-1 tag:0];
-    NSString *reviceData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    INFO(@"接收到的数据:%@",reviceData);
+    NSString *reviceDatas = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    INFO(@"接收到的数据:%@",reviceDatas);
+    
 //#warning 测试    
 //    dispatch_sync(dispatch_get_main_queue(), ^{
 //        [CommonUtil showMessage:reviceData];
 //    });
     
-    NSError *error = nil;
-    if (reviceData) {
-        NSData *jsonData = [reviceData dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *dicValue = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                                 options:kNilOptions
-                                                                   error:&error];
-        
-        NSString *event = [dicValue objectForKey:@"event"];
-        if ([event isEqualToString:@"FRONTEND_LOCK_STATE"])//信息质量
-        {
-            NSString *state = [dicValue objectForKey:@"state"];
-            
-            static BOOL hadProcessNoSignal = NO;//去除重复提示没信号
-            if ([state isEqualToString:@"unlock"]) {
-                if (!hadProcessNoSignal) {
-                    [[SignalTool shareInstance] noSignal];
-                    hadProcessNoSignal = YES;
+    
+    NSArray *reviceDataArray = [reviceDatas componentsSeparatedByString:@"\n"];
+    
+    for (NSString *reviceData in reviceDataArray) {
+        NSError *error = nil;
+        if (![NSString isEmpty:reviceData]) {
+            NSData *jsonData = [reviceData dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dicValue = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                     options:kNilOptions
+                                                                       error:&error];
+            NSString *event = [dicValue objectForKey:@"event"];
+            if ([event isEqualToString:@"FRONTEND_LOCK_STATE"])//信息质量
+            {
+                NSString *state = [dicValue objectForKey:@"state"];
+                
+                static BOOL hadProcessNoSignal = NO;//去除重复提示没信号
+                if ([state isEqualToString:@"unlock"]) {
+                    if (!hadProcessNoSignal) {
+                        [[SignalTool shareInstance] noSignal];
+                        hadProcessNoSignal = YES;
+                    }
+                }
+                else
+                {
+                    [[SignalTool shareInstance] hasSignal];
+                    hadProcessNoSignal = NO;
                 }
             }
-            else
+            else if ([event isEqualToString:@"BS_UPDATE_LOCK_CONTROL"])//锁信息
             {
-                [[SignalTool shareInstance] hasSignal];
-                hadProcessNoSignal = NO;
+                [[LockInfo shareInstance] reflectDataFromOtherObject:dicValue];
+            }
+            else if ([event isEqualToString:@"SCAN_STATUS"])
+            {
+                ScanStatusInfo *aStatusInfo = [[ScanStatusInfo alloc] init];
+                [aStatusInfo reflectDataFromOtherObject:dicValue];
+                INFO(@"SCAN_STATUS event");
+                [self searchChannelEvent:aStatusInfo];
+            }
+            else if ([event isEqualToString:@"BS_UPDATE_CHANNEL_LSIT"])//刷新列表监听
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
             }
         }
-        else if ([event isEqualToString:@"BS_UPDATE_LOCK_CONTROL"])//锁信息
-        {
-            [[LockInfo shareInstance] reflectDataFromOtherObject:dicValue];
-        }
-        else if ([event isEqualToString:@"SCAN_STATUS"])
-        {
-            ScanStatusInfo *aStatusInfo = [[ScanStatusInfo alloc] init];
-            [aStatusInfo reflectDataFromOtherObject:dicValue];
-            INFO(@"SCAN_STATUS event");
-            [self searchChannelEvent:aStatusInfo];
-        }
-        else if ([event isEqualToString:@"BS_UPDATE_CHANNEL_LSIT"])//刷新列表监听
-        {
-            [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
-        }
     }
-    
 }
 
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag

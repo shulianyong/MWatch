@@ -12,7 +12,7 @@
 #import "CommandResult.h"
 #import "MBProgressHUD.h"
 
-#import "../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
+#import "../../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
 
 @interface ParentLocked ()<MBProgressHUDDelegate>
 {
@@ -36,7 +36,7 @@
 - (void)boundMultiLanWithView:(UIView*)supView
 {
     for (UIView *sub in supView.subviews) {
-        if (sub.subviews.count>0) {
+        if (![sub isKindOfClass:[UIButton class]] && sub.subviews.count>0) {
             [self boundMultiLanWithView:sub];
         }
         else

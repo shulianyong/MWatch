@@ -37,7 +37,12 @@
 - (void)setAlertView:(UIAlertView *)alertView
 {
     if (_alertView!=nil) {
-        [_alertView dismissWithClickedButtonIndex:0 animated:YES];
+        __block UIAlertView *tempAlert = _alertView;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_sync(dispatch_get_main_queue(), ^{
+        [tempAlert dismissWithClickedButtonIndex:0 animated:YES];
+            });
+        });
     }
     _alertView = alertView;
 }
@@ -48,7 +53,12 @@
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert") message:aMessgae delegate:self cancelButtonTitle:MyLocalizedString(@"Cancel") otherButtonTitles:nil];
     self.alertView = alertView;
-    [alertView show];
+    __weak SingleAlert *weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [weakSelf.alertView show];
+        });
+    });
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -59,7 +69,7 @@
 
 + (void)showMessage:(NSString*)aMessgae
 {
-    [self.shareInstance showMessage:aMessgae];
+    [SingleAlert.shareInstance showMessage:aMessgae];
 }
 
 @end

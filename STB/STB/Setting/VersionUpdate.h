@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DownLoadUtil.h"
 
-static NSString *STB_SOFTWARE_VER = @"STB_APPLICATION_VER";//@"Application";
+static NSString *STB_SOFTWARE_VER = @"STB_APPLICATION_VER";//@"STB_APPLICATION_DEV_VER";
 static NSString *STB_RemindUpgrade = @"STB_RemindUpgrade";
 static NSString *STB_SOFTWARE_TYPE = @"STB_SOFTWARE_TYPE";
 

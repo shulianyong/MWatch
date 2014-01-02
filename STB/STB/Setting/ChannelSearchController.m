@@ -26,6 +26,10 @@
 
 @implementation ChannelSearchController
 
+static NSString *FrequencyUserDefault = @"FrequencyUserDefault";
+static NSString *SymbolRateUserDefault = @"SymbolRateUserDefault";
+static NSString *PolarUserDefault=@"PolarUserDefault";
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,21 +42,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.txtPolar.leftView=self.btnRolarLeft;
-//    self.txtPolar.leftViewMode = UITextFieldViewModeAlways;
-//    
-//    self.txtPolar.rightView = self.btnPolarRight;
-//    self.txtPolar.rightViewMode = UITextFieldViewModeAlways;
+    
+    NSString *frequencyValue = [[NSUserDefaults standardUserDefaults] objectForKey:FrequencyUserDefault];
+    NSString *symbolRateValue = [[NSUserDefaults standardUserDefaults] objectForKey:SymbolRateUserDefault];
+    NSString *polarValue = [[NSUserDefaults standardUserDefaults] objectForKey:PolarUserDefault];
+    if (![NSString isEmpty:frequencyValue]) {
+        self.txtFrequency.text = frequencyValue;
+        self.txtSymbolRate.text = symbolRateValue;
+        self.txtPolar.text = polarValue;
+    }
+    
     
 	// Do any additional setup after loading the view.
-    [self.btnBack setTitle:MyLocalizedString(@"SETUP") forState:UIControlStateNormal];
+    [self.btnBack setTitle:MyLocalizedString(@"Box Setup") forState:UIControlStateNormal];
     [self boundMultiLanWithView:self.view];
+}
+
+- (void)configDeafult
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.txtFrequency.text forKey:FrequencyUserDefault];
+    [[NSUserDefaults standardUserDefaults] setObject:self.txtSymbolRate.text forKey:SymbolRateUserDefault];
+    [[NSUserDefaults standardUserDefaults] setObject:self.txtPolar.text forKey:PolarUserDefault];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)boundMultiLanWithView:(UIView*)supView
 {
     for (UIView *sub in supView.subviews) {
-        if (sub.subviews.count>0) {
+        if (![sub isKindOfClass:[UIButton class]] && sub.subviews.count>0) {
             [self boundMultiLanWithView:sub];
         }
         else
@@ -108,6 +125,7 @@
         [CommonUtil showMessage:MyLocalizedString(@"please input the Polar")];
         return;
     }
+    [self configDeafult];
     
     TPInfo *aInfo = [[TPInfo alloc] init];
     

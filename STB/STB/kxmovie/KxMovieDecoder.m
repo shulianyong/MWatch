@@ -1,7 +1,7 @@
 #import "KxMovieDecoder.h"
 #import <Accelerate/Accelerate.h>
 #include "libavformat/avformat.h"
-#include "libavcodec/h264.h"
+//#include "libavcodec/h264.h"
 #include "libswscale/swscale.h"
 #include "libswresample/swresample.h"
 #include "libavutil/pixdesc.h"
@@ -762,7 +762,7 @@ static int interrupt_callback(void *ctx);
             return kxMovieErrorOpenFile;
         
         //添加分析时间
-        formatCtx->max_analyze_duration = 3*1000*1000;
+//        formatCtx->max_analyze_duration = 4*1000*1000;
         if (self.maxAnalyzeDuration>0) {
             formatCtx->max_analyze_duration = self.maxAnalyzeDuration*1000*1000;
         }

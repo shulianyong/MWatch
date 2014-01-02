@@ -11,6 +11,7 @@
 "OK"="OK";
 "Cancel"="Cancel";
 "TV box not found，please check!"="TV box not found，please check!";
+"Please connect TV Box"="Please connect TV Box";
 "Error:Channel List Command"="Error:Channel List Command";
 "Channel List is empty"="Channel List is empty";
 "Version is expired"="Version is expired";
@@ -20,6 +21,8 @@
 
 //setting
 "SETUP"="SETUP";
+"Box Setup"="Box Setup";
+"Box Setup will exit"="Box Setup will exit";
 //main setting
 "WIFI"="WIFI";
 "Parent Lock"="Parent Lock";
@@ -76,6 +79,7 @@
 "Are you really want to run the factory reset?"="Are you really want to run the factory reset?";
 "Warning"="Warning";
 "Factory reset success"="Factory reset success";
+"Factory reset fail"="Factory reset fail";
 
 //version upgrade
 "Do you want to download the latest firmware"="Do you want to download the latest firmware";
@@ -84,12 +88,13 @@
 "MWatch upgrade success"="MWatch upgrade success,please reset wifi in iOS Setting";
 "MWatch upgrade failed"="MWatch upgrade failed";
 "Do you want to download the latest firmware"="Do you want to download the latest firmware";
-"Doownloading..."="Doownloading...";
+"Downloading..."="Downloading...";
 "had a latest firmware,do you want to update firmware"="had a latest firmware,do you want to update firmware";
 "Is the latest firmware"="Is the latest firmware";
-"Connect Internet to downloade firmware"="Connect Internet to downloade firmware";
+"Connect Internet to download firmware"="Connect Internet to download firmware";
 "Connect STB to upgrade firmware"="Connect STB to upgrade firmware";
-"Please don't remind me to upgrade the firmware"="Please don't remind me to upgrade the firmware";
+"Remind me of the firmware upgrade"="Remind me of the firmware upgrade";
+"Do not power off or turn off"="Do not power off or turn off";
 
 //WIFI 设置
 "WIFI Name"="WIFI Name";
@@ -98,3 +103,4 @@
 "WIFI password shall not be less than 8"="WIFI password shall not be less than 8";
 "Password"="Password";
 "Need Password"="Need Password";
+"Please Input WIFI Name"="Please Input WIFI Name";

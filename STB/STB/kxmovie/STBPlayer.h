@@ -38,4 +38,6 @@ extern NSString * const ParameterDisableDeinterlacing;   // BOOL
 //分析时间
 @property (nonatomic) NSInteger maxAnalyzeDuration;
 
+- (void)didReceiveMemoryWarning;
+
 @end

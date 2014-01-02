@@ -57,7 +57,7 @@
         
     }];
     NSString *versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    self.lblVersion.text = [NSString stringWithFormat:@"%@ %@",MyLocalizedString(self.lblVersion.text),versionCode];
+    self.lblVersion.text = [NSString stringWithFormat:@"%@ V%@",MyLocalizedString(self.lblVersion.text),versionCode];
     [self boundMultiLanWithView:self.view];
 	// Do any additional setup after loading the view.
 }
@@ -66,7 +66,7 @@
 - (void)boundMultiLanWithView:(UIView*)supView
 {
     for (UIView *sub in supView.subviews) {
-        if (sub.subviews.count>0) {
+        if (![sub isKindOfClass:[UIButton class]] && sub.subviews.count>0) {
             [self boundMultiLanWithView:sub];
         }
         else

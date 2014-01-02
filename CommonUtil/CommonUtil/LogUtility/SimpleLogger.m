@@ -45,7 +45,11 @@
 
 - (id)init
 {
+#ifdef DEBUG
 	return [self initWithLogLevel:SLLS_ALL];
+#else
+    return [self initWithLogLevel:SLLS_NONE];
+#endif
 }
 
 #pragma mark -

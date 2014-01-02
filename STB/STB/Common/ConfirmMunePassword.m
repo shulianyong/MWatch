@@ -56,6 +56,13 @@
             if ([password isEqualToString:[LockInfo shareInstance].univeral_passwd] || [password isEqualToString:[LockInfo shareInstance].passwd]) {
                 success = YES;
                 validCallback(success);
+                
+                NSNumber *isRemind = [[NSUserDefaults standardUserDefaults] objectForKey:@"STB_RemindUpgrade"];
+                if (isRemind==nil) {
+                    isRemind = @(YES);
+                    [[NSUserDefaults standardUserDefaults] setObject:isRemind forKey:@"STB_RemindUpgrade"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
             }
         }
         if (!success) {
