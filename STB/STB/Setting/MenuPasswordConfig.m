@@ -23,6 +23,7 @@ static NSInteger menuTagOffset = 100;
 @property (strong, nonatomic) IBOutlet UITextField *txtPrimitivePassword;
 @property (strong, nonatomic) IBOutlet UITextField *txtNewPassword;
 @property (strong, nonatomic) IBOutlet UITextField *txtChannelPassword;
+@property (strong, nonatomic) IBOutlet UITextField *txtVerifyPwd;
 
 
 @end
@@ -85,7 +86,7 @@ static NSInteger menuTagOffset = 100;
 
 - (void)configTextFieldStyle
 {
-    for (NSInteger i=0; i<3; i++) {
+    for (NSInteger i=0; i<4; i++) {
         UITextField *txtTemp = (UITextField*)[self.view viewWithTag:i+menuTagOffset];
         txtTemp.placeholder = MyLocalizedString(txtTemp.placeholder);
         
@@ -103,7 +104,7 @@ static NSInteger menuTagOffset = 100;
 - (UITextField*)txtSelected
 {
     UITextField *txtSelected = nil;
-    for (NSInteger i=0; i<3; i++) {
+    for (NSInteger i=0; i<4; i++) {
         UITextField *txtTemp = (UITextField*)[self.view viewWithTag:i+menuTagOffset];
         if (txtTemp.isFirstResponder) {
             txtSelected = txtTemp;
@@ -163,6 +164,10 @@ static NSInteger menuTagOffset = 100;
         [txtNext becomeFirstResponder];
         [self showKeyboard];
     }
+    else
+    {
+        [sender resignFirstResponder];
+    }
 }
 
 - (IBAction)touchView:(id)sender {
@@ -209,7 +214,10 @@ static NSInteger menuTagOffset = 100;
     {
         [CommonUtil showMessage:MyLocalizedString(@"Password lenth is 4,please reenter")];
     }
-    
+    else if(![self.txtNewPassword.text.trim isEqualToString:self.txtVerifyPwd.text.trim])
+    {
+        [CommonUtil showMessage:MyLocalizedString(@"The new password and verify password is not equal")];
+    }
     else//验证能过
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert") message:MyLocalizedString(@"Are you sure to change the password") delegate:self cancelButtonTitle:MyLocalizedString(@"Cancel") otherButtonTitles:MyLocalizedString(@"OK"), nil];

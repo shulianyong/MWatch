@@ -32,7 +32,7 @@
     //设置选中样式
     //    [self setSelectionStyle:UITableViewCellSelectionStyleGray];
     
-    self.imageView.frame = CGRectMake(5, 16,28, 28);
+    self.imageView.frame = CGRectMake(5, 16,30, 30);
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     static NSInteger aTag = 1000;

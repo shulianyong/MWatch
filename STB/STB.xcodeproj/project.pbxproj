@@ -208,6 +208,12 @@
 		A6DF13CC185EFE510045BDC1 /* SingleAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DF13CB185EFE510045BDC1 /* SingleAlert.m */; };
 		A6E47CF31816D7BC0099102C /* EnsureMenuPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E47CF21816D7BC0099102C /* EnsureMenuPassword.m */; };
 		A6E47CF61816DAC30099102C /* MenuPasswordConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E47CF51816DAC30099102C /* MenuPasswordConfig.m */; };
+		A6E8B4911876B2BE00E21CDD /* CCTV 1.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */; };
+		A6E8B4921876B2BE00E21CDD /* CCTV 10.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */; };
+		A6E8B4931876B2BE00E21CDD /* CCTV 12.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */; };
+		A6E8B4941876B2BE00E21CDD /* hnstv.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48E1876B2BE00E21CDD /* hnstv.png */; };
+		A6E8B4951876B2BE00E21CDD /* BTV.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48F1876B2BE00E21CDD /* BTV.png */; };
+		A6E8B4961876B2BE00E21CDD /* SBN.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B4901876B2BE00E21CDD /* SBN.png */; };
 		A6F05A321850C077005D9D49 /* FirmwareUpgradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F05A311850C077005D9D49 /* FirmwareUpgradeController.m */; };
 		A6F27FFC186FF4610017186B /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F27FF7186FF4610017186B /* libavcodec.a */; };
 		A6F27FFD186FF4610017186B /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F27FF8186FF4610017186B /* libavformat.a */; };
@@ -525,6 +531,7 @@
 		A68266091806C6E400B7762B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A682BA83186DB26300F6AC81 /* InputAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputAlert.h; sourceTree = "<group>"; };
 		A682BA84186DB26300F6AC81 /* InputAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAlert.m; sourceTree = "<group>"; };
+		A697B66F1883B925004BD7CD /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/MultiLanguage.strings; sourceTree = "<group>"; };
 		A69AC69D1855A9CE005A5B2E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A69AC69F1855B7C5005A5B2E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		A69AC6A11855B8D4005A5B2E /* icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-Small.png"; sourceTree = "<group>"; };
@@ -583,6 +590,12 @@
 		A6E47CF21816D7BC0099102C /* EnsureMenuPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnsureMenuPassword.m; sourceTree = "<group>"; };
 		A6E47CF41816DAC30099102C /* MenuPasswordConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPasswordConfig.h; sourceTree = "<group>"; };
 		A6E47CF51816DAC30099102C /* MenuPasswordConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPasswordConfig.m; sourceTree = "<group>"; };
+		A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCTV 1.png"; sourceTree = "<group>"; };
+		A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCTV 10.png"; sourceTree = "<group>"; };
+		A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCTV 12.png"; sourceTree = "<group>"; };
+		A6E8B48E1876B2BE00E21CDD /* hnstv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hnstv.png; sourceTree = "<group>"; };
+		A6E8B48F1876B2BE00E21CDD /* BTV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BTV.png; sourceTree = "<group>"; };
+		A6E8B4901876B2BE00E21CDD /* SBN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SBN.png; sourceTree = "<group>"; };
 		A6F05A301850C077005D9D49 /* FirmwareUpgradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareUpgradeController.h; sourceTree = "<group>"; };
 		A6F05A311850C077005D9D49 /* FirmwareUpgradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareUpgradeController.m; sourceTree = "<group>"; };
 		A6F27FF7186FF4610017186B /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavcodec.a; sourceTree = "<group>"; };
@@ -809,6 +822,7 @@
 				A648EABC186EFDC10094452C /* SliderImage */,
 				A669265F1816B80C007D9EF0 /* Setting */,
 				A649F7E3180D83F400EC476C /* MenuImage */,
+				A6E8B48A1876B2BE00E21CDD /* ChannelImage */,
 				A644842217F6F0B40054CC5C /* img_SettingViewBG.png */,
 				A66926C41816C43A007D9EF0 /* img_SettingViewBG@2x.png */,
 				A644841517F6C72B0054CC5C /* imgUserCheck.png */,
@@ -1247,6 +1261,19 @@
 			path = Setting1;
 			sourceTree = "<group>";
 		};
+		A6E8B48A1876B2BE00E21CDD /* ChannelImage */ = {
+			isa = PBXGroup;
+			children = (
+				A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */,
+				A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */,
+				A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */,
+				A6E8B48E1876B2BE00E21CDD /* hnstv.png */,
+				A6E8B48F1876B2BE00E21CDD /* BTV.png */,
+				A6E8B4901876B2BE00E21CDD /* SBN.png */,
+			);
+			path = ChannelImage;
+			sourceTree = "<group>";
+		};
 		A6F27FF6186FF4610017186B /* ffmpeg_iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1322,7 +1349,7 @@
 				ORGANIZATIONNAME = "Chengdu Sifang Information Technology Co.LTD";
 				TargetAttributes = {
 					A64483C517F68A960054CC5C = {
-						DevelopmentTeam = 2ZBLD7L9M5;
+						DevelopmentTeam = 242UYJ3U9M;
 					};
 					A64483E617F68A960054CC5C = {
 						TestTargetID = A64483C517F68A960054CC5C;
@@ -1338,6 +1365,7 @@
 				Base,
 				"zh-Hans",
 				"zh-Hant",
+				ar,
 			);
 			mainGroup = A64483BD17F68A960054CC5C;
 			productRefGroup = A64483C717F68A960054CC5C /* Products */;
@@ -1370,6 +1398,7 @@
 				A66926941816B80D007D9EF0 /* img_btnFactoryReset.png in Resources */,
 				A66F00C9183FA66100A3C71F /* imgBtnSettingSearch.png in Resources */,
 				A648EAC2186EFDC10094452C /* player-progress-h@2x.png in Resources */,
+				A6E8B4951876B2BE00E21CDD /* BTV.png in Resources */,
 				A69AC6A61855B9A1005A5B2E /* icon-120.png in Resources */,
 				A66F00CA183FA66100A3C71F /* imgBtnSettingSearch@2x.png in Resources */,
 				A675F637184617D000004AB9 /* imgTxtPolarRight@2x.png in Resources */,
@@ -1396,6 +1425,7 @@
 				A66926991816B80D007D9EF0 /* img_btnMenuPassword@2x.png in Resources */,
 				A6A64DA4181BEF73007C6C2E /* imgSettingNavigationBG@2x.png in Resources */,
 				A6521E3E180ED3180025EB2A /* imgAudiotrack@2x.png in Resources */,
+				A6E8B4931876B2BE00E21CDD /* CCTV 12.png in Resources */,
 				A66926A51816B80D007D9EF0 /* img_btnWIFI@2x.png in Resources */,
 				A6A044451835D1DB0074A68D /* imgArtLeft.png in Resources */,
 				A6A64DA3181BEF73007C6C2E /* imgSettingNavigationBG.png in Resources */,
@@ -1404,6 +1434,7 @@
 				A69AC69E1855A9CE005A5B2E /* Default-568h@2x.png in Resources */,
 				A64BDCB11812F03400F9CAD5 /* imgInfo.png in Resources */,
 				A64483D417F68A960054CC5C /* InfoPlist.strings in Resources */,
+				A6E8B4921876B2BE00E21CDD /* CCTV 10.png in Resources */,
 				A6A044471835D1DB0074A68D /* imgArtRight.png in Resources */,
 				A644840017F68D260054CC5C /* Video.storyboard in Resources */,
 				A68265E81806B9D100B7762B /* kxmovie.bundle in Resources */,
@@ -1416,6 +1447,7 @@
 				A69AC6A01855B7C5005A5B2E /* icon.png in Resources */,
 				A66926B01816B80D007D9EF0 /* img_txtPasswordBG.png in Resources */,
 				A66926A21816B80D007D9EF0 /* img_btnVersion.png in Resources */,
+				A6E8B4941876B2BE00E21CDD /* hnstv.png in Resources */,
 				A66926981816B80D007D9EF0 /* img_btnMenuPassword.png in Resources */,
 				A66926AB1816B80D007D9EF0 /* img_SettingHeader@2x.png in Resources */,
 				A64BDCB21812F03400F9CAD5 /* imgInfo@2x.png in Resources */,
@@ -1450,11 +1482,13 @@
 				A644841C17F6C72C0054CC5C /* imgUserUncheck@2x.png in Resources */,
 				A6A044481835D1DB0074A68D /* imgArtRight@2x.png in Resources */,
 				A66926A11816B80D007D9EF0 /* img_btnSettingCA@2x.png in Resources */,
+				A6E8B4961876B2BE00E21CDD /* SBN.png in Resources */,
 				A6A64DAF181C0BEB007C6C2E /* img_btnOK@2x.png in Resources */,
 				A649F7ED180D88E400EC476C /* imgMenuBGBottom@2x.png in Resources */,
 				A66926971816B80D007D9EF0 /* img_btnLanguage@2x.png in Resources */,
 				A66926AC1816B80D007D9EF0 /* img_SettingSep.png in Resources */,
 				A649F7F2180D8ED900EC476C /* imgBGChannel.png in Resources */,
+				A6E8B4911876B2BE00E21CDD /* CCTV 1.png in Resources */,
 				A66926A71816B80D007D9EF0 /* img_NoSignal@2x.png in Resources */,
 				A649F7F3180D8ED900EC476C /* imgBGChannel@2x.png in Resources */,
 				A66926AA1816B80D007D9EF0 /* img_SettingHeader.png in Resources */,
@@ -1599,6 +1633,7 @@
 				A6A2F1FB18423457002C0C30 /* en */,
 				A6A2F1FD1842345F002C0C30 /* zh-Hans */,
 				A6A2F1FE18423460002C0C30 /* zh-Hant */,
+				A697B66F1883B925004BD7CD /* ar */,
 			);
 			name = MultiLanguage.strings;
 			sourceTree = "<group>";
@@ -1697,7 +1732,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/STB/Frameworks/upnp_universal",
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(inherited)",
+					"$(SRCROOT)/STB/Frameworks/upnp_universal",
 					"$(SRCROOT)/STB/Frameworks/ffmpeg_iOS",
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(inherited)",
+					"$(SRCROOT)/STB/Frameworks/upnp_universal",
+					"$(SRCROOT)/STB/Frameworks/i386",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1727,7 +1771,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/STB/Frameworks/upnp_universal",
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(inherited)",
+					"$(SRCROOT)/STB/Frameworks/upnp_universal",
 					"$(SRCROOT)/STB/Frameworks/ffmpeg_iOS",
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(inherited)",
+					"$(SRCROOT)/STB/Frameworks/upnp_universal",
+					"$(SRCROOT)/STB/Frameworks/i386",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1782,89 +1835,6 @@
 			};
 			name = Release;
 		};
-		A6544B6A181F683B009553E2 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Distribution;
-		};
-		A6544B6B181F683B009553E2 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "STB/STB-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${SDK_DIR}/usr/include",
-				);
-				INFOPLIST_FILE = "STB/STB-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/STB/Frameworks/upnp_universal",
-					"$(SRCROOT)/STB/Frameworks/ffmpeg_iOS",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lstdc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "40DBCBD1-3A6C-4038-ABFC-6DAB4F7ABC52";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/ffmpeg";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Distribution;
-		};
-		A6544B6C181F683B009553E2 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/STB.app/STB";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "STB/STB-Prefix.pch";
-				INFOPLIST_FILE = "STBTests/STBTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Distribution;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1873,7 +1843,6 @@
 			buildConfigurations = (
 				A64483F617F68A960054CC5C /* Debug */,
 				A64483F717F68A960054CC5C /* Release */,
-				A6544B6A181F683B009553E2 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1883,7 +1852,6 @@
 			buildConfigurations = (
 				A64483F917F68A960054CC5C /* Debug */,
 				A64483FA17F68A960054CC5C /* Release */,
-				A6544B6B181F683B009553E2 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1893,7 +1861,6 @@
 			buildConfigurations = (
 				A64483FC17F68A960054CC5C /* Debug */,
 				A64483FD17F68A960054CC5C /* Release */,
-				A6544B6C181F683B009553E2 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

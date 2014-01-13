@@ -150,7 +150,12 @@
     if ([CommonUtil currentChannel]==object.channelId.integerValue) {
 //        [self selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
     }
-    cell.imageView.image = [UIImage imageNamed:@"imgDefaultchannel.png"];
+    UIImage *imgChannel = [UIImage imageNamed:object.name];
+    if (!imgChannel) {
+        imgChannel = [UIImage imageNamed:@"imgDefaultchannel.png"];
+    }
+    
+    cell.imageView.image = imgChannel;
     cell.textLabel.text = object.name;
     [(ChannelCell*)cell setIsLock:object.lock.boolValue];
 }

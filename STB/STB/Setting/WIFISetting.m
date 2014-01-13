@@ -14,6 +14,7 @@
 @interface WIFISetting ()
 @property (strong, nonatomic) IBOutlet UITextField *txtWifiName;
 @property (strong, nonatomic) IBOutlet UITextField *txtPassword;
+@property (strong, nonatomic) IBOutlet UITextField *txtVerifyPwd;
 @property (strong, nonatomic) IBOutlet UILabel *lblName;
 @property (strong, nonatomic) IBOutlet UILabel *lblEncode;
 @property (strong, nonatomic) IBOutlet UIButton *btnOK;
@@ -41,6 +42,8 @@
     self.txtPassword.leftViewMode = UITextFieldViewModeAlways;
     self.txtWifiName.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
     self.txtWifiName.leftViewMode = UITextFieldViewModeAlways;
+    self.txtVerifyPwd.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
+    self.txtVerifyPwd.leftViewMode = UITextFieldViewModeAlways;
     
     [self boundMultiLanWithView:self.view];
     WIFISetting *weakSelf = self;
@@ -104,8 +107,7 @@
         [CommonUtil showMessage:MyLocalizedString(@"Please Input WIFI Name")];
         return;
     }
-    
-    if (self.txtPassword.text.trim.length>7 || self.switchNeedPwd.on==NO) {
+    if ((self.txtPassword.text.trim.length>7 &&[self.txtPassword.text.trim isEqualToString:self.txtVerifyPwd.text.trim]) || self.switchNeedPwd.on==NO) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert")
                                                             message:MyLocalizedString(@"Are you really want to modify the WIFI Password")
                                                            delegate:self
@@ -114,9 +116,12 @@
         
         [alertView show];
     }
-    else
-    {
+    else if(self.txtPassword.text.trim.length<8) {
         [CommonUtil showMessage:MyLocalizedString(@"WIFI password shall not be less than 8")];
+    }
+    else if (![self.txtPassword.text.trim isEqualToString:self.txtVerifyPwd.text.trim])
+    {
+        [CommonUtil showMessage:MyLocalizedString(@"The new password and verify password is not equal")];
     }
     
 }

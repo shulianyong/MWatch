@@ -6,57 +6,59 @@
   Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
 */
 //common
-"Alert"="Alert";
-"Network Disconection"="Network Disconection";
+"Alert"="Prompt";
+"Network Disconection"="Internet disconnected";
 "OK"="OK";
-"Cancel"="Cancel";
-"TV box not found，please check!"="TV box not found，please check!";
-"Please connect TV Box"="Please connect TV Box";
-"Error:Channel List Command"="Error:Channel List Command";
-"Channel List is empty"="Channel List is empty";
-"Version is expired"="Version is expired";
-"NO Channel"="NO Channel";
-"Loading..."="Load...";
-"Please connect internet"="Please connect internet";
+"Cancel"="Cancle";
+"TV box not found，please check!"="Can't find STB, please check ！";
+"Please connect TV Box"="Please connect to STB";
+"Error:Channel List Command"="Can't get channel list !";
+"Channel List is empty"="Channel list is empty";
+"Version is expired"="Version expired ";
+"NO Channel"="Channel doesn’t exist";
+"Loading..."="Loading…";
+"Please connect internet"="Please connect to internet";
+"The new password and verify password is not equal"="The new password and verify password is not equal";
 
 //setting
-"SETUP"="SETUP";
-"Box Setup"="Box Setup";
-"Box Setup will exit"="Box Setup will exit";
+"SETUP"="Setting";
+"Box Setup"="STB setting";
+"Box Setup will exit"="Exiting STB setting";
 //main setting
-"WIFI"="WIFI";
-"Parent Lock"="Parent Lock";
-"Menu Password"="Menu Password";
-"Version"="Firmware Upgrade";
-"Firmware Upgrade"="Firmware Upgrade";
-"Signal"="Signal";
-"CA Check"="CA Check";
-"Language"="Language";
-"Program Search"="Program Search";
-"Factory Reset"="Factory Reset";
-"System Info"="System Info";
+"WIFI"="Wifi Setting";
+"Parent Lock"="Parental lock";
+"Menu Password"="Master code setting";
+"Version"="Version update";
+"Firmware Upgrade"="Version update";
+"Signal"="Signal quality";
+"CA Check"="CA information";
+"Language"="Language ";
+"Program Search"="Channel search";
+"Factory Reset"="Recover to factory default ";
+"System Info"="System information";
 
-"NO Signal"="NO Signal";
+"NO Signal"="no signal";
 "Signal quality:"="Signal quality:";
 "Signal strength:"="Signal strength:";
 
-"Please enter the menu password"="Please enter the menu password";
-"The password is not correct,please reenter"="The password is not correct,please reenter";
+"Please enter the menu password"="Please insert master code";
+"The password is not correct,please reenter"="Code incorrect, please insert again";
 
 //parent lock
-"Please select the channel needs to be locked"="Please select the channel needs to be locked";
+"Please select the channel needs to be locked"="Please tick the channel you want to add the lock";
 
 //menu password
-"Please input the primitive password"="Please input the primitive password";
-"Please input the new password"="Please input the new password";
-"Please input the channel password"="Please input the channel password";
-"Primitive is not correct,please reenter"="Primitive is not correct,please reenter";
-"Password lenth is 4,please reenter"="Password lenth is 4,please reenter";
-"Are you sure to change the password"="Are you sure to change the password";
-"Change password fail"="Change password fail";
+"Please input the primitive password"="Pleae inout original password";
+"Please input the new password"="Please input new password";
+"Please input the channel password"="Please input channel password";
+"Primitive is not correct,please reenter"="Original password incorrect, please input again";
+"Password lenth is 4,please reenter"="Pleae input a 4 digit password";
+"Are you sure to change the password"="Confirm to change password? ";
+"Change password fail"="Password change unsuccessful";
+"Verify Password"="Verify Password";
 
 //CA
-"The CA will expire on "="The CA will expire on ";
+"The CA will expire on "="CA expiry date";
 "MMM-dd-yyyy"="yyyy-MM-dd";
 //System Info
 "Loader version:"="Loader version:";
@@ -67,40 +69,39 @@
 "Version:"="Version:";
 
 //Search Channel
-"Program Search"="Program Search";
+"Program Search"="Channel search ";
 "Frequency"="Frequency";
 "Symbol Rate"="Symbol Rate";
 "Polar"="Polar";
-
-"Searching..."="Searching...";
-"Search fail"="Search fail";
+"Searching..."="Seraching…";
+"Search fail"="Search failed";
 "Completed"="Completed";
 //factory reset
-"Are you really want to run the factory reset?"="Are you really want to run the factory reset?";
+"Are you really want to run the factory reset?"="Recover setting to factory default? ";
 "Warning"="Warning";
-"Factory reset success"="Factory reset success";
-"Factory reset fail"="Factory reset fail";
+"Factory reset success"="Factory default recover seccessful";
+"Factory reset fail"="Factory default recover failed";
 
 //version upgrade
-"Do you want to download the latest firmware"="Do you want to download the latest firmware";
-"Download Fail"="Download Fail";
-"Download Completed"="Download Completed";
-"MWatch upgrade success"="MWatch upgrade success,please reset wifi in iOS Setting";
-"MWatch upgrade failed"="MWatch upgrade failed";
-"Do you want to download the latest firmware"="Do you want to download the latest firmware";
-"Downloading..."="Downloading...";
-"had a latest firmware,do you want to update firmware"="had a latest firmware,do you want to update firmware";
-"Is the latest firmware"="Is the latest firmware";
-"Connect Internet to download firmware"="Connect Internet to download firmware";
-"Connect STB to upgrade firmware"="Connect STB to upgrade firmware";
-"Remind me of the firmware upgrade"="Remind me of the firmware upgrade";
-"Do not power off or turn off"="Do not power off or turn off";
+"Do you want to download the latest firmware"="Are you sure to download the lastest firmware  ";
+"Download Fail"="Download unseccessful";
+"Download Completed"="Download complete";
+"MWatch upgrade success"="Version upgrated sucessfully. Please reset WIFI name";
+"MWatch upgrade failed"="Version upgrate failed";
+"Do you want to download the latest firmware"="Are you sure to download the lastest firmware  ";
+"Downloading..."="Downloading…";
+"had a latest firmware,do you want to update firmware"="Updated firmware available，update firmware to latest version? ";
+"Is the latest firmware"="Firmware is already updated the lastest version";
+"Connect Internet to download firmware"="Connect to internet to download firmware";
+"Connect STB to upgrade firmware"="Connect to STB to update firmware";
+"Remind me of the firmware upgrade"="Remind to update firmware";
+"Do not power off or turn off"="Do not cut power off or turn off the device";
 
 //WIFI 设置
-"WIFI Name"="WIFI Name";
-"ENCODE TYPE"="ENCODE TYPE";
-"Are you really want to modify the WIFI Password"="Are you really want to modify the WIFI Password";
-"WIFI password shall not be less than 8"="WIFI password shall not be less than 8";
+"WIFI Name"="Wifi name";
+"ENCODE TYPE"="Code type";
+"Are you really want to modify the WIFI Password"="Confirm to change wifi password?";
+"WIFI password shall not be less than 8"="Wifi password be no less than 8 digits";
 "Password"="Password";
-"Need Password"="Need Password";
-"Please Input WIFI Name"="Please Input WIFI Name";
+"Need Password"="Password required";
+"Please Input WIFI Name"="Please input wifi name";

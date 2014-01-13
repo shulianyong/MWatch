@@ -1,0 +1,107 @@
+/* 
+  MultiLanguage.strings
+  STB
+
+  Created by shulianyong on 13-10-18.
+  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+*/
+//common
+"Alert"="موجه";
+"Network Disconection"="قطع الإنترنت";
+"OK"="OK";
+"Cancel"="Cancle";
+"TV box not found，please check!"="لا يمكن العثور على STB، يرجى مراجعة！";
+"Please connect TV Box"="يرجى الاتصال STB";
+"Error:Channel List Command"="لا يمكن الحصول على قائمة القنوات!";
+"Channel List is empty"="قائمة القنوات فارغة";
+"Version is expired"="انتهت النسخة";
+"NO Channel"="لا توجد قناة";
+"Loading..."="تحميل ...";
+"Please connect internet"="يرجى الاتصال بالإنترنت";
+"The new password and verify password is not equal"="كلمة المرور الجديدة وتأكيد كلمة المرور لا يساوي";
+
+//setting
+"SETUP"="الإعداد";
+"Box Setup"="إعداد STB";
+"Box Setup will exit"="إنهاء الإعداد STB";
+//main setting
+"WIFI"="الضبط هوائي";
+"Parent Lock"="قفل الوالدين";
+"Menu Password"="وضع رمز الرئيسي";
+"Version"="إصدار التحديث";
+"Firmware Upgrade"="إصدار التحديث";
+"Signal"="جودة الإشارة";
+"CA Check"="المعلومات CA";
+"Language"="لغة";
+"Program Search"="البحث عن القناة";
+"Factory Reset"="لاستعادة المصنع الافتراضية";
+"System Info"="نظام المعلومات";
+
+"NO Signal"="عدم وجود إشارة";
+"Signal quality:"="جودة الإشارة:";
+"Signal strength:"="قوة الإشارة:";
+
+"Please enter the menu password"="يرجى ادخال الرمز الرئيسي";
+"The password is not correct,please reenter"="رمز غير صحيح، يرجى إدراج مرة أخرى";
+
+//parent lock
+"Please select the channel needs to be locked"="يرجى وضع علامة في القناة التي تريد إضافة قفل";
+
+//menu password
+"Please input the primitive password"="الرجاء إدخال كلمة المرور الأصلية";
+"Please input the new password"="الرجاء إدخال كلمة مرور جديدة";
+"Please input the channel password"="يرجى قناة إدخال كلمة السر";
+"Primitive is not correct,please reenter"="كلمة المرور الأصلية غير صحيحة، يرجى إدخال مرة أخرى";
+"Password lenth is 4,please reenter"="الرجاء إدخال كلمة مرور 4 أرقام";
+"Are you sure to change the password"="تأكيد تغيير كلمة السر؟";
+"Change password fail"="تغيير كلمة المرور غير ناجحة";
+"Verify Password"="تأكيد كلمة المرور";
+
+//CA
+"The CA will expire on "="CA انتهت صلاحيتة";
+"MMM-dd-yyyy"="yyyy-MM-dd";
+//System Info
+"Loader version:"="Loader version:";
+"Software version:"="Software version:";
+"Release date:"="Release date:";
+"Default DB:"="Default DB:";
+"Lib:"="Lib:";
+"Version:"="Version:";
+
+//Search Channel
+"Program Search"="البحث عن القناة";
+"Frequency"="Frequency";
+"Symbol Rate"="Symbol Rate";
+"Polar"="قطبي";
+"Searching..."="تبحث ...";
+"Search fail"="فشل بحث";
+"Completed"="الانتهاء";
+//factory reset
+"Are you really want to run the factory reset?"="استعادة تحديد المصنع الافتراضية؟?";
+"Warning"="تحذير";
+"Factory reset success"="استعادة المصنع الافتراضية ناجحة";
+"Factory reset fail"="المصنع الافتراضية استعادة فاشلة";
+
+//version upgrade
+"Do you want to download the latest firmware"="هل أنت متأكد لتحميل أحدث البرامج الثابتة";
+"Download Fail"="التحميل غير ناجح";
+"Download Completed"="تحميل كامل";
+"MWatch upgrade success"="النسخة تحدثت بنجاح. من فضلك";
+"MWatch upgrade failed"="فشل تحديث الاصدار";
+"Do you want to download the latest firmware"="هل أنت متأكد لتحميل أحدث البرامج الثابتة";
+"Downloading..."="تحميل ...";
+"had a latest firmware,do you want to update firmware"="تحديث البرامج الثابتة المتاحة، تحديث البرامج الثابتة إلى الإصدار الأحدث؟";
+"Is the latest firmware"="يتم تحديث البرامج الثابتة بالفعل أحدث إصدار";
+"Connect Internet to download firmware"="الاتصال بالإنترنت لتحميل البرامج الثابتة";
+"Connect STB to upgrade firmware"="الاتصال STB لتحديث البرامج الثابتة";
+"Remind me of the firmware upgrade"="تذكير لتحديث البرامج الثابتة";
+"Do not power off or turn off"="لا تقطع الكهرباءأو إيقاف تشغيل الجهاز";
+
+//WIFI 设置
+"WIFI Name"="اسم واي فاي";
+"ENCODE TYPE"="نوع رمز";
+"Are you really want to modify the WIFI Password"="تأكيد لتغيير كلمة المرور واي فاي؟";
+"WIFI password shall not be less than 8"="واي فاي كلمة المرور لا تقل عن 8 أرقام";
+"Password"="كلمة السر";
+"Need Password"="كلمة المرور المطلوبة";
+"Please Input WIFI Name"="الرجاء إدخال اسم واي فاي";

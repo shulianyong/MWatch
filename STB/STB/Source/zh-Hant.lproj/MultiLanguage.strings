@@ -18,6 +18,7 @@
 "NO Channel"="無節目";
 "Loading..."="加載中...";
 "Please connect internet"="請連接互聯網";
+"The new password and verify password is not equal"="新密碼與驗證密碼不相等";
 
 //設置
 "SETUP"="設置";
@@ -54,6 +55,7 @@
 "Password lenth is 4,please reenter"="請輸入4位長度密碼";
 "Are you sure to change the password"="是否確定更新密碼";
 "Change password fail"="更新密碼失敗";
+"Verify Password"="驗證密碼";
 
 //CA
 "The CA will expire on "="CA過期時間";
