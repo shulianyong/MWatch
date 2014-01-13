@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtWifiName;
 @property (strong, nonatomic) IBOutlet UITextField *txtPassword;
 @property (strong, nonatomic) IBOutlet UITextField *txtVerifyPwd;
+@property (strong, nonatomic) IBOutlet UIScrollView *sclContent;
+    
 @property (strong, nonatomic) IBOutlet UILabel *lblName;
 @property (strong, nonatomic) IBOutlet UILabel *lblEncode;
 @property (strong, nonatomic) IBOutlet UIButton *btnOK;
@@ -58,6 +60,9 @@
 //    [self.btnOK setTitle:MyLocalizedString(@"OK") forState:UIControlStateNormal];
     self.txtPassword.placeholder = MyLocalizedString(@"Please input the new password");
     self.txtWifiName.placeholder = MyLocalizedString(@"WIFI Name");
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -88,19 +93,102 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+    
+#pragma mark keyboard
+- (void)showKeyboard
+    {
+        UITextField *txtSelected = nil;
+        if (self.txtVerifyPwd.isFirstResponder) {
+            txtSelected = self.txtVerifyPwd;
+        }
+        else
+        {
+            return;
+        }
+        CGFloat keyboardHeight = 162;
+        NSNumber *time = @0.25;
+        
+        CGFloat offset = txtSelected.frame.origin.y+txtSelected.bounds.size.height+20+keyboardHeight-self.view.bounds.size.height;
+        if (offset>0) {
+            [UIView setAnimationDuration:[time doubleValue]];
+            [UIView beginAnimations:@"keyboardWillShow" context:nil];
+            self.sclContent.contentOffset = CGPointMake(0, offset);
+            [UIView commitAnimations];
+        }
+    }
+    
+- (void)keyboardWillShow:(NSNotification*)obj
+    {
+        UITextField *txtSelected = nil;
+        if (self.txtVerifyPwd.isFirstResponder) {
+            txtSelected = self.txtVerifyPwd;
+        }
+        else
+        {
+            return;
+        }
+        
+        NSDictionary *keyUserinfo = [obj userInfo];
+        NSNumber *time = [keyUserinfo valueForKey:UIKeyboardAnimationDurationUserInfoKey];
+        CGRect keyboardBound = [[keyUserinfo valueForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+        
+        
+        CGFloat offset = txtSelected.frame.origin.y+txtSelected.bounds.size.height+20+keyboardBound.size.width-self.view.bounds.size.height;
+        if (offset>0) {
+            [UIView setAnimationDuration:[time doubleValue]];
+            [UIView beginAnimations:@"keyboardWillShow" context:nil];
+            self.sclContent.contentOffset = CGPointMake(0, offset);
+            [UIView commitAnimations];
+        }
+    }
+    
+    
+- (void)keyboardWillHide:(NSNotification*)obj
+    {
+        NSDictionary *keyUserinfo = [obj userInfo];
+        NSNumber *time = [keyUserinfo valueForKey:UIKeyboardAnimationDurationUserInfoKey];
+        [UIView setAnimationDuration:[time doubleValue]];
+        [UIView beginAnimations:@"keyboardWillShow" context:nil];
+        self.sclContent.contentOffset = CGPointMake(0, 0);
+        [UIView commitAnimations];
+    }
+
+- (IBAction)touchView:(id)sender
+{
+    if ([self.txtPassword isFirstResponder]) {
+        [self.txtPassword resignFirstResponder];
+    }
+    if (self.txtVerifyPwd.isFirstResponder) {
+        [self.txtVerifyPwd resignFirstResponder];
+    }
+}
+
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if ([self.txtPassword isFirstResponder]) {
         [self.txtPassword resignFirstResponder];
     }
+    if (self.txtVerifyPwd.isFirstResponder) {
+        [self.txtVerifyPwd resignFirstResponder];
+    }
 }
+    
+#pragma mark event
 
 - (IBAction)click_back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)click_txtEnd:(UITextField*)sender {
-    [sender resignFirstResponder];
+    if (sender.returnKeyType==UIReturnKeyNext)
+    {
+        [self.txtVerifyPwd becomeFirstResponder];
+        [self showKeyboard];
+    }
+    else
+    {
+        [sender resignFirstResponder];
+    }
 }
 - (IBAction)click_btnOK:(id)sender {
     if ([NSString isEmpty:self.txtWifiName.text.trim]) {
