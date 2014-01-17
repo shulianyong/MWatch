@@ -19,6 +19,7 @@
 
 #import "../../CommonUtil/CommonUtil/LogUtility/SimpleLogger.h"
 #import "../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
+#import "STBInfo.h"
 
 #define RGBColor(aRed,aGreen,aBlue) [UIColor colorWithRed:(aRed/255.0f) green:(aGreen/255.0f) blue:(aBlue/255.0f) alpha:1]
 #define MyLocalizedString(key) [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:@"MultiLanguage"]

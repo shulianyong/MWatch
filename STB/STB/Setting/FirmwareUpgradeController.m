@@ -12,6 +12,7 @@
 @interface FirmwareUpgradeController ()
 
 @property (strong, nonatomic) IBOutlet UIButton *btnSelected;
+@property (strong, nonatomic) IBOutlet UISwitch *switchFirmwareUpgrade;
 
 @end
 
@@ -32,6 +33,7 @@
     
     [self boundMultiLanWithView:self.view];
     self.btnSelected.selected = [VersionUpdate IsSTBRemindUpgrade];
+    [self.switchFirmwareUpgrade setOn:[VersionUpdate IsSTBRemindUpgrade] animated:YES];
 	// Do any additional setup after loading the view.
 }
 
@@ -89,6 +91,12 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isRemind] forKey:STB_RemindUpgrade];
     [[NSUserDefaults standardUserDefaults] synchronize];
     sender.selected = isRemind;
+}
+- (IBAction)switchUpgrade:(id)sender
+{
+    BOOL isRemind = self.switchFirmwareUpgrade.isOn;    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isRemind] forKey:STB_RemindUpgrade];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

@@ -98,7 +98,6 @@
 		A664285B180C436B00138B04 /* libCommonUtil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A664285A180C436B00138B04 /* libCommonUtil.a */; };
 		A664285E180C464900138B04 /* CommandResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A664285D180C464900138B04 /* CommandResult.m */; };
 		A666C0DC1820948F0084478E /* libupnpx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A666C0DB1820948F0084478E /* libupnpx.a */; };
-		A666C12A182098610084478E /* UPNPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A666C129182098610084478E /* UPNPTool.m */; };
 		A666D3E918041DDB00AA24AB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A666D3E818041DDB00AA24AB /* SystemConfiguration.framework */; };
 		A66926921816B80D007D9EF0 /* img_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A66926601816B80C007D9EF0 /* img_back.png */; };
 		A66926931816B80D007D9EF0 /* img_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A66926611816B80C007D9EF0 /* img_back@2x.png */; };
@@ -223,6 +222,9 @@
 		A6F28002186FF8420017186B /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = A6F28001186FF8420017186B /* Default~iphone.png */; };
 		A6F28004186FF8D70017186B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A6F28003186FF8D70017186B /* Default.png */; };
 		A6F38C6E1849BFC300EC207E /* DownLoadUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F38C6D1849BFC300EC207E /* DownLoadUtil.m */; };
+		A6F65772188901100036B8AF /* STBInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F65771188901100036B8AF /* STBInfo.m */; };
+		A6F657731889049E0036B8AF /* UPNPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A666C129182098610084478E /* UPNPTool.m */; };
+		A6F65776188909570036B8AF /* VerifySTBConnected.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F65775188909570036B8AF /* VerifySTBConnected.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -607,6 +609,10 @@
 		A6F28003186FF8D70017186B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A6F38C6C1849BFC300EC207E /* DownLoadUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadUtil.h; sourceTree = "<group>"; };
 		A6F38C6D1849BFC300EC207E /* DownLoadUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadUtil.m; sourceTree = "<group>"; };
+		A6F65770188901100036B8AF /* STBInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STBInfo.h; sourceTree = "<group>"; };
+		A6F65771188901100036B8AF /* STBInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STBInfo.m; sourceTree = "<group>"; };
+		A6F65774188909570036B8AF /* VerifySTBConnected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifySTBConnected.h; sourceTree = "<group>"; };
+		A6F65775188909570036B8AF /* VerifySTBConnected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifySTBConnected.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,6 +684,8 @@
 				A618F2DF1803ADBA002EB4AE /* DataManager.m */,
 				A67CE07A18099C75004DA9A8 /* CommandClient.h */,
 				A67CE07B18099C75004DA9A8 /* CommandClient.m */,
+				A6F65774188909570036B8AF /* VerifySTBConnected.h */,
+				A6F65775188909570036B8AF /* VerifySTBConnected.m */,
 			);
 			path = DAL;
 			sourceTree = "<group>";
@@ -1021,6 +1029,8 @@
 				A66F00D2183FC8FE00A3C71F /* TPInfo.m */,
 				A677D1071841D54B0031726B /* ScanStatusInfo.h */,
 				A677D1081841D54B0031726B /* ScanStatusInfo.m */,
+				A6F65770188901100036B8AF /* STBInfo.h */,
+				A6F65771188901100036B8AF /* STBInfo.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1527,7 +1537,6 @@
 				A6521E73180EE3280025EB2A /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A655ED1F183D045900927458 /* SignalInfo.m in Sources */,
 				A660269E1808D9D800722776 /* ChannelCell.m in Sources */,
-				A666C12A182098610084478E /* UPNPTool.m in Sources */,
 				A6521E75180EE3280025EB2A /* UIButton+AFNetworking.m in Sources */,
 				A618F2E01803ADBA002EB4AE /* DataManager.m in Sources */,
 				A6A0444C1835DB520074A68D /* SignalTool.m in Sources */,
@@ -1544,9 +1553,11 @@
 				A6521E6D180EE3280025EB2A /* AFSecurityPolicy.m in Sources */,
 				A6521E77180EE3280025EB2A /* UIProgressView+AFNetworking.m in Sources */,
 				A682BA85186DB26300F6AC81 /* InputAlert.m in Sources */,
+				A6F65772188901100036B8AF /* STBInfo.m in Sources */,
 				A6521E69180EE3280025EB2A /* AFHTTPRequestOperation.m in Sources */,
 				A6521E84180EF77F0025EB2A /* Channel.m in Sources */,
 				A660907D18080DDB005450DB /* KxMovieDecoder.m in Sources */,
+				A6F65776188909570036B8AF /* VerifySTBConnected.m in Sources */,
 				A644842617F70F7B0054CC5C /* CustomSegue.m in Sources */,
 				A6A64DC0181C1D29007C6C2E /* VersionUpdate.m in Sources */,
 				A6004E5718181ACC00AAF2B3 /* GCDAsyncSocket.m in Sources */,
@@ -1581,6 +1592,7 @@
 				A6A64DBD181C183F007C6C2E /* CAViewController.m in Sources */,
 				A67CE07C18099C75004DA9A8 /* CommandClient.m in Sources */,
 				A6521E6C180EE3280025EB2A /* AFNetworkReachabilityManager.m in Sources */,
+				A6F657731889049E0036B8AF /* UPNPTool.m in Sources */,
 				A6521E70180EE3280025EB2A /* AFURLResponseSerialization.m in Sources */,
 				A6521E7B180EEA860025EB2A /* ParentLocked.m in Sources */,
 				A6DF13CC185EFE510045BDC1 /* SingleAlert.m in Sources */,

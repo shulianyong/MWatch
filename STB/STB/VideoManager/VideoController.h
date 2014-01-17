@@ -7,6 +7,6 @@
 //
 
 #import "UPNPTool.h"
-@interface VideoController : UIViewController<UPNPToolProtocol>
+@interface VideoController : UIViewController
 
 @end

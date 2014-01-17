@@ -243,7 +243,9 @@ static MBProgressHUD *updateAlert;
         [updateAlert show:YES];
         
         __weak MBProgressHUD *weakAlert = updateAlert;
-        NSString *stbIP = [UPNPTool shareInstance].stbIP;
+        
+        
+        NSString *stbIP = [STBInfo shareInstance].stbIP;
         if ([NSString isEmpty:stbIP]) {
             [SingleAlert showMessage:MyLocalizedString(@"TV box not found，please check!")];
         }
@@ -299,7 +301,7 @@ static MBProgressHUD *updateAlert;
                             
                             self.aConfirmUtil = [ConfirmUtil Util];
                             [self.aConfirmUtil showConfirmWithTitle:nil withMessage:MyLocalizedString(@"had a latest firmware,do you want to update firmware") WithOKBlcok:^{
-                                if([NSString isEmpty:[UPNPTool shareInstance].stbIP])
+                                if([STBInfo shareInstance].connected==false)
                                 {
                                     [SingleAlert showMessage:MyLocalizedString(@"TV box not found，please check!")];
                                 }

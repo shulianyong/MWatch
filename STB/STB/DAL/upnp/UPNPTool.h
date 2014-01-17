@@ -28,7 +28,7 @@
 
 @property (nonatomic,weak) id<UPNPToolProtocol> toolDelegate;
 
-+ (UPNPTool*)shareInstance;
+//+ (UPNPTool*)shareInstance;
 
 - (void)searchIP;
 - (BOOL)isSearching;

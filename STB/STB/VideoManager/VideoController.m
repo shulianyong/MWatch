@@ -37,7 +37,9 @@
 
 #import "ConfirmMunePassword.h"
 
-@interface VideoController ()<MovieViewDelegate,VideoControllerDelegate>
+#import "VerifySTBConnected.h"
+
+@interface VideoController ()<MovieViewDelegate,VideoControllerDelegate,VerifySTBConnectedDelegate>
 {
     CGFloat volumeValue;
     BOOL searchedChannel;//现在状态是，已经经过搜索，但是没有播放
@@ -68,8 +70,6 @@
 @property (strong, nonatomic) IBOutlet YDSlider *csldVolume;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnVolume;
-
-- (NSString*)stbServer;
 
 //音频控制器
 @property (nonatomic,strong)MPMusicPlayerController *volumeController;
@@ -161,49 +161,34 @@
     [self.player pause];
 }
 
-#pragma mark -----------------------
-#pragma mark ----------------------- upnp扫描回调
-- (void)upnpTool:(UPNPTool *)aUPNPTool endSearchIP:(NSString *)aSearchIP
+#pragma mark ------------------------ 联接机顶盒成功，失败的处理方式
+- (void)ConnectedSTBSuccess
 {
     [SingleAlert shareInstance].alertView = nil;
     __weak VideoController *weakSelf = self;
-    if (aUPNPTool.changedIP) {
-        
+    
+    //刷新列表
+    [weakSelf.tblChannel refreshChannel];
+    
+    //注册事件
+    INFO(@"注册事件");
+    [[STBMonitor shareInstance] eventMonitor];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        sleep(3);
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            //刷新列表
-            [weakSelf.tblChannel refreshChannel];
-            
-            //注册事件
-            INFO(@"注册事件");
-            [[STBMonitor shareInstance] eventMonitor];
-            
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                sleep(3);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //获取密码，主机密码等等...
-                    [CommandClient commandGetLockControl:^(id info, HTTPAccessState isSuccess) {
-                        
-                    }];
-                });
-            });
+            //获取密码，主机密码等等...
+            [CommandClient commandGetLockControl:^(id info, HTTPAccessState isSuccess) {
+                
+            }];
         });
-    }
-    else
-    {
-        if (isAppearView && self.player) {
-            [self.player play];
-        }
-
-    }
+    });
 }
 
-- (void)upnpToolFail:(UPNPTool *)aUPNPTool
+- (void)ConnectedSTBFail
 {
     [SingleAlert showMessage:MyLocalizedString(@"TV box not found，please check!")];
     [self.player pause];
-    
     if ([VersionUpdate IsSTBRemindUpgrade])
     {
         //更新更新机顶盒固件
@@ -217,12 +202,11 @@
     NSDictionary *networkDic = [obj userInfo];
     AFNetworkReachabilityStatus status = [[networkDic objectForKey:AFNetworkingReachabilityNotificationStatusItem] integerValue];
     if (status==AFNetworkReachabilityStatusReachableViaWiFi) {
-        [[UPNPTool shareInstance] searchIP];        
+        [VerifySTBConnected verifyConnectedWithBackDelegate:self];
     }
     else
     {
-        [SingleAlert showMessage:MyLocalizedString(@"TV box not found，please check!")];
-        [self.player pause];
+        [self ConnectedSTBFail];
     }
 }
 - (IBAction)click_BtnrefreshChannel:(id)sender {
@@ -304,12 +288,6 @@
 }
 
 #pragma mark ----播放地址
-- (NSString*)stbServer
-{
-    NSString *stbServer = [NSString stringWithFormat:@"http://%@:8085/player.",[UPNPTool shareInstance].stbIP];
-    return stbServer;
-}
-
 
 - (NSString*)currentPlayPath
 {
@@ -317,9 +295,9 @@
     if (currentChannel==0) {
         nil;
     }
-    NSString *path = [self stbServer];
+    NSString *path = [STBInfo shareInstance].stbPlayURL;
     path = [NSString stringWithFormat:@"%@%d",path,currentChannel];
-    if ([NSString isEmpty:[UPNPTool shareInstance].stbIP]) {
+    if ([STBInfo shareInstance].connected==false) {
         path = nil;
     }
 //#warning 测试代码
@@ -686,7 +664,7 @@
 #pragma mark -------------------- 设置
 - (IBAction)clickBtnSetting:(id)sender
 {
-    if ([NSString isEmpty:[UPNPTool shareInstance].stbIP]) {
+    if (![STBInfo shareInstance].connected) {
        [SingleAlert showMessage:MyLocalizedString(@"Please connect TV Box")];
     }
     else

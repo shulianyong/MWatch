@@ -140,7 +140,7 @@
         [self.eventMonitorSocket disconnect];
     }
     
-    NSString *host = [UPNPTool shareInstance].stbIP;
+    NSString *host = [STBInfo shareInstance].stbIP;
 
     NSError *error = nil;
     [self.eventMonitorSocket connectToHost:host onPort:8100 error:&error];

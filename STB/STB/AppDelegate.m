@@ -12,6 +12,7 @@
 #import "UPNPTool.h"
 #import "VideoController.h"
 #import "VersionUpdate.h"
+#import "VerifySTBConnected.h"
 
 @implementation AppDelegate
 
@@ -50,9 +51,9 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     //每次进行，都进行upnp扫描
     
-    VideoController *tvManager = (VideoController*)self.window.rootViewController;
-    [[UPNPTool shareInstance] setToolDelegate:tvManager];
-    [[UPNPTool shareInstance] searchIP];
+    id<VerifySTBConnectedDelegate> tvManager = (id<VerifySTBConnectedDelegate>)self.window.rootViewController;
+    [VerifySTBConnected verifyConnectedWithBackDelegate:tvManager];
+    
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PlayNotification object:nil];

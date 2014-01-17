@@ -25,7 +25,7 @@
 
 + (NSString*)stbServer
 {
-    NSString *stbServer = [NSString stringWithFormat:@"http://%@:8085",[UPNPTool shareInstance].stbIP];
+    NSString *stbServer = [NSString stringWithFormat:@"http://%@:8085",[STBInfo shareInstance].stbIP];
     return stbServer;
 }
 
