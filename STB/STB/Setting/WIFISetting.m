@@ -191,10 +191,6 @@
     }
 }
 - (IBAction)click_btnOK:(id)sender {
-    if ([NSString isEmpty:self.txtWifiName.text.trim]) {
-        [CommonUtil showMessage:MyLocalizedString(@"Please Input WIFI Name")];
-        return;
-    }
     if ((self.txtPassword.text.trim.length>7 &&[self.txtPassword.text.trim isEqualToString:self.txtVerifyPwd.text.trim]) || self.switchNeedPwd.on==NO) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert")
                                                             message:MyLocalizedString(@"Are you really want to modify the WIFI Password")

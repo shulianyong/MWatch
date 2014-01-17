@@ -56,6 +56,9 @@
 "Are you sure to change the password"="Confirm to change password? ";
 "Change password fail"="Password change unsuccessful";
 "Verify Password"="Verify Password";
+"Primitive Password"="Primitive Password";
+"New Password"="New Password";
+"Verify Password"="Verify Password";
 
 //CA
 "The CA will expire on "="CA expiry date";

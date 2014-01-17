@@ -549,13 +549,13 @@
     switch (sender.direction) {
         case UISwipeGestureRecognizerDirectionRight:
             self.volumeController.volume +=0.1;
-            self.sldVolume.value = self.volumeController.volume;
+            self.csldVolume.value = self.volumeController.volume;
             volumeValue = self.volumeController.volume;
             self.btnVolume.selected = volumeValue==0;
             break;
         case UISwipeGestureRecognizerDirectionLeft:
             self.volumeController.volume -=0.1;
-            self.sldVolume.value = self.volumeController.volume;
+            self.csldVolume.value = self.volumeController.volume;
             volumeValue = self.volumeController.volume;
             self.btnVolume.selected = volumeValue==0;
             break;
@@ -636,6 +636,7 @@
     //设置slider最右边一段的颜色
     self.csldVolume.maximumTrackTintColor = RGBColor(57,60,86);
     
+    [self cslideVolume:self.csldVolume];
 }
 
 #pragma mark 静音设置

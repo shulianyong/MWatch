@@ -56,6 +56,9 @@
 "Are you sure to change the password"="تأكيد تغيير كلمة السر؟";
 "Change password fail"="تغيير كلمة المرور غير ناجحة";
 "Verify Password"="تأكيد كلمة المرور";
+"Primitive Password"="كلمة المرور الأصلية";
+"New Password"="كلمة المرور الجديدة";
+"Verify Password"="تأكيد كلمة المرور الجديدة";
 
 //CA
 "The CA will expire on "="CA انتهت صلاحيتة";

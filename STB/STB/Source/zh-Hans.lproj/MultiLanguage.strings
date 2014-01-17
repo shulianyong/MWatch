@@ -27,7 +27,7 @@
 //设置主页
 "WIFI"="无线设置";
 "Parent Lock"="父母锁";
-"Menu Password"="主机密码设置";
+"Menu Password"="主机密码";
 "Version"="版本更新";
 "Firmware Upgrade"="版本更新";
 "Signal"="信号质量";
@@ -55,7 +55,10 @@
 "Password lenth is 4,please reenter"="请输入4位长度密码";
 "Are you sure to change the password"="是否确定更新密码";
 "Change password fail"="更新密码失败";
-"Verify Password"="验证密码";
+"Verify Password"="确认新密码";
+"Primitive Password"="原始密码";
+"New Password"="新密码";
+"Verify Password"="确认新密码";
 
 //CA
 "The CA will expire on "="CA过期时间";

@@ -22,12 +22,12 @@
 
 //設置
 "SETUP"="設置";
-"Box Setup"="機頂盒設置";
+"Box Setup"="機頂盒";
 "Box Setup will exit"="機頂盒設置將退出";
 //設置主頁
 "WIFI"="無線設置";
 "Parent Lock"="父母鎖";
-"Menu Password"="主機密碼設置";
+"Menu Password"="主機密碼";
 "Version"="版本更新";
 "Firmware Upgrade"="版本更新";
 "Signal"="信號質量";
@@ -55,7 +55,10 @@
 "Password lenth is 4,please reenter"="請輸入4位長度密碼";
 "Are you sure to change the password"="是否確定更新密碼";
 "Change password fail"="更新密碼失敗";
-"Verify Password"="驗證密碼";
+"Verify Password"="確認新密碼";
+"Primitive Password"="原始密碼";
+"New Password"="新密碼";
+"Verify Password"="確認新密碼";
 
 //CA
 "The CA will expire on "="CA過期時間";

@@ -141,7 +141,7 @@
     parameters[@"commandId"] = @3005;
     parameters[@"wifi_ap_passwd"] = aPassword;
     parameters[@"free_status"] = isNeed?@(1):@(0);
-    parameters[@"wifi_ap_name"] = aName;
+//    parameters[@"wifi_ap_name"] = aName;
     
     
     [self command:parameters withCallback:^(id info, HTTPAccessState isSuccess) {
