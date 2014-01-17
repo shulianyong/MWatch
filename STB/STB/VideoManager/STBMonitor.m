@@ -63,6 +63,16 @@
 //    }
 }
 
+- (void)searchChannelProgress
+{
+    MBProgressHUD *searchAlert = [SearchChannelTool shareInstance].searchAlert;
+    if (searchAlert==nil) {
+        [[SearchChannelTool shareInstance] initSearchAlert];
+        searchAlert = [SearchChannelTool shareInstance].searchAlert;
+        searchAlert.labelText = MyLocalizedString(@"Searching...");
+    }
+}
+
 //同步节目到机顶盒
 - (void)syncProgame
 {
@@ -125,7 +135,7 @@
             break;
         case 2://下在搜索，提示进度
             INFO(@"进度条");
-            [self searchChannelProgress:aStatusInfo.progress];
+            [self searchChannelProgress];
             break;
         default:
             break;

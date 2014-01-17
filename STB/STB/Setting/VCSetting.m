@@ -12,6 +12,7 @@
 #import "LockInfo.h"
 #import "SearchChannelTool.h"
 #import "VersionUpdate.h"
+#import "ConfirmUtil.h"
 
 @interface VCSetting ()
 
@@ -107,8 +108,16 @@
     tapGesture.numberOfTapsRequired = 1;
     tapGesture.numberOfTouchesRequired=1;
     [self.navigationController.view addGestureRecognizer:tapGesture];
+    
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnectedSTB:) name:DisconnectedSTBNotification object:nil];
 }
 
+//断开机顶盒时的消息处理
+- (void)disconnectedSTB:(NSNotification*)obj
+{
+    [self click_barBack:nil];
+}
 
 //语言设置
 - (void)configLanguage
@@ -187,13 +196,24 @@
     
 }
 
-//
+#pragma mark --------------------搜索节目
 - (IBAction)click_btnSearchChannel:(id)sender {
     [self configAutoExitTimer];
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
-    UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"ChannelSearchView"];
-    [self.navigationController pushViewController:wifiSetting animated:YES];
+    static ConfirmUtil *confirm = nil;
+    if (confirm==nil) {
+        confirm = [ConfirmUtil Util];
+    }
+    [confirm showConfirmWithTitle:MyLocalizedString(@"Alert") withMessage:MyLocalizedString(@"Confirm to search channel") WithOKBlcok:^{
+        SearchChannelTool *searchTool = [SearchChannelTool shareInstance];
+        [searchTool searchChannel];
+    }withCancelBlock:^{
+        
+    }];
+
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
+//    UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"ChannelSearchView"];
+//    [self.navigationController pushViewController:wifiSetting animated:YES];
     
 }
 - (IBAction)click_Version:(id)sender

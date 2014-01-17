@@ -58,7 +58,7 @@
 #endif
     INFO(@"请求parameters：%@",parameters);
     
-    AFHTTPRequestOperation *requestOperaion = [self.httpClient POST:[self commandURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [self.httpClient POST:[self commandURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSError *error = nil;
          if (responseObject!=nil) {
@@ -76,7 +76,6 @@
          ERROR(@"Parameters:%@ \n Error: %@",tempParameters, error);
          aCallback(nil,HTTPAccessStateDisconnection);
      }];
-    [(NSMutableURLRequest*)requestOperaion.request setTimeoutInterval:5];
 }
 
 #pragma mark ---------------请求节目单
@@ -100,13 +99,11 @@
 + (void)monitorSTB:(HttpCallback)aCallback
 {
     NSDictionary *parameters = @{@"command": @"channel_num",@"commandId":@3};
-    AFHTTPRequestOperation *operatioin = [[self httpClient] POST:[self commandURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[self httpClient] POST:[self commandURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         aCallback(nil,HTTPAccessStateSuccess);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         aCallback(nil,HTTPAccessStateFail);
     }];
-    NSMutableURLRequest* requestValue = (NSMutableURLRequest*)operatioin.request;
-    [requestValue setTimeoutInterval:5];
 }
 
 
@@ -558,7 +555,7 @@
 
 
 #pragma mark --------一键搜索
-+ (void)scanOneKeyCommandWithTPInfo:(TPInfo*)aTPInfo   withCallback:(HttpCallback)aCallback
++ (void)scanOneKeyCommandWithTPInfo:(TPInfo*)aTPInfo withCallback:(HttpCallback)aCallback
 {
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -572,6 +569,18 @@
         aCallback(info,isSuccess);
     }];
     
+}
+
++ (void)scanOneKeyCommandWithCallback:(HttpCallback)aCallback
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"command"] = @"bs_one_key_search";
+    parameters[@"commandId"] = @3005;
+    
+    [self command:parameters withCallback:^(id info, HTTPAccessState isSuccess)
+    {
+        aCallback(info,isSuccess);
+    }];
 }
 
 #pragma mark ----------- 更新列表的监听请求

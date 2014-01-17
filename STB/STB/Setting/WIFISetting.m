@@ -59,7 +59,6 @@
     }];
 //    [self.btnOK setTitle:MyLocalizedString(@"OK") forState:UIControlStateNormal];
     self.txtPassword.placeholder = MyLocalizedString(@"Please input the new password");
-    self.txtWifiName.placeholder = MyLocalizedString(@"WIFI Name");
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -227,6 +226,7 @@
 
 - (IBAction)changeNeedPwd:(id)sender {
     self.txtPassword.enabled = self.switchNeedPwd.on;
+    self.txtVerifyPwd.enabled = self.switchNeedPwd.on;
 }
 
 

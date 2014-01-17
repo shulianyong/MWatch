@@ -91,7 +91,15 @@
             self.updateAlert.labelText = MyLocalizedString(@"Loading...");
             [self.updateAlert show:YES];
             __weak FactoryReset *weakSelf = self;
+            
+            __block BOOL completeRequest = NO;
+           
             [CommandClient commandFactoryReset:^(id info, HTTPAccessState isSuccess) {
+                if (completeRequest) {
+                    return;
+                }
+                
+                completeRequest = YES;
                 if (isSuccess==HTTPAccessStateSuccess) {
                     weakSelf.updateAlert.labelText= MyLocalizedString(@"Factory reset success");
                     //清空节目单
@@ -105,6 +113,20 @@
                 }
                 [weakSelf.updateAlert hide:YES afterDelay:2];
             }];
+            //设置10秒钟的超时时间
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                sleep(12);
+                if(!completeRequest)
+                {
+                    completeRequest = YES;
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        weakSelf.updateAlert.labelText=MyLocalizedString(@"Factory reset fail");
+                        [weakSelf.updateAlert hide:YES afterDelay:2];
+                    });
+                }
+                
+            });
+            
         }
     }
 }

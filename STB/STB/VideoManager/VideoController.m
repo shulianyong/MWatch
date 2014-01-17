@@ -38,6 +38,7 @@
 #import "ConfirmMunePassword.h"
 
 #import "VerifySTBConnected.h"
+#import "DefaultChannelTool.h"
 
 @interface VideoController ()<MovieViewDelegate,VideoControllerDelegate,VerifySTBConnectedDelegate>
 {
@@ -194,6 +195,7 @@
         //更新更新机顶盒固件
         [[VersionUpdate shareInstance] updateVersionWithAuto:YES];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:DisconnectedSTBNotification object:nil];
 }
 
 #pragma mark----------------------- 网络变化处理
@@ -255,7 +257,7 @@
 - (void)playChannel:(Channel*)aChannel
 {
     if (isAppearView) {
-        [CommonUtil changeCurrentChannel:aChannel.channelId.integerValue];
+        [[DefaultChannelTool shareInstance] configDefaultChannel:aChannel];
         [self switchChannel:[self currentPlayPath]];
         searchedChannel = NO;
     }
@@ -273,7 +275,7 @@
 {
     //设置有效期
 	NSDateFormatter *formatter = [self dateFormatter];
-    NSString *validString =@"2014-02-05";
+    NSString *validString =@"2014-02-18";
     NSDate *validDate = [formatter dateFromString:validString];
     
     NSDate *nowtime = [NSDate date];
@@ -291,7 +293,7 @@
 
 - (NSString*)currentPlayPath
 {
-    NSInteger currentChannel = [CommonUtil currentChannel];
+    NSInteger currentChannel = [DefaultChannelTool shareInstance].defaultChannelId;
     if (currentChannel==0) {
         nil;
     }
@@ -484,7 +486,7 @@
     else
     {
         NSInteger index = 0;
-        NSInteger currentChannel = [CommonUtil currentChannel];
+        NSInteger currentChannel = [DefaultChannelTool shareInstance].defaultChannelId;
         for (NSInteger i=0;i<count;i++) {
             Channel *temp = self.tblChannel.fetchedResultsController.fetchedObjects[i];
             if (temp.channelId.integerValue == currentChannel) {
@@ -596,7 +598,7 @@
     [self.tblChannel selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     
     //设置当前正在播放的channelId;
-    [CommonUtil changeCurrentChannel:preChannel.channelId.integerValue];
+    [[DefaultChannelTool shareInstance] configDefaultChannel:preChannel];
     [self switchChannel:[self currentPlayPath]];
 }
 - (IBAction)click_nextChannel:(id)sender
@@ -607,7 +609,7 @@
     //选中播放项
     [self.tblChannel selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     //设置当前正在播放的channelId
-    [CommonUtil changeCurrentChannel:nextChannel.channelId.integerValue];
+    [[DefaultChannelTool shareInstance] configDefaultChannel:nextChannel];
     [self switchChannel:[self currentPlayPath]];
 }
 

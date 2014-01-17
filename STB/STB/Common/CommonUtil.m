@@ -21,30 +21,6 @@
 
 @implementation CommonUtil
 
-static NSInteger channelCount;
-
-+ (void)setChannelCount:(NSInteger)aCount
-{
-    channelCount = aCount;
-}
-
-+ (NSInteger)channelCount
-{
-    return channelCount==0?10:channelCount;
-}
-
-+ (void)changeCurrentChannel:(NSInteger)channelIndex
-{
-    [[NSUserDefaults standardUserDefaults] setInteger:channelIndex forKey:CurrentChannel];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-+ (NSInteger)currentChannel
-{
-    NSInteger currentChannel = [[NSUserDefaults standardUserDefaults] integerForKey:CurrentChannel];
-    return currentChannel;
-}
-
 + (NSString*)serverIP
 {
     NSString *ip = nil;

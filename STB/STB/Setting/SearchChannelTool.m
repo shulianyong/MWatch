@@ -29,8 +29,15 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[SearchChannelTool alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:instance selector:@selector(disconnectedSTB:) name:DisconnectedSTBNotification object:nil];
     });
     return instance;
+}
+
+//断开机顶盒时的消息处理
+- (void)disconnectedSTB:(NSNotification*)obj
+{
+    [self showAccessFailWithAccessState:HTTPAccessStateFail];
 }
 
 #pragma mark ---------- 提示框
@@ -277,7 +284,7 @@
 {
     __weak SearchChannelTool *weakSelf = self;
 //    __weak MBProgressHUD *alert = self.searchAlert;
-    [CommandClient scanOneKeyCommandWithTPInfo:self.defaultTPInfo withCallback:^(id info, HTTPAccessState isSuccess) {
+    [CommandClient scanOneKeyCommandWithCallback:^(id info, HTTPAccessState isSuccess) {
         if (isSuccess==HTTPAccessStateSuccess) {
 //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //                sleep(5);

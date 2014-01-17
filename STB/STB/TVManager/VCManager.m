@@ -14,6 +14,7 @@
 
 #import "CommandClient.h"
 #import "../../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
+#import "DefaultChannelTool.h"
 
 #import "AFNetworkReachabilityManager.h"
 
@@ -147,9 +148,6 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Channel *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if ([CommonUtil currentChannel]==object.channelId.integerValue) {
-//        [self selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-    }
     UIImage *imgChannel = [UIImage imageNamed:object.name];
     if (!imgChannel) {
         imgChannel = [UIImage imageNamed:@"imgDefaultchannel.png"];
@@ -191,7 +189,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Channel *aChannel = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if (aChannel.channelId.integerValue == [CommonUtil currentChannel]) {
+    if ([aChannel.name isEqualToString:[DefaultChannelTool shareInstance].defaultChannelName]
+        && aChannel.channelId.integerValue==[DefaultChannelTool shareInstance].defaultChannelId)
+    {
         return;
     }
     [self.videoDelegate playChannel:aChannel];
@@ -237,7 +237,8 @@
     
     
     //播放节目
-    if (channels.count>0) {
+    if (channels.count>0)
+    {
         [self playChannel:self.selectedChannel];
     }
     else
@@ -278,7 +279,6 @@
             }
             else
             {
-                [CommonUtil setChannelCount:result.count.integerValue];
                 [weakSelf insertNewObjects:channels];
             }
         }
@@ -305,11 +305,11 @@
     Channel *selectedChannel = nil;
     if(self.fetchedResultsController.fetchedObjects.count>0)
     {
-        if ( [CommonUtil currentChannel]>0)
+        if ([DefaultChannelTool shareInstance].defaultChannelId>0)
         {
             for (Channel *aChannel in self.fetchedResultsController.fetchedObjects)
             {
-                if (aChannel.channelId.integerValue == [CommonUtil currentChannel])
+                if (aChannel.channelId.integerValue == [DefaultChannelTool shareInstance].defaultChannelId)
                 {
                     selectedChannel = aChannel;
                     break;
@@ -317,7 +317,20 @@
             }
         }
         
-        if (selectedChannel==nil) {
+        if (selectedChannel==nil && ![NSString isEmpty:[DefaultChannelTool shareInstance].defaultChannelName])
+        {
+            for (Channel *aChannel in self.fetchedResultsController.fetchedObjects)
+            {
+                if ([aChannel.name isEqualToString:[DefaultChannelTool shareInstance].defaultChannelName])
+                {
+                    selectedChannel = aChannel;
+                    break;
+                }
+            }
+        }
+        
+        if (selectedChannel==nil)
+        {
             selectedChannel = self.fetchedResultsController.fetchedObjects.firstObject;
         }
     }

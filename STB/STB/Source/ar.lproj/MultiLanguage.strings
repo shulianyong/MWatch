@@ -79,6 +79,7 @@
 "Searching..."="تبحث ...";
 "Search fail"="فشل بحث";
 "Completed"="الانتهاء";
+"Confirm to search channel"="تأكيد للبحث قناة";
 //factory reset
 "Are you really want to run the factory reset?"="استعادة تحديد المصنع الافتراضية؟?";
 "Warning"="تحذير";

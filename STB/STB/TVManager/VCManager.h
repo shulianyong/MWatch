@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Channel.h"
 
+static NSString *CurrentChannelName = @"CurrentChannelName";
 @protocol VideoControllerDelegate <NSObject>
 
 - (void)playChannel:(Channel*)aChannel;

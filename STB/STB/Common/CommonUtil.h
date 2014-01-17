@@ -8,17 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *CurrentChannel = @"CurrentChannel";
-
 @interface CommonUtil : NSObject
-
-+ (void)setChannelCount:(NSInteger)aCount;
-+ (NSInteger)channelCount;
-
-+ (void)changeCurrentChannel:(NSInteger)channelIndex;
-+ (NSInteger)currentChannel;
-
-//+ (NSString*)serverIP;
 
 //提示
 + (void)showMessage:(NSString*)aMessgae;

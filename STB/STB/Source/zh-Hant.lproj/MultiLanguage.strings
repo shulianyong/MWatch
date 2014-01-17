@@ -80,6 +80,7 @@
 "Searching..."="搜索中...";
 "Search fail"="搜索失敗";
 "Completed"="完成";
+"Confirm to search channel"="是否確認進行節目搜索？";
 //factory reset
 "Are you really want to run the factory reset?"="是否確認恢復出廠設置?";
 "Warning"="警告";

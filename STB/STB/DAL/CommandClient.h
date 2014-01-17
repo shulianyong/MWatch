@@ -80,6 +80,7 @@ typedef void(^HttpCallback)(id info,HTTPAccessState isSuccess);
 + (void)syncProgramWithCallback:(HttpCallback)aCallback;
 #pragma mark --------一键搜索
 + (void)scanOneKeyCommandWithTPInfo:(TPInfo*)aTPInfo   withCallback:(HttpCallback)aCallback;
++ (void)scanOneKeyCommandWithCallback:(HttpCallback)aCallback;
 #pragma mark ----------- 更新列表的监听请求
 + (void)postRefreshChannelEvent;
 

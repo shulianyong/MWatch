@@ -17,6 +17,7 @@
 		A618F2E01803ADBA002EB4AE /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A618F2DF1803ADBA002EB4AE /* DataManager.m */; };
 		A63F0D2C184B2CE8006580CD /* ConfirmUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F0D2B184B2CE8006580CD /* ConfirmUtil.m */; };
 		A63F0D2F184B3609006580CD /* ConfirmMunePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F0D2E184B3609006580CD /* ConfirmMunePassword.m */; };
+		A63FD1551889480600BE5552 /* DefaultChannelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A63FD1541889480600BE5552 /* DefaultChannelTool.m */; };
 		A64483CA17F68A960054CC5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64483C917F68A960054CC5C /* Foundation.framework */; };
 		A64483CC17F68A960054CC5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64483CB17F68A960054CC5C /* CoreGraphics.framework */; };
 		A64483CE17F68A960054CC5C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64483CD17F68A960054CC5C /* UIKit.framework */; };
@@ -254,6 +255,8 @@
 		A63F0D2B184B2CE8006580CD /* ConfirmUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmUtil.m; sourceTree = "<group>"; };
 		A63F0D2D184B3609006580CD /* ConfirmMunePassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmMunePassword.h; sourceTree = "<group>"; };
 		A63F0D2E184B3609006580CD /* ConfirmMunePassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmMunePassword.m; sourceTree = "<group>"; };
+		A63FD1531889480600BE5552 /* DefaultChannelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultChannelTool.h; sourceTree = "<group>"; };
+		A63FD1541889480600BE5552 /* DefaultChannelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultChannelTool.m; sourceTree = "<group>"; };
 		A64483C617F68A960054CC5C /* STB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A64483C917F68A960054CC5C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A64483CB17F68A960054CC5C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -884,6 +887,8 @@
 				A644842517F70F7B0054CC5C /* CustomSegue.m */,
 				A660269C1808D9D800722776 /* ChannelCell.h */,
 				A660269D1808D9D800722776 /* ChannelCell.m */,
+				A63FD1531889480600BE5552 /* DefaultChannelTool.h */,
+				A63FD1541889480600BE5552 /* DefaultChannelTool.m */,
 			);
 			path = TVManager;
 			sourceTree = "<group>";
@@ -1589,6 +1594,7 @@
 				A6A64DBA181C17EC007C6C2E /* SystemInfoViewController.m in Sources */,
 				A64B923317F8094500A7040C /* JASidePanelController.m in Sources */,
 				A664285E180C464900138B04 /* CommandResult.m in Sources */,
+				A63FD1551889480600BE5552 /* DefaultChannelTool.m in Sources */,
 				A6A64DBD181C183F007C6C2E /* CAViewController.m in Sources */,
 				A67CE07C18099C75004DA9A8 /* CommandClient.m in Sources */,
 				A6521E6C180EE3280025EB2A /* AFNetworkReachabilityManager.m in Sources */,

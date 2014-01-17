@@ -79,6 +79,7 @@
 "Searching..."="搜索中...";
 "Search fail"="搜索失败";
 "Completed"="完成";
+"Confirm to search channel"="是否确认进行节目搜索？";
 //factory reset
 "Are you really want to run the factory reset?"="是否确认恢复出厂设置?";
 "Warning"="警告";
