@@ -103,6 +103,46 @@
                                                     <action selector="cslideVolume:" destination="YAh-it-lgL" eventType="valueChanged" id="Lmj-eK-OI2"/>
                                                 </connections>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y25-gW-80d" userLabel="MinBuffer">
+                                                <rect key="frame" x="149" y="0.0" width="43" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Min">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="click_Minbuffer:" destination="YAh-it-lgL" eventType="touchUpInside" id="4Nt-JT-GgY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="No3-oQ-Od4" userLabel="MaxBuffer">
+                                                <rect key="frame" x="200" y="0.0" width="41" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Max">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="click_MaxBuffer:" destination="YAh-it-lgL" eventType="touchUpInside" id="Ar7-gY-60e"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tqs-gM-2XO" userLabel="analyzeTime">
+                                                <rect key="frame" x="96" y="0.0" width="47" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="分析">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="click_AnalyzeTime:" destination="YAh-it-lgL" eventType="touchUpInside" id="m2h-rB-n7x"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lfH-3x-eHd" userLabel="PlayAddress">
+                                                <rect key="frame" x="45" y="0.0" width="43" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="地址">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="click_PlayAddress:" destination="YAh-it-lgL" eventType="touchUpInside" id="q0B-Rs-5XX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
@@ -207,46 +247,6 @@
                         <action selector="slideVolume:" destination="YAh-it-lgL" eventType="valueChanged" id="nzB-hm-GeQ"/>
                     </connections>
                 </slider>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y25-gW-80d" userLabel="MinBuffer">
-                    <rect key="frame" x="0.0" y="0.0" width="79" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="MinBuffer">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="click_Minbuffer:" destination="YAh-it-lgL" eventType="touchUpInside" id="4Nt-JT-GgY"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="No3-oQ-Od4" userLabel="MaxBuffer">
-                    <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="MaxBuffer">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="click_MaxBuffer:" destination="YAh-it-lgL" eventType="touchUpInside" id="Ar7-gY-60e"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tqs-gM-2XO" userLabel="analyzeTime">
-                    <rect key="frame" x="0.0" y="0.0" width="69" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="分析时间">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="click_AnalyzeTime:" destination="YAh-it-lgL" eventType="touchUpInside" id="m2h-rB-n7x"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lfH-3x-eHd" userLabel="PlayAddress">
-                    <rect key="frame" x="0.0" y="0.0" width="74" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="播放地址">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="click_PlayAddress:" destination="YAh-it-lgL" eventType="touchUpInside" id="q0B-Rs-5XX"/>
-                    </connections>
-                </button>
             </objects>
             <point key="canvasLocation" x="160" y="96"/>
         </scene>

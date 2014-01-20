@@ -302,10 +302,10 @@
     if ([STBInfo shareInstance].connected==false) {
         path = nil;
     }
-//#warning 测试代码
-//    if (![NSString isEmpty:self.tempPlayAddress]) {
-//        path = self.tempPlayAddress;
-//    }
+#warning 测试代码
+    if (![NSString isEmpty:self.tempPlayAddress]) {
+        path = self.tempPlayAddress;
+    }
     
     NSLog(@"path:%@",path);
     return path;
@@ -353,16 +353,16 @@
         //设置最大分析时间
         player.maxAnalyzeDuration = 4;
         
-//#warning 测试代码
-//        if (self.minBuffer>0) {
-//            parameters[ParameterMinBufferedDuration] = @(self.minBuffer);//最小缓存
-//        }
-//        if (self.maxBuffer>0) {
-//            parameters[ParameterMaxBufferedDuration] = @(self.maxBuffer);
-//        }
-//        if (self.analyzeTime>0) {
-//            player.maxAnalyzeDuration = self.analyzeTime;
-//        }
+#warning 测试代码
+        if (self.minBuffer>0) {
+            parameters[ParameterMinBufferedDuration] = @(self.minBuffer);//最小缓存
+        }
+        if (self.maxBuffer>0) {
+            parameters[ParameterMaxBufferedDuration] = @(self.maxBuffer);
+        }
+        if (self.analyzeTime>0) {
+            player.maxAnalyzeDuration = self.analyzeTime;
+        }
         
         //播放
         [self setPlayer:player];
@@ -378,19 +378,19 @@
         return;
     }
     
-//#warning 测试代码
-//    playBlock();
-//    return;
-    
-    if (![self timeValid]) {
-        return;
-    }
-    //设置播放时间，
-    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(timeout:) userInfo:nil repeats:NO];
-    if (self.player) {
-        [self.player stopVideo];
-    }
+#warning 测试代码
     playBlock();
+    return;
+//    
+//    if (![self timeValid]) {
+//        return;
+//    }
+    //设置播放时间，
+//    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(timeout:) userInfo:nil repeats:NO];
+//    if (self.player) {
+//        [self.player stopVideo];
+//    }
+//    playBlock();
   
     
 //    Channel *currentChannel = [self.tblChannel selectedChannel];
