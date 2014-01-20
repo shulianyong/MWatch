@@ -19,10 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [CommandClient monitorSTB:^(id info, HTTPAccessState isSuccess) {
-        
-    }];
-    
 //    [VersionUpdate DefaultSTB];
     return YES;
 }

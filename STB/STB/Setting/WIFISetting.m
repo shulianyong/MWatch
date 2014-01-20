@@ -55,6 +55,7 @@
             weakSelf.currentWifiInfo = info;
             weakSelf.txtWifiName.text = wInfo.wifi_ap_name;
             weakSelf.switchNeedPwd.on = wInfo.free_status.boolValue;
+            [weakSelf changeNeedPwd:nil];
         }
     }];
 //    [self.btnOK setTitle:MyLocalizedString(@"OK") forState:UIControlStateNormal];

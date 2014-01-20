@@ -76,7 +76,39 @@
          ERROR(@"Parameters:%@ \n Error: %@",tempParameters, error);
          aCallback(nil,HTTPAccessStateDisconnection);
      }];
+    
 }
+
++ (void)command:(NSDictionary *)parameters withTimeoutInterval:(NSTimeInterval)seconds withCallback:(HttpCallback)aCallback
+{
+    id tempParameters = parameters;
+#ifdef DEBUG
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    tempParameters = jsonStr;
+#endif
+    INFO(@"请求parameters：%@",parameters);
+    
+    [self.httpClient POST:[self commandURL] parameters:parameters withTimeoutInterval:seconds success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error = nil;
+         if (responseObject!=nil) {
+             
+             NSDictionary *dicValue = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                      options:kNilOptions
+                                                                        error:&error];
+             INFO(@"Parameters:%@ \n Data: %@",tempParameters, operation.responseString);
+             aCallback(dicValue,HTTPAccessStateSuccess);
+         }
+         
+         //         INFO(@"Parameters:%@ \n JSON: %@",parameters, operation.responseString);
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         ERROR(@"Parameters:%@ \n Error: %@",tempParameters, error);
+         aCallback(nil,HTTPAccessStateDisconnection);
+     }];
+}
+
 
 #pragma mark ---------------请求节目单
 
@@ -98,11 +130,22 @@
 
 + (void)monitorSTB:(HttpCallback)aCallback
 {
-    NSDictionary *parameters = @{@"command": @"channel_num",@"commandId":@3};
+    NSDictionary *parameters = @{@"command": @"bs_check_stb_exist",@"commandId":@3};
+    
+    __block NSString *tempParameters;
+#ifdef DEBUG
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    tempParameters = jsonStr;
+#endif
+    INFO(@"请求parameters：%@",parameters);
+    
     [[self httpClient] POST:[self commandURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         aCallback(nil,HTTPAccessStateSuccess);
+        INFO(@"Parameters:%@ \n Data: %@",tempParameters, operation.responseString);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         aCallback(nil,HTTPAccessStateFail);
+        ERROR(@"Parameters:%@ \n Error: %@",tempParameters, error);
     }];
 }
 
@@ -265,7 +308,8 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"command"] = @"bs_factory_default";
     parameters[@"commandId"] = @111;
-    [self command:parameters withCallback:^(id info, HTTPAccessState isSuccess) {
+
+    [self command:parameters withTimeoutInterval:15 withCallback:^(id info, HTTPAccessState isSuccess) {
         HTTPAccessState retStatus = isSuccess;
         if (isSuccess==HTTPAccessStateSuccess) {
             NSNumber *result = [info objectForKey:@"result"];
