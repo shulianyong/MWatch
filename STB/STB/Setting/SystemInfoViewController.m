@@ -8,6 +8,7 @@
 
 #import "SystemInfoViewController.h"
 #import "CommandClient.h"
+#import "STBSystemInfo.h"
 
 @interface SystemInfoViewController ()
 
@@ -36,22 +37,15 @@
     [super viewDidLoad];
     [CommandClient commandSystemInfo:^(id info, HTTPAccessState isSuccess) {
         if (isSuccess==HTTPAccessStateSuccess) {
-            NSDictionary *dicInfo = info;
-            self.lblBoxId.text = [dicInfo objectForKey:@"BOXID"];
-            self.lblHardwareVersion.text = [dicInfo objectForKey:@"HardWare_Version"];
-            self.lblFirmwareVersion.text = [dicInfo objectForKey:@"HardWare_Version"];
-            //REALEASE_DATE;
-            NSNumber *releaseDateNumber = [dicInfo objectForKey:@"Release_Date"];
-            NSString *realeaseDateStr = releaseDateNumber.stringValue;
-            if ([NSString isEmpty:realeaseDateStr]) {
-                realeaseDateStr = @"";
-            }
-            else
-            {
-                NSDate *realeaseDate = [NSDate dateFromString:realeaseDateStr withFormat:@"yyyyMMdd"];
-                realeaseDateStr = [realeaseDate descriptionLocalAsFormat:@"yyyy-MM-dd"];
-            }
-            self.lblFirmwareReleaseDate.text = realeaseDateStr;
+            STBSystemInfo *currentSystemInfo = [[STBSystemInfo alloc] init];
+            [currentSystemInfo reflectDataFromOtherObject:info];
+            [STBSystemInfo setDefaultSystemInfo:currentSystemInfo];
+            
+            
+            self.lblBoxId.text = currentSystemInfo.BOXID;
+            self.lblHardwareVersion.text = currentSystemInfo.HardWare_Version;
+            self.lblFirmwareVersion.text = currentSystemInfo.Software_Version;
+            self.lblFirmwareReleaseDate.text = currentSystemInfo.Release_Date;
         }
         
     }];

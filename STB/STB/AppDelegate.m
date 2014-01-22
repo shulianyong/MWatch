@@ -13,6 +13,7 @@
 #import "VideoController.h"
 #import "VersionUpdate.h"
 #import "VerifySTBConnected.h"
+#import "STBSystemInfo.h"
 
 @implementation AppDelegate
 

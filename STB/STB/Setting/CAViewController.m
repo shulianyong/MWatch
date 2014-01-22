@@ -40,23 +40,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self boundMultiLanWithView:self.view];
     [CommandClient commandGetCAInfo:^(id info, HTTPAccessState isSuccess) {
         if (isSuccess==HTTPAccessStateSuccess) {
             NSDictionary *dicInfo = info;
             NSString *datetime = [dicInfo objectForKey:@"Valid Date"];
-            
-            NSDateFormatter *formatter = [self dateFormatter];
-            NSDate *validDate = [formatter dateFromString:datetime];
-            
-            NSString *timeFormat = MyLocalizedString(@"MMM-dd-yyyy");
-            
-            NSString *validDateValue = [validDate descriptionLocalAsFormat:timeFormat];
-            validDateValue = [NSString isEmpty:validDateValue]?datetime:validDateValue;
-            
-            self.lblCAInfo.text = [NSString stringWithFormat:@"%@%@",MyLocalizedString(@"The CA will expire on "),validDateValue];
+            self.lblCAInfo.text = [NSString stringWithFormat:@"%@%@",MyLocalizedString(@"The CA will expire on "),datetime];
         }
     }];
-    [self boundMultiLanWithView:self.view];
 }
 
 

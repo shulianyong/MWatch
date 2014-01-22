@@ -39,6 +39,7 @@
 
 #import "VerifySTBConnected.h"
 #import "DefaultChannelTool.h"
+#import "DSTBSystemInfo.h"
 
 @interface VideoController ()<MovieViewDelegate,VideoControllerDelegate,VerifySTBConnectedDelegate>
 {
@@ -182,6 +183,8 @@
             [CommandClient commandGetLockControl:^(id info, HTTPAccessState isSuccess) {
                 
             }];
+            
+            [DSTBSystemInfo InitSTBSystemInfoFromSTB];
         });
     });
 }
@@ -638,7 +641,8 @@
     //设置slider最右边一段的颜色
     self.csldVolume.maximumTrackTintColor = RGBColor(57,60,86);
     
-    [self cslideVolume:self.csldVolume];
+    volumeValue = self.csldVolume.value;
+    self.btnVolume.selected = volumeValue==0;
 }
 
 #pragma mark 静音设置
