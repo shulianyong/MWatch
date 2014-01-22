@@ -134,8 +134,12 @@
     [CommandClient commandGetSignal:^(id info, HTTPAccessState isSuccess) {
         if (isSuccess == HTTPAccessStateSuccess) {
             SignalInfo *aSignal = info;
-            [weakSelf setProcessValue:aSignal.noiseRatio.floatValue];
-            [weakSelf setStrengthProcessValue:aSignal.strength.floatValue];
+            if (aSignal.noiseRatio.floatValue>0) {
+                [weakSelf setProcessValue:aSignal.noiseRatio.floatValue];
+            }
+            if (aSignal.strength.floatValue>0) {                
+                [weakSelf setStrengthProcessValue:aSignal.strength.floatValue];
+            }
         }
     }];
 }

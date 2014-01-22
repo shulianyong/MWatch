@@ -71,6 +71,12 @@
 "Lib:"="Lib:";
 "Version:"="Version:";
 
+"Box ID"="STB الهوية،";
+"Hardware version"="الأجهزة نسخة";
+"Firmware version"="إصدار البرامج الثابتة";
+"Firmware release date"="تاريخ الافراج عنه الثابتة";
+"App software version"="إصدار برنامج التطبيق";
+
 //Search Channel
 "Program Search"="البحث عن القناة";
 "Frequency"="Frequency";

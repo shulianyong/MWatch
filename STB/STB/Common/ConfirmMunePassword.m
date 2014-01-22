@@ -35,6 +35,9 @@
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:aMsg delegate:self cancelButtonTitle:MyLocalizedString(@"Cancel") otherButtonTitles:MyLocalizedString(@"OK"), nil];
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+    UITextField *txtPassword = [alert textFieldAtIndex:0];
+    txtPassword.keyboardType = UIKeyboardTypeNumberPad;
+    
     [alert show];
 }
 

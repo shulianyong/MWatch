@@ -10,12 +10,13 @@
 #import "CommandClient.h"
 
 @interface SystemInfoViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *lblLoaderVersion;
-@property (strong, nonatomic) IBOutlet UILabel *lblSoftwareVersion;
-@property (strong, nonatomic) IBOutlet UILabel *lblReleaseDate;
-@property (strong, nonatomic) IBOutlet UILabel *lblDefaultDB;
-@property (strong, nonatomic) IBOutlet UILabel *lblLib;
-@property (strong, nonatomic) IBOutlet UILabel *lblVersion;
+
+@property (strong, nonatomic) IBOutlet UILabel *lblBoxId;
+@property (strong, nonatomic) IBOutlet UILabel *lblHardwareVersion;
+@property (strong, nonatomic) IBOutlet UILabel *lblFirmwareVersion;
+@property (strong, nonatomic) IBOutlet UILabel *lblFirmwareReleaseDate;
+@property (strong, nonatomic) IBOutlet UILabel *lblAppVersion;
+
 
 @end
 
@@ -36,10 +37,11 @@
     [CommandClient commandSystemInfo:^(id info, HTTPAccessState isSuccess) {
         if (isSuccess==HTTPAccessStateSuccess) {
             NSDictionary *dicInfo = info;
-            self.lblLoaderVersion.text = [NSString stringWithFormat:@"%@ %@",MyLocalizedString(self.lblLoaderVersion.text),[dicInfo objectForKey:@"Loader"]];
-            self.lblSoftwareVersion.text = [NSString stringWithFormat:@"%@ %@",MyLocalizedString(self.lblSoftwareVersion.text),[dicInfo objectForKey:@"Application"]];
+            self.lblBoxId.text = [dicInfo objectForKey:@"BOXID"];
+            self.lblHardwareVersion.text = [dicInfo objectForKey:@"HardWare_Version"];
+            self.lblFirmwareVersion.text = [dicInfo objectForKey:@"HardWare_Version"];
             //REALEASE_DATE;
-            NSNumber *releaseDateNumber = [dicInfo objectForKey:@"REALEASE_DATE"];
+            NSNumber *releaseDateNumber = [dicInfo objectForKey:@"Release_Date"];
             NSString *realeaseDateStr = releaseDateNumber.stringValue;
             if ([NSString isEmpty:realeaseDateStr]) {
                 realeaseDateStr = @"";
@@ -49,15 +51,12 @@
                 NSDate *realeaseDate = [NSDate dateFromString:realeaseDateStr withFormat:@"yyyyMMdd"];
                 realeaseDateStr = [realeaseDate descriptionLocalAsFormat:@"yyyy-MM-dd"];
             }
-            self.lblReleaseDate.text = [NSString stringWithFormat:@"%@ %@",MyLocalizedString(self.lblReleaseDate.text),realeaseDateStr];
-            
-            self.lblDefaultDB.text = [NSString stringWithFormat:@"%@ %@",MyLocalizedString(self.lblDefaultDB.text),[dicInfo objectForKey:@"Default DB"]];
-            self.lblLib.text = [NSString stringWithFormat:@"%@ %@",MyLocalizedString(self.lblLib.text),[dicInfo objectForKey:@"Lib"]];
+            self.lblFirmwareReleaseDate.text = realeaseDateStr;
         }
         
     }];
     NSString *versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    self.lblVersion.text = [NSString stringWithFormat:@"%@ V%@",MyLocalizedString(self.lblVersion.text),versionCode];
+    self.lblAppVersion.text = versionCode;
     [self boundMultiLanWithView:self.view];
 	// Do any additional setup after loading the view.
 }

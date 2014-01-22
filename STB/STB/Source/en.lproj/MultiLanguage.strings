@@ -71,6 +71,12 @@
 "Lib:"="Lib:";
 "Version:"="Version:";
 
+"Box ID"="Box ID";
+"Hardware version"="Hardware version";
+"Firmware version"="Firmware version";
+"Firmware release date"="Firmware release date";
+"App software version"="App software version";
+
 //Search Channel
 "Program Search"="Channel search ";
 "Frequency"="Frequency";

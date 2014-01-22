@@ -71,6 +71,12 @@
 "Lib:"="Lib:";
 "Version:"="Version:";
 
+"Box ID"="機頂盒序列號";
+"Hardware version"="硬件版本";
+"Firmware version"="固件版本";
+"Firmware release date"="固件發布日期";
+"App software version"="播放器版本";
+
 //Search Channel
 "Program Search"="節目搜索";
 "Frequency"="Frequency";

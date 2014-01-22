@@ -50,7 +50,10 @@
             
             NSString *timeFormat = MyLocalizedString(@"MMM-dd-yyyy");
             
-            self.lblCAInfo.text = [NSString stringWithFormat:@"%@%@",MyLocalizedString(@"The CA will expire on "),[validDate descriptionLocalAsFormat:timeFormat]];
+            NSString *validDateValue = [validDate descriptionLocalAsFormat:timeFormat];
+            validDateValue = [NSString isEmpty:validDateValue]?datetime:validDateValue;
+            
+            self.lblCAInfo.text = [NSString stringWithFormat:@"%@%@",MyLocalizedString(@"The CA will expire on "),validDateValue];
         }
     }];
     [self boundMultiLanWithView:self.view];

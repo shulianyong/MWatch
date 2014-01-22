@@ -105,7 +105,7 @@
                     //清空节目单
                     [[NSNotificationCenter defaultCenter] postNotificationName:DeleteAllChannelListNotification object:nil];
                     //请求更新节目单事件
-                    [CommandClient postRefreshChannelEvent];
+//                    [CommandClient postRefreshChannelEvent];
                 }
                 else
                 {
