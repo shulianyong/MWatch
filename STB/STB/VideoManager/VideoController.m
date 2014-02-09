@@ -118,6 +118,8 @@
     volumeValue = self.volumeController.volume;
     self.sldVolume.value = volumeValue;
     [self configSlideVolume];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -278,7 +280,7 @@
 {
     //设置有效期
 	NSDateFormatter *formatter = [self dateFormatter];
-    NSString *validString =@"2014-02-18";
+    NSString *validString =@"2014-03-09";
     NSDate *validDate = [formatter dateFromString:validString];
     
     NSDate *nowtime = [NSDate date];
@@ -354,7 +356,7 @@
         parameters[ParameterMaxBufferedDuration] = @(30.0);//最大缓存
         parameters[ParameterMinBufferedDuration] = @(1.0);//最小缓存
         //设置最大分析时间
-        player.maxAnalyzeDuration = 4;
+        player.maxAnalyzeDuration = 3;
         
 //#warning 测试代码
 //        if (self.minBuffer>0) {
