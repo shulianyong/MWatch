@@ -23,6 +23,8 @@
 
 + (unsigned int)convertHexString:(NSString*)aHex;
 
++ (unsigned long long)convertHexStringToLongLong:(NSString*)aHex;
+
 + (NSString*)base64Encode:(NSData*)aData;
 
 + (NSString*)base64Encode:(NSString*)aString encoding:(NSStringEncoding)aEncoding;

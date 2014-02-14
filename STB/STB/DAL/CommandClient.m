@@ -3,7 +3,7 @@
 //  STB
 //
 //  Created by shulianyong on 13-10-12.
-//  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+//  Copyright (c) 2013年 Shanghai Hanfir Enterprise Management Limited.. All rights reserved.
 //
 
 #import "CommandClient.h"
@@ -17,11 +17,17 @@
 #import "SatInfo.h"
 #import "TPInfo.h"
 
+#import "UpdateSTBInfo.h"
+#import "AppInfo.h"
+#import "ServerUpdateSTBInfo.h"
+
 #import "UPNPTool.h"
 
 #import "../../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
 
 @implementation CommandClient
+
+static NSString *STBInternetServer = @"http://rbei.aiwlan.com";
 
 + (NSString*)stbServer
 {
@@ -130,6 +136,7 @@
 
 + (void)monitorSTB:(HttpCallback)aCallback
 {
+    
     NSDictionary *parameters = @{@"command": @"bs_check_stb_exist",@"commandId":@3};
     
     __block NSString *tempParameters;
@@ -634,6 +641,86 @@
     parameters[@"command"] = @"bs_notify_frush_channel";
     parameters[@"commandId"] = @3005;
     [self command:parameters withCallback:^(id info, HTTPAccessState isSuccess) {
+    }];
+}
+
+#pragma mark -----------更新机顶盒
++ (void)getUpdateSTBInfo:(HttpCallback)aCallback
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"command"] = @"bs_request_stb_info";
+    parameters[@"commandId"] = @1;
+    
+    [self command:parameters withCallback:^(id info, HTTPAccessState isSuccess)
+     {
+         UpdateSTBInfo *stbInfo = nil;
+         if (isSuccess==HTTPAccessStateSuccess)
+         {
+             stbInfo = [[UpdateSTBInfo alloc] init];
+             [stbInfo reflectDataFromOtherObject:info];
+         }
+         aCallback(stbInfo,isSuccess);
+     }];
+}
+
+#pragma mark ---------------外网处理
++ (AFHTTPRequestOperationManager*)internetHTTPClient
+{
+    static AFHTTPRequestOperationManager *internetHTTPClient = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        internetHTTPClient = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:STBInternetServer]] ;
+        internetHTTPClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+        internetHTTPClient.requestSerializer = [AFHTTPRequestSerializer serializer];
+    });
+    return internetHTTPClient;
+}
+
++ (void)getInternetSTBInfo:(HttpCallback)aCallback
+{
+    UpdateSTBInfo *stbInfo = [UpdateSTBInfo currentUpdateSTBInfo];
+    NSString *parmeters = @"type=%d&playerversion=%@&stbid[0]=%@&hwversion[0]=%@&swversion[0]=%@&caid[0]=%@&chipid[0]=%@&macid[0]=%@";
+    parmeters = [NSString stringWithFormat:parmeters
+                 ,2
+                 ,[AppInfo AppVersion]
+                 ,stbInfo.stbid
+                 ,stbInfo.hwversion
+                 ,stbInfo.swversion
+                 ,stbInfo.caid
+                 ,stbInfo.chipid
+                 ,stbInfo.macid
+                 ];
+    NSString *urlString = @"download.html";
+    urlString = [urlString stringByAppendingFormat:@"?%@",parmeters];
+    [[self internetHTTPClient] GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        NSError *error = nil;
+        INFO(@"getInternetSTBInfo Data: %@",operation.responseString);
+        NSDictionary *dicValue = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                 options:kNilOptions
+                                                                   error:&error];
+        INFO(@"getInternetSTBInfo Data: %@",operation.responseString);
+        if (dicValue) {
+            ServerUpdateSTBInfo *serverInfo = [[ServerUpdateSTBInfo alloc] init];
+            NSDictionary *playerinfo = [dicValue objectForKey:@"playerinfo"];
+            NSArray *stbinfo = [dicValue objectForKey:@"stbinfo"];
+            serverInfo.playerversion = [playerinfo objectForKey:@"playerversion"];
+            for (NSDictionary *dicTemp in stbinfo) {
+                ServerSTBInfo *versionInfo = [[ServerSTBInfo alloc] init];
+                [versionInfo reflectDataFromOtherObject:dicTemp];
+                [serverInfo.stbinfo addObject:versionInfo];
+            }
+            aCallback(serverInfo,HTTPAccessStateSuccess);
+        }
+        else
+        {
+            aCallback(nil,HTTPAccessStateFail);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        ERROR(@"getInternetSTBInfo Error: %@",error);
+        aCallback(nil,HTTPAccessStateDisconnection);
     }];
 }
 

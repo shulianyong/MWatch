@@ -3,7 +3,7 @@
 //  STB
 //
 //  Created by shulianyong on 13-10-23.
-//  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+//  Copyright (c) 2013年 Shanghai Hanfir Enterprise Management Limited.. All rights reserved.
 //
 
 #import "STBMonitor.h"
@@ -198,7 +198,7 @@
                                                                      options:kNilOptions
                                                                        error:&error];
             NSString *event = [dicValue objectForKey:@"event"];
-            if ([event isEqualToString:@"FRONTEND_LOCK_STATE"])//信息质量
+            if ([event isEqualToString:@"BS_POST_SIGNAL_STATE"])//信息质量FRONTEND_LOCK_STATE
             {
                 NSString *state = [dicValue objectForKey:@"state"];
                 

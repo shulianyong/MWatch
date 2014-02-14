@@ -3,7 +3,7 @@
 //  STB
 //
 //  Created by shulianyong on 13-9-28.
-//  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+//  Copyright (c) 2013年 Shanghai Hanfir Enterprise Management Limited.. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -15,12 +15,19 @@
 #import "VerifySTBConnected.h"
 #import "STBSystemInfo.h"
 
+#import "STBVersionCheck.h"
+
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 //    [VersionUpdate DefaultSTB];
+//    STBVersionCheck *check = [[STBVersionCheck alloc] init];
+//    [check checkSTBUPdateVersion];
+    [CommandClient getInternetSTBInfo:^(id info, HTTPAccessState isSuccess) {
+        
+    }];
     return YES;
 }
 							

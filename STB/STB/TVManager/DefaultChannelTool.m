@@ -3,7 +3,7 @@
 //  STB
 //
 //  Created by shulianyong on 14-1-17.
-//  Copyright (c) 2014年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+//  Copyright (c) 2014年 Shanghai Hanfir Enterprise Management Limited.. All rights reserved.
 //
 
 #import "DefaultChannelTool.h"

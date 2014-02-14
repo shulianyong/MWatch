@@ -3,7 +3,7 @@
 //  STB
 //
 //  Created by shulianyong on 13-10-26.
-//  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+//  Copyright (c) 2013年 Shanghai Hanfir Enterprise Management Limited.. All rights reserved.
 //
 
 #import "SignalViewController.h"
@@ -73,7 +73,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.processTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(signalShow:) userInfo:nil repeats:YES];
+    self.processTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(signalShow:) userInfo:nil repeats:YES];
     
     [self boundMultiLanWithView:self.view];
 //    self.processTimer = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(signalShow:) userInfo:nil repeats:YES];
@@ -107,6 +107,7 @@
 {
     [super viewDidAppear:animated];
     [self setProcessValue:0];
+    [self setStrengthProcessValue:0];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -134,10 +135,10 @@
     [CommandClient commandGetSignal:^(id info, HTTPAccessState isSuccess) {
         if (isSuccess == HTTPAccessStateSuccess) {
             SignalInfo *aSignal = info;
-            if (aSignal.noiseRatio.floatValue>0) {
+            if (aSignal.noiseRatio.floatValue>=0) {
                 [weakSelf setProcessValue:aSignal.noiseRatio.floatValue];
             }
-            if (aSignal.strength.floatValue>0) {                
+            if (aSignal.strength.floatValue>=0) {
                 [weakSelf setStrengthProcessValue:aSignal.strength.floatValue];
             }
         }

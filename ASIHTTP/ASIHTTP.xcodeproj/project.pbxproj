@@ -439,7 +439,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "Chengdu Sifang Information Technology Co.LTD";
+				ORGANIZATIONNAME = "Shanghai Hanfir Enterprise Management Limited.";
 				TargetAttributes = {
 					A68E6895183AF38B001654C2 = {
 						TestTargetID = A68E6885183AF38A001654C2;

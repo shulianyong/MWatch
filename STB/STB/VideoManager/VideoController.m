@@ -3,7 +3,7 @@
 //  STB
 //
 //  Created by shulianyong on 13-10-11.
-//  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+//  Copyright (c) 2013年 Shanghai Hanfir Enterprise Management Limited.. All rights reserved.
 //
 
 #import "VideoController.h"
@@ -118,7 +118,6 @@
     volumeValue = self.volumeController.volume;
     self.sldVolume.value = volumeValue;
     [self configSlideVolume];
-    
     
 }
 

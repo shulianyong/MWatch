@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A6004E541818194200AAF2B3 /* STBMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6004E531818194200AAF2B3 /* STBMonitor.m */; };
 		A6004E5718181ACC00AAF2B3 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A6004E5618181ACC00AAF2B3 /* GCDAsyncSocket.m */; };
+		A60DFC7B18A8AE2B003DB8FD /* STBVersionCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = A60DFC7A18A8AE2B003DB8FD /* STBVersionCheck.m */; };
+		A60DFC7E18A8D1DE003DB8FD /* ServerUpdateSTBInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A60DFC7D18A8D1DE003DB8FD /* ServerUpdateSTBInfo.m */; };
 		A616E73A182F851E00A04F54 /* imgMuted.png in Resources */ = {isa = PBXBuildFile; fileRef = A616E738182F851E00A04F54 /* imgMuted.png */; };
 		A616E73B182F851E00A04F54 /* imgMuted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A616E739182F851E00A04F54 /* imgMuted@2x.png */; };
 		A616E73E182F859600A04F54 /* VolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A616E73D182F859600A04F54 /* VolumeControl.m */; };
@@ -167,6 +169,8 @@
 		A68266081806C6D900B7762B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68266071806C6D900B7762B /* CoreAudio.framework */; };
 		A682660A1806C6E400B7762B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68266091806C6E400B7762B /* MediaPlayer.framework */; };
 		A682BA85186DB26300F6AC81 /* InputAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = A682BA84186DB26300F6AC81 /* InputAlert.m */; };
+		A691C44B18A77A6C00854CA0 /* UpdateSTBInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A691C44A18A77A6C00854CA0 /* UpdateSTBInfo.m */; };
+		A691C44E18A77C8400854CA0 /* AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A691C44D18A77C8400854CA0 /* AppInfo.m */; };
 		A69AC69E1855A9CE005A5B2E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A69AC69D1855A9CE005A5B2E /* Default-568h@2x.png */; };
 		A69AC6A01855B7C5005A5B2E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A69AC69F1855B7C5005A5B2E /* icon.png */; };
 		A69AC6A31855B8D4005A5B2E /* icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A69AC6A11855B8D4005A5B2E /* icon-Small.png */; };
@@ -245,6 +249,10 @@
 		A6004E531818194200AAF2B3 /* STBMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STBMonitor.m; sourceTree = "<group>"; };
 		A6004E5518181ACC00AAF2B3 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		A6004E5618181ACC00AAF2B3 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		A60DFC7918A8AE2B003DB8FD /* STBVersionCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STBVersionCheck.h; sourceTree = "<group>"; };
+		A60DFC7A18A8AE2B003DB8FD /* STBVersionCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STBVersionCheck.m; sourceTree = "<group>"; };
+		A60DFC7C18A8D1DE003DB8FD /* ServerUpdateSTBInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerUpdateSTBInfo.h; sourceTree = "<group>"; };
+		A60DFC7D18A8D1DE003DB8FD /* ServerUpdateSTBInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerUpdateSTBInfo.m; sourceTree = "<group>"; };
 		A616E738182F851E00A04F54 /* imgMuted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgMuted.png; sourceTree = "<group>"; };
 		A616E739182F851E00A04F54 /* imgMuted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgMuted@2x.png"; sourceTree = "<group>"; };
 		A616E73C182F859600A04F54 /* VolumeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeControl.h; sourceTree = "<group>"; };
@@ -538,6 +546,10 @@
 		A68266091806C6E400B7762B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A682BA83186DB26300F6AC81 /* InputAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputAlert.h; sourceTree = "<group>"; };
 		A682BA84186DB26300F6AC81 /* InputAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAlert.m; sourceTree = "<group>"; };
+		A691C44918A77A6C00854CA0 /* UpdateSTBInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateSTBInfo.h; sourceTree = "<group>"; };
+		A691C44A18A77A6C00854CA0 /* UpdateSTBInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateSTBInfo.m; sourceTree = "<group>"; };
+		A691C44C18A77C8400854CA0 /* AppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfo.h; sourceTree = "<group>"; };
+		A691C44D18A77C8400854CA0 /* AppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInfo.m; sourceTree = "<group>"; };
 		A697B66F1883B925004BD7CD /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/MultiLanguage.strings; sourceTree = "<group>"; };
 		A69AC69D1855A9CE005A5B2E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A69AC69F1855B7C5005A5B2E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -1046,6 +1058,12 @@
 				A677D1081841D54B0031726B /* ScanStatusInfo.m */,
 				A6F65770188901100036B8AF /* STBInfo.h */,
 				A6F65771188901100036B8AF /* STBInfo.m */,
+				A691C44918A77A6C00854CA0 /* UpdateSTBInfo.h */,
+				A691C44A18A77A6C00854CA0 /* UpdateSTBInfo.m */,
+				A60DFC7C18A8D1DE003DB8FD /* ServerUpdateSTBInfo.h */,
+				A60DFC7D18A8D1DE003DB8FD /* ServerUpdateSTBInfo.m */,
+				A691C44C18A77C8400854CA0 /* AppInfo.h */,
+				A691C44D18A77C8400854CA0 /* AppInfo.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1318,6 +1336,8 @@
 				A6A30EC6184A274A00ADCC7A /* UploadSoft.h */,
 				A6A64DBE181C1D29007C6C2E /* VersionUpdate.h */,
 				A6A64DBF181C1D29007C6C2E /* VersionUpdate.m */,
+				A60DFC7918A8AE2B003DB8FD /* STBVersionCheck.h */,
+				A60DFC7A18A8AE2B003DB8FD /* STBVersionCheck.m */,
 				A6F38C6C1849BFC300EC207E /* DownLoadUtil.h */,
 				A6F38C6D1849BFC300EC207E /* DownLoadUtil.m */,
 				A6F05A301850C077005D9D49 /* FirmwareUpgradeController.h */,
@@ -1371,7 +1391,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "Chengdu Sifang Information Technology Co.LTD";
+				ORGANIZATIONNAME = "Shanghai Hanfir Enterprise Management Limited.";
 				TargetAttributes = {
 					A64483C517F68A960054CC5C = {
 						DevelopmentTeam = 242UYJ3U9M;
@@ -1549,6 +1569,7 @@
 				A6521E6F180EE3280025EB2A /* AFURLRequestSerialization.m in Sources */,
 				A66CA4A218234DD6004E8E36 /* LockInfo.m in Sources */,
 				A6521E6E180EE3280025EB2A /* AFURLConnectionOperation.m in Sources */,
+				A60DFC7E18A8D1DE003DB8FD /* ServerUpdateSTBInfo.m in Sources */,
 				A6521E73180EE3280025EB2A /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A655ED1F183D045900927458 /* SignalInfo.m in Sources */,
 				A660269E1808D9D800722776 /* ChannelCell.m in Sources */,
@@ -1559,6 +1580,7 @@
 				A648EABB186EF9420094452C /* YDSlider.m in Sources */,
 				A660907E18080DDB005450DB /* KxMovieGLView.m in Sources */,
 				A6521E71180EE3280025EB2A /* AFURLSessionManager.m in Sources */,
+				A60DFC7B18A8AE2B003DB8FD /* STBVersionCheck.m in Sources */,
 				A6DEAF69180A7C63007199B2 /* STBPlayer.m in Sources */,
 				A6F05A321850C077005D9D49 /* FirmwareUpgradeController.m in Sources */,
 				A6E47CF61816DAC30099102C /* MenuPasswordConfig.m in Sources */,
@@ -1578,6 +1600,7 @@
 				A6A64DC0181C1D29007C6C2E /* VersionUpdate.m in Sources */,
 				A6FAD0DD188FC2C50004EA33 /* DSTBSystemInfo.m in Sources */,
 				A6004E5718181ACC00AAF2B3 /* GCDAsyncSocket.m in Sources */,
+				A691C44B18A77A6C00854CA0 /* UpdateSTBInfo.m in Sources */,
 				A6521E72180EE3280025EB2A /* AFNetworkActivityIndicatorManager.m in Sources */,
 				A6F38C6E1849BFC300EC207E /* DownLoadUtil.m in Sources */,
 				A6521E78180EE3280025EB2A /* UIWebView+AFNetworking.m in Sources */,
@@ -1612,6 +1635,7 @@
 				A6521E6C180EE3280025EB2A /* AFNetworkReachabilityManager.m in Sources */,
 				A6F657731889049E0036B8AF /* UPNPTool.m in Sources */,
 				A6521E70180EE3280025EB2A /* AFURLResponseSerialization.m in Sources */,
+				A691C44E18A77C8400854CA0 /* AppInfo.m in Sources */,
 				A6521E7B180EEA860025EB2A /* ParentLocked.m in Sources */,
 				A6DF13CC185EFE510045BDC1 /* SingleAlert.m in Sources */,
 				A64483D617F68A960054CC5C /* main.m in Sources */,

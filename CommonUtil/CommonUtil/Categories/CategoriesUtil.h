@@ -3,7 +3,7 @@
 //  CommonUtil
 //
 //  Created by shulianyong on 13-7-25.
-//  Copyright (c) 2013年 Chengdu Sifang Information Technology Co.LTD. All rights reserved.
+//  Copyright (c) 2013年 Shanghai Hanfir Enterprise Management Limited.. All rights reserved.
 //
 
 //lipo -create Release-iphoneos/CDSFCategoriesUtility/libCDSFCategoriesUtility.a Release-iphonesimulator/CDSFCategoriesUtility/libCDSFCategoriesUtility.a -output libCDSFCategoriesUtility.a 模拟器与真机的库加在一起
