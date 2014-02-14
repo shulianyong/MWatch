@@ -292,6 +292,16 @@ static CGFloat NETWORK_MAX_BUFFERED_DURATION = 3.0;
     }
 }
 
+- (void) dealloc
+{
+    NSLog(@"%s", __func__);
+    [self pause];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (_dispatchQueue) {
+        _dispatchQueue = NULL;
+    }
+}
+
 - (void) viewDidAppear:(BOOL)animated
 {
     _savedIdleTimer = [[UIApplication sharedApplication] isIdleTimerDisabled];
