@@ -258,37 +258,15 @@ static CGFloat NETWORK_MAX_BUFFERED_DURATION = 3.0;
 #warning 内容释放
 - (void)didReceiveMemoryWarning
 {
-    
-    if (self.playing) {
-        
+    if (self.playing)
+    {
         [self pause];
         [self freeBufferedFrames];
-        
-        if (_maxBufferedDuration > 0) {
-            
-            _minBufferedDuration = _maxBufferedDuration = 0;
-            [self play];
-            
-            NSLog(@"didReceiveMemoryWarning, disable buffering and continue playing");
-            
-        } else {
-            
-            // force ffmpeg to free allocated memory
-            [_decoder closeFile];
-            [_decoder openFile:nil error:nil];
-            
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failure", nil)
-                                        message:NSLocalizedString(@"Out of memory", nil)
-                                       delegate:nil
-                              cancelButtonTitle:NSLocalizedString(@"Close", nil)
-                              otherButtonTitles:nil] show];
-        }
-        
-    } else {
-        
+        [self play];
+    }
+    else {
         [self freeBufferedFrames];
         [_decoder closeFile];
-        [_decoder openFile:nil error:nil];
     }
 }
 
@@ -417,6 +395,7 @@ static CGFloat NETWORK_MAX_BUFFERED_DURATION = 3.0;
     [self updatePlayButton];
     NSLog(@"pause movie");
     NSLog(@"vedio Path:%@",_decoder.path);
+    [self freeBufferedFrames];
 }
 
 - (void) setMoviePosition: (CGFloat) position
