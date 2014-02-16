@@ -18,7 +18,7 @@
 
 @end
 
-@interface ServerSTBInfo : NSObject
+@interface ServerSTBInfo : NSObject<NSCoding>
 
 @property (nonatomic,strong)NSString *hwversion;
 @property (nonatomic,strong)NSString *swversion;

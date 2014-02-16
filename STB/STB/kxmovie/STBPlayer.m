@@ -466,7 +466,6 @@ static CGFloat NETWORK_MAX_BUFFERED_DURATION = 3.0;
         }
         
         if (_decoder.isNetwork) {
-            
             _minBufferedDuration = NETWORK_MIN_BUFFERED_DURATION;
             _maxBufferedDuration = NETWORK_MAX_BUFFERED_DURATION;
             

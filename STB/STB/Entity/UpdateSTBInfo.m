@@ -16,6 +16,17 @@ static NSString *CurrentUpdateSTBInfo=@"CurrentUpdateSTBInfo";
 {
     NSData *tempData =  [[NSUserDefaults standardUserDefaults] objectForKey:CurrentUpdateSTBInfo];
     UpdateSTBInfo *currentUpdateSTBInfo = [NSKeyedUnarchiver unarchiveObjectWithData: tempData];
+    
+//    if (currentUpdateSTBInfo==nil) {
+//        currentUpdateSTBInfo = [[UpdateSTBInfo alloc] init];
+//        currentUpdateSTBInfo.hwversion = @"00000000000000000000000000000000";
+//        currentUpdateSTBInfo.swversion = @"0000000000";
+//        currentUpdateSTBInfo.stbid = @"00000000000000000000";
+//        currentUpdateSTBInfo.caid = @"00000000000000000000";
+//        currentUpdateSTBInfo.chipid = @"";
+//        currentUpdateSTBInfo.macid = @"7CDD90400AAB";
+//        
+//    }
     return currentUpdateSTBInfo;
 }
 
@@ -57,13 +68,13 @@ static NSString *CurrentUpdateSTBInfo=@"CurrentUpdateSTBInfo";
 @implementation DownLoadFirmwareInfo
 static NSString *DownLoadFirmwareInfos = @"FirmwaresInfos";
 
-+ (NSArray*)downLoadFirmwareInfos
++ (NSDictionary*)downLoadFirmwareInfos
 {
     NSData *tempData =  [[NSUserDefaults standardUserDefaults] objectForKey:DownLoadFirmwareInfos];
-    NSArray *firwareInfos = [NSKeyedUnarchiver unarchiveObjectWithData: tempData];
+    NSDictionary *firwareInfos = [NSKeyedUnarchiver unarchiveObjectWithData: tempData];
     return firwareInfos;
 }
-+ (void)setDownLoadFirmwareInfos:(NSArray*)firmwares
++ (void)setDownLoadFirmwareInfos:(NSDictionary*)firmwares
 {
     NSData *archiveCarPriceData = [NSKeyedArchiver archivedDataWithRootObject:firmwares];
     [[NSUserDefaults standardUserDefaults] setObject:archiveCarPriceData forKey:DownLoadFirmwareInfos];

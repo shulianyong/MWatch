@@ -54,7 +54,7 @@ static MBProgressHUD *updateAlert;
     
     NSNumber *isRemind = [[NSUserDefaults standardUserDefaults] objectForKey:STB_RemindUpgrade];
     if (isRemind==nil) {
-        isRemind = [NSNumber numberWithBool:NO];
+        isRemind = [NSNumber numberWithBool:YES];
 //        [[NSUserDefaults standardUserDefaults] setObject:isRemind forKey:STB_RemindUpgrade];
 //        [[NSUserDefaults standardUserDefaults] synchronize];
     }

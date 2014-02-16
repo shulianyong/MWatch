@@ -23,5 +23,28 @@
 @implementation ServerSTBInfo
 
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    NSArray *allKeys = self.propertyKeys;
+    id objValue = nil;
+    for (NSString *key in allKeys) {
+        objValue = [self valueForKey:key];
+        [aCoder encodeObject:objValue forKey:key];
+    }
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self=[super init];
+    if (self) {
+        NSArray *allKeys = self.propertyKeys;
+        id objValue = nil;
+        for (NSString *key in allKeys) {
+            objValue = [aDecoder decodeObjectForKey:key];
+            [self setValue:objValue forKey:key];
+        }
+    }
+    return self;
+}
 
 @end

@@ -61,11 +61,11 @@
 
     self.securityPolicy = [AFSecurityPolicy defaultPolicy];
 
-    if (self.baseURL.host) {
-        self.reachabilityManager = [AFNetworkReachabilityManager managerForDomain:self.baseURL.host];
-    } else {
+//    if (self.baseURL.host) {
+//        self.reachabilityManager = [AFNetworkReachabilityManager managerForDomain:self.baseURL.host];
+//    } else {
         self.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
-    }
+//    }
 
     [self.reachabilityManager startMonitoring];
 
@@ -120,6 +120,7 @@
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters];
+    request.timeoutInterval = 5;
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
     [self.operationQueue addOperation:operation];
 

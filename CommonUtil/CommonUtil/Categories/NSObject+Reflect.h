@@ -10,6 +10,8 @@
 
 @interface NSObject (Reflect)
 
++ (instancetype)createInstance;
+
 - (NSArray*)propertyKeys;
 
 /* 从字典中，将相应的字段反射到实体相应的字段中，用于自动绑定值

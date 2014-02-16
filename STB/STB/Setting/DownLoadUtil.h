@@ -22,4 +22,10 @@ withProcessBlock:(DownLoadProcess)processBlock
 withDownSuccessBlock:(dispatch_block_t)successBlock
 withDownFailBlck:(dispatch_block_t)failBlock;
 
++ (void)downFirmwareFileWithURL:(NSString*)aURL
+                withLocFileName:(NSString*)aLocFileName
+               withProcessBlock:(DownLoadProcess)processBlock
+           withDownSuccessBlock:(dispatch_block_t)successBlock
+               withDownFailBlck:(dispatch_block_t)failBlock;
+
 @end

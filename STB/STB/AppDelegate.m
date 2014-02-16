@@ -23,11 +23,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 //    [VersionUpdate DefaultSTB];
-//    STBVersionCheck *check = [[STBVersionCheck alloc] init];
 //    [check checkSTBUPdateVersion];
-    [CommandClient getInternetSTBInfo:^(id info, HTTPAccessState isSuccess) {
-        
-    }];
+//    [CommandClient getInternetSTBInfo:^(id info, HTTPAccessState isSuccess) {
+//        
+//    }];
     return YES;
 }
 							

@@ -15,6 +15,7 @@
 #import "CommandClient.h"
 #import "../../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
 #import "DefaultChannelTool.h"
+#import "BLLChannelIcon.h"
 
 #import "AFNetworkReachabilityManager.h"
 
@@ -281,6 +282,7 @@
             else
             {
                 [weakSelf insertNewObjects:channels];
+                [[BLLChannelIcon shareInstance] boundDefaultChannelIconFromChannels:self.fetchedResultsController.fetchedObjects];
             }
         }
         else

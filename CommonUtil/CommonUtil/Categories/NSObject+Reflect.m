@@ -11,6 +11,11 @@
 
 @implementation NSObject (Reflect)
 
++ (instancetype)createInstance
+{
+    return [[[self class] alloc] init];
+}
+
 - (NSArray*)propertyKeys
 {
     unsigned int outCount, i;

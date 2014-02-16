@@ -8,6 +8,7 @@
 
 #import "FirmwareUpgradeController.h"
 #import "VersionUpdate.h"
+#import "STBVersionCheck.h"
 
 @interface FirmwareUpgradeController ()
 
@@ -82,7 +83,8 @@
 
 - (IBAction)click_btnUpgradeFirmware:(id)sender
 {
-    [[VersionUpdate shareInstance] uploadFile];
+//    [[VersionUpdate shareInstance] uploadFile];
+    [[STBVersionCheck shareInstance] manualSTBUpdate];
 }
 
 - (IBAction)click_btnSelected:(UIButton*)sender

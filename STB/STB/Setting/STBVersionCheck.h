@@ -10,6 +10,15 @@
 
 @interface STBVersionCheck : NSObject
 
-- (void)checkSTBUPdateVersion;
++ (instancetype)shareInstance;
+
+
+#pragma mark --------------------- 上传固件
+- (void)autoSTBUpgrade;
+- (void)manualSTBUpdate;
+
+
+#pragma mark －－－－－－－－－－－－－判断是否有最新固件，最下载固件
+- (void)checkInternetSTBInfo;
 
 @end

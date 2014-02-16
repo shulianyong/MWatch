@@ -10,6 +10,17 @@
 
 @interface CommonUtil : NSObject
 
+typedef enum
+{
+	FileDownStateDefault = 0, /**<默认 */
+	FileDownStateSuccess = 1, /**< 成功 */
+	FileDownStateFail = 2, /**< 失败 */
+	FileDownStateDisconnection = 3 /**< 网络联接失败 */
+}
+FileDownState;
+
+typedef void(^FileDownloadCallback)(id info,FileDownState isSuccess);
+
 //提示
 + (void)showMessage:(NSString*)aMessgae;
 //提示

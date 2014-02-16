@@ -673,6 +673,7 @@ static NSString *STBInternetServer = @"http://rbei.aiwlan.com";
         internetHTTPClient.responseSerializer = [AFHTTPResponseSerializer serializer];
         internetHTTPClient.requestSerializer = [AFHTTPRequestSerializer serializer];
     });
+    INFO(@"internetHTTPClient");
     return internetHTTPClient;
 }
 
@@ -690,8 +691,11 @@ static NSString *STBInternetServer = @"http://rbei.aiwlan.com";
                  ,stbInfo.chipid
                  ,stbInfo.macid
                  ];
+    
     NSString *urlString = @"download.html";
     urlString = [urlString stringByAppendingFormat:@"?%@",parmeters];
+    
+    INFO(@"request:%@",urlString);
     [[self internetHTTPClient] GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
         NSError *error = nil;

@@ -123,4 +123,63 @@ withDownFailBlck:(dispatch_block_t)failBlock
     [request startAsynchronous];
 }
 
++ (void)downFirmwareFileWithURL:(NSString*)aURL
+ withLocFileName:(NSString*)aLocFileName
+withProcessBlock:(DownLoadProcess)processBlock
+withDownSuccessBlock:(dispatch_block_t)successBlock
+withDownFailBlck:(dispatch_block_t)failBlock
+{
+    INFO(@"current version:%f",[UIDevice currentDevice].systemVersion.doubleValue);
+    
+    NSURL *URL = [NSURL URLWithString:aURL];
+    request = [ASIHTTPRequest requestWithURL:URL];
+    request.timeOutSeconds = 5*60;
+    
+    static unsigned long long progressSize = 0;
+    progressSize = 0;
+    __block UInt64 totalSize = 0;
+    [request setBytesReceivedBlock:^(unsigned long long size, unsigned long long total) {
+        progressSize+=size;
+        float progressValue = 1.0f*progressSize/total;
+        INFO(@"downProgress   size:%llu  progressSize:%llu   total:%llu  progressValue:%f",size,progressSize,total,progressValue);
+        processBlock(progressValue);
+        totalSize = total;
+    }];    
+    
+    [request setCompletionBlock:^{
+        INFO(@"CompletionBlock");
+        if (totalSize<1024)
+        {
+            failBlock();
+        }
+        else
+        {
+            successBlock();
+        }
+    }];
+    
+    //当request完成时，整个文件会被移动到这里
+    NSString *saveFilePath = [NSString cacheFolderPath];
+    saveFilePath = [saveFilePath stringByAppendingPathComponent:aLocFileName];
+    [request setDownloadDestinationPath:saveFilePath];
+    
+    NSString *tempFilePath = NSTemporaryDirectory();
+    tempFilePath = [tempFilePath stringByAppendingPathComponent:aLocFileName];
+    
+    [request setFailedBlock:^{
+        INFO(@"FailedBlock:%@",request.error);
+        if ([[NSFileManager defaultManager] fileExistsAtPath:tempFilePath]) {
+            [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
+        }
+        if ([[NSFileManager defaultManager] fileExistsAtPath:saveFilePath]) {
+            [[NSFileManager defaultManager] removeItemAtPath:saveFilePath error:nil];
+        }
+        failBlock();
+    }];
+    
+    
+    [request setTemporaryFileDownloadPath:tempFilePath];
+    [request startAsynchronous];
+}
+
 @end

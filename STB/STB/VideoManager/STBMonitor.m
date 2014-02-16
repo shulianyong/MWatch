@@ -160,7 +160,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"command"] = @"register_event";
     parameters[@"commandId"] = @0;
-    parameters[@"event"] =  @[@"SCAN_STATUS",@"FRONTEND_LOCK_STATE",@"BS_UPDATE_CHANNEL_LSIT",@"BS_UPDATE_LOCK_CONTROL"];
+    parameters[@"event"] =  @[@"SCAN_STATUS",@"BS_POST_SIGNAL_STATE",@"BS_UPDATE_CHANNEL_LSIT",@"BS_UPDATE_LOCK_CONTROL"];
     
     NSData *commandData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];    
     [self.eventMonitorSocket writeData:commandData withTimeout:2 tag:1];
@@ -206,7 +206,7 @@
                 if ([state isEqualToString:@"unlock"]) {
                     if (!hadProcessNoSignal) {
                         [[SignalTool shareInstance] noSignal];
-                        hadProcessNoSignal = YES;
+//                        hadProcessNoSignal = YES;
                     }
                 }
                 else

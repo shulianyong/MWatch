@@ -40,6 +40,7 @@
 #import "VerifySTBConnected.h"
 #import "DefaultChannelTool.h"
 #import "DSTBSystemInfo.h"
+#import "STBVersionCheck.h"
 
 @interface VideoController ()<MovieViewDelegate,VideoControllerDelegate,VerifySTBConnectedDelegate>
 {
@@ -184,10 +185,15 @@
             [CommandClient commandGetLockControl:^(id info, HTTPAccessState isSuccess) {
                 
             }];
-            
             [DSTBSystemInfo InitSTBSystemInfoFromSTB];
         });
     });
+    
+    
+    if ([VersionUpdate IsSTBRemindUpgrade])
+    {
+        [[STBVersionCheck shareInstance] autoSTBUpgrade];
+    }
 }
 
 - (void)ConnectedSTBFail
@@ -197,8 +203,9 @@
     if ([VersionUpdate IsSTBRemindUpgrade])
     {
         //更新更新机顶盒固件
-        [[VersionUpdate shareInstance] updateVersionWithAuto:YES];
+//        [[VersionUpdate shareInstance] updateVersionWithAuto:YES];
     }
+    [[STBVersionCheck shareInstance] checkInternetSTBInfo];
     [[NSNotificationCenter defaultCenter] postNotificationName:DisconnectedSTBNotification object:nil];
 }
 

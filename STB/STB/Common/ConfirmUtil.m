@@ -9,6 +9,9 @@
 #import "ConfirmUtil.h"
 
 @interface ConfirmUtil ()
+{
+    UIAlertView *confirmView;
+}
 
 
 @property (nonatomic,strong) dispatch_block_t OKBlock;
@@ -28,10 +31,12 @@
 {
     if (buttonIndex==alertView.firstOtherButtonIndex) {
         self.OKBlock();
+        confirmView = nil;
     }
     else
     {
         self.CancelBlock();
+        confirmView = nil;
     }
 }
 
@@ -41,9 +46,11 @@
                  WithOKBlcok:(dispatch_block_t)okBlock
              withCancelBlock:(dispatch_block_t)cancelBlock
 {
+    if(confirmView)
+        return;
     self.OKBlock = okBlock;
     self.CancelBlock = cancelBlock;
-    UIAlertView *confirmView = [[UIAlertView alloc] initWithTitle:aTitle==nil?MyLocalizedString(@"Alert"):aTitle
+    confirmView = [[UIAlertView alloc] initWithTitle:aTitle==nil?MyLocalizedString(@"Alert"):aTitle
                                                           message:aMsg
                                                          delegate:self
                                                 cancelButtonTitle:MyLocalizedString(@"Cancel")
