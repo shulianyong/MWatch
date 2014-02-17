@@ -16,7 +16,6 @@
 #import "STBPlayer.h"
 #import "CommonUtil.h"
 #import "LockInfo.h"
-#import "VersionUpdate.h"
 
 //音轨管理
 #import "AudioTrackManager.h"
@@ -79,12 +78,6 @@
 
 //播放timer
 @property (nonatomic,strong) NSTimer *playTimer;
-
-#warning 测试代码
-@property (nonatomic,strong) NSString *tempPlayAddress;
-@property (nonatomic) float minBuffer;
-@property (nonatomic) float maxBuffer;
-@property (nonatomic) int analyzeTime;
 
 
 @end
@@ -190,7 +183,7 @@
     });
     
     
-    if ([VersionUpdate IsSTBRemindUpgrade])
+    if ([STBVersionCheck IsSTBRemindUpgrade])
     {
         [[STBVersionCheck shareInstance] autoSTBUpgrade];
     }
@@ -200,7 +193,7 @@
 {
     [SingleAlert showMessage:MyLocalizedString(@"TV box not found，please check!")];
     [self.player pause];
-    if ([VersionUpdate IsSTBRemindUpgrade])
+    if ([STBVersionCheck IsSTBRemindUpgrade])
     {
         //更新更新机顶盒固件
 //        [[VersionUpdate shareInstance] updateVersionWithAuto:YES];
@@ -281,25 +274,6 @@
     }
 }
 
-//是否在有效期内
-- (BOOL)timeValid
-{
-    //设置有效期
-	NSDateFormatter *formatter = [self dateFormatter];
-    NSString *validString =@"2014-03-09";
-    NSDate *validDate = [formatter dateFromString:validString];
-    
-    NSDate *nowtime = [NSDate date];
-    if (nowtime.timeIntervalSince1970>validDate.timeIntervalSince1970) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert")
-                                                        message:MyLocalizedString(@"Version is expired")
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alert show];
-    }
-    return (nowtime.timeIntervalSince1970<validDate.timeIntervalSince1970);
-}
-
 #pragma mark ----播放地址
 
 - (NSString*)currentPlayPath
@@ -313,12 +287,7 @@
     if ([STBInfo shareInstance].connected==false) {
         path = nil;
     }
-//#warning 测试代码
-//    if (![NSString isEmpty:self.tempPlayAddress]) {
-//        path = self.tempPlayAddress;
-//    }
-    
-    NSLog(@"path:%@",path);
+    INFO(@"play path:%@",path);
     return path;
 }
 
@@ -363,18 +332,7 @@
         parameters[ParameterMinBufferedDuration] = @(1.0);//最小缓存
         //设置最大分析时间
         player.maxAnalyzeDuration = 3;
-        
-//#warning 测试代码
-//        if (self.minBuffer>0) {
-//            parameters[ParameterMinBufferedDuration] = @(self.minBuffer);//最小缓存
-//        }
-//        if (self.maxBuffer>0) {
-//            parameters[ParameterMaxBufferedDuration] = @(self.maxBuffer);
-//        }
-//        if (self.analyzeTime>0) {
-//            player.maxAnalyzeDuration = self.analyzeTime;
-//        }
-        
+
         //播放
         [self setPlayer:player];
         
@@ -389,45 +347,12 @@
         return;
     }
     
-//#warning 测试代码
-//    playBlock();
-//    return;
-    
-    if (![self timeValid]) {
-        return;
-    }
     //设置播放时间，
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(timeout:) userInfo:nil repeats:NO];
     if (self.player) {
         [self.player stopVideo];
     }
     playBlock();
-  
-    
-//    Channel *currentChannel = [self.tblChannel selectedChannel];
-//    if (currentChannel.lock.boolValue) {
-//        [[PasswordAlert shareInstance] alertPassword:nil withMessage:MyLocalizedString(@"Please enter the menu password") withValidPasswordCallback:^BOOL(PasswordAlert *aAlert, NSString *password) {
-//            BOOL success = NO;
-//            if (![NSString isEmpty:[LockInfo shareInstance].passwd]
-//                &&![NSString isEmpty:[LockInfo shareInstance].passwd_channel]
-//                && ([[LockInfo shareInstance].passwd isEqualToString:password]
-//                    || [[LockInfo shareInstance].passwd_channel isEqualToString:password]
-//                    || [[LockInfo shareInstance].univeral_passwd isEqualToString:password]
-//                    )
-//                )
-//            {
-//                success = YES;
-//                playBlock();
-//            }
-//            return success;
-//        }];
-//    }
-//    else
-//    {
-//        playBlock();
-//    }
-    
-    
 }
 
 - (NSDateFormatter*)dateFormatter {
@@ -443,9 +368,6 @@
 
 - (void)setPlayer:(STBPlayer *)player
 {
-    if (![self timeValid]) {
-        return;
-    }
     //播放
     player.movieDelegate = self;
     player.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleWidth| UIViewAutoresizingFlexibleLeftMargin;
@@ -483,42 +405,6 @@
     //设置不让系统变黑屏
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
-
-#pragma mark ---------------------频道信息
-- (IBAction)click_btnInfo:(id)sender {
-    Channel *aChannel = nil;
-    NSString *title = nil;
-    NSString *message = nil;
-    NSInteger count = self.tblChannel.fetchedResultsController.fetchedObjects.count;
-    if (count==0) {
-        title = MyLocalizedString(@"Alert");
-        message = MyLocalizedString(@"NO Channel");
-    }
-    else
-    {
-        NSInteger index = 0;
-        NSInteger currentChannel = [DefaultChannelTool shareInstance].defaultChannelId;
-        for (NSInteger i=0;i<count;i++) {
-            Channel *temp = self.tblChannel.fetchedResultsController.fetchedObjects[i];
-            if (temp.channelId.integerValue == currentChannel) {
-                aChannel = temp;
-                index = i;
-                break;
-            }
-        }
-        if (aChannel) {
-            title = aChannel.name;
-            message = [NSString stringWithFormat:@"%@",aChannel];
-        }
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:MyLocalizedString(@"OK")
-                                          otherButtonTitles:nil];
-    [alert show];
-}
-
 
 #pragma mark ---------------------全屏操作
 
@@ -584,25 +470,9 @@
     
 }
 
-
-#pragma mark －－－－－－－－音轨处理
-- (IBAction)click_AudioTrackItem:(id)sender
-{
-    AudioTrackManager *trackManager = [[AudioTrackManager alloc] initWithStyle:UITableViewStylePlain];
-    trackManager.player = self.player;
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:trackManager] animated:YES completion:^{
-        [self.player pause];
-    }];
-//    [self.player audioTrack];
-}
-
 #pragma mark -------------------节目控制
 
-- (IBAction)click_pause:(id)sender {
-    [self.player pause];
-}
-
-- (IBAction)click_preChannel:(id)sender
+- (void)click_preChannel:(id)sender
 {
     Channel *preChannel = [self.tblChannel preChannel];
     NSIndexPath *indexPath = [self.tblChannel.fetchedResultsController indexPathForObject:preChannel];
@@ -612,7 +482,7 @@
     [[DefaultChannelTool shareInstance] configDefaultChannel:preChannel];
     [self switchChannel:[self currentPlayPath]];
 }
-- (IBAction)click_nextChannel:(id)sender
+- (void)click_nextChannel:(id)sender
 {
     Channel *nextChannel = [self.tblChannel nextChannel];
     NSIndexPath *indexPath = [self.tblChannel.fetchedResultsController indexPathForObject:nextChannel];
@@ -627,11 +497,6 @@
 #pragma mark --------------------
 #pragma mark --------------------音量控制
 
-- (IBAction)slideVolume:(UISlider *)sender {
-    self.volumeController.volume = sender.value;
-    volumeValue = sender.value;
-    self.btnVolume.selected = volumeValue==0;
-}
 - (IBAction)cslideVolume:(YDSlider *)sender {
     self.volumeController.volume = sender.value;
     volumeValue = sender.value;
@@ -695,53 +560,5 @@
         }];
     }
 }
-
-#pragma mark --------------测试代码
-- (IBAction)click_Replay:(id)sender
-{
-    [self switchChannel:[self currentPlayPath]];
-}
-
-
-- (IBAction)click_Minbuffer:(id)sender
-{
-    [InputAlert alertMessage:@"请输入MinBuffer" withResultBlock:^(NSString *aResult) {
-        float result = [aResult floatValue];
-        if (result>0) {
-            self.minBuffer = result;
-            [self switchChannel:[self currentPlayPath]];
-        }
-    }];
-}
-- (IBAction)click_MaxBuffer:(id)sender
-{
-    [InputAlert alertMessage:@"请输入MaxBuffer" withResultBlock:^(NSString *aResult) {
-        float result = [aResult floatValue];
-        if (result>0) {
-            self.maxBuffer = result;
-            [self switchChannel:[self currentPlayPath]];
-        }
-    }];
-}
-- (IBAction)click_AnalyzeTime:(id)sender
-{
-    [InputAlert alertMessage:@"请输入分析时间" withResultBlock:^(NSString *aResult) {
-        int result = [aResult intValue];
-        if (result>0) {
-            self.analyzeTime = result;
-            [self switchChannel:[self currentPlayPath]];
-        }
-    }];
-}
-- (IBAction)click_PlayAddress:(id)sender
-{
-    [InputAlert alertMessage:@"请输入播放地址" withResultBlock:^(NSString *aResult) {
-        self.tempPlayAddress = aResult;
-        [self switchChannel:[self currentPlayPath]];
-    }];
-}
-
-
-
 
 @end

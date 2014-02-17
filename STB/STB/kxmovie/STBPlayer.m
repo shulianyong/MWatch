@@ -65,7 +65,6 @@ static NSMutableDictionary * gHistory;
 #define LOCAL_MIN_BUFFERED_DURATION   2.0
 #define LOCAL_MAX_BUFFERED_DURATION   4.0
 
-#warning buffer
 static CGFloat NETWORK_MIN_BUFFERED_DURATION = 1.0;
 static CGFloat NETWORK_MAX_BUFFERED_DURATION = 3.0;
 @interface STBPlayer ()
@@ -239,7 +238,7 @@ static CGFloat NETWORK_MAX_BUFFERED_DURATION = 3.0;
     // NSLog(@"loadView");
     
     CGRect bounds = [[UIScreen mainScreen] applicationFrame];
-#warning _activityIndicatorView
+// _activityIndicatorView
     CGFloat width = bounds.size.width;
     //    CGFloat height = bounds.size.height;
     
@@ -255,7 +254,6 @@ static CGFloat NETWORK_MAX_BUFFERED_DURATION = 3.0;
 #endif
 }
 
-#warning 内容释放
 - (void)didReceiveMemoryWarning
 {
     if (self.playing)

@@ -46,6 +46,7 @@
     }
     return self;
 }
+
 #pragma mark ------搜索监听事件
 
 - (void)searchChannelProgress:(NSNumber*)aProgress
@@ -58,9 +59,6 @@
     }
     searchAlert.mode = MBProgressHUDModeDeterminateHorizontalBar;
     searchAlert.progress = aProgress.floatValue/100.f;
-//    if (aProgress.integerValue==100) {
-//        [self searchChannelCompleted];
-//    }
 }
 
 - (void)searchChannelProgress
@@ -73,20 +71,6 @@
     }
 }
 
-//同步节目到机顶盒
-- (void)syncProgame
-{
-    [CommandClient syncProgramWithCallback:^(id info, HTTPAccessState isSuccess) {
-        MBProgressHUD *searchAlert = [SearchChannelTool shareInstance].searchAlert;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
-        searchAlert.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-        searchAlert.mode = MBProgressHUDModeCustomView;
-        searchAlert.labelText = MyLocalizedString(@"Completed");
-        [searchAlert hide:YES afterDelay:3];
-    }];
-}
-
 //收到搜索结果的监听
 - (void)searchChannelCompleted
 {
@@ -95,7 +79,6 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             sleep(3);
             dispatch_sync(dispatch_get_main_queue(), ^{
-//                [[NSNotificationCenter defaultCenter] postNotificationName:RefreshChannelListNotification object:nil];
                 [SearchChannelTool shareInstance].searchAlert.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
                 [SearchChannelTool shareInstance].searchAlert.mode = MBProgressHUDModeCustomView;
                 [SearchChannelTool shareInstance].searchAlert.labelText = MyLocalizedString(@"Completed");
@@ -104,24 +87,7 @@
         });
         
     }
-    
-//    STBMonitor *weakSelf = self;
-//    [CommandClient commandScanSaveWithCallback:^(id info, HTTPAccessState isSuccess) {
-//        MBProgressHUD *searchAlert = [SearchChannelTool shareInstance].searchAlert;
-//        if (searchAlert) {
-//            if (isSuccess==HTTPAccessStateSuccess) {
-//                INFO(@"完成搜索保存，发起同步命令");
-//            }
-//            else
-//            {
-//                INFO(@"scan_save 失败");
-//            }
-//            [weakSelf syncProgame];
-//        }
-//    }];
 }
-
-
 
 - (void)searchChannelEvent:(ScanStatusInfo*)aStatusInfo
 {
@@ -181,12 +147,6 @@
     [self.eventMonitorSocket readDataWithTimeout:-1 tag:0];
     NSString *reviceDatas = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     INFO(@"接收到的数据:%@",reviceDatas);
-    
-//#warning 测试    
-//    dispatch_sync(dispatch_get_main_queue(), ^{
-//        [CommonUtil showMessage:reviceData];
-//    });
-    
     
     NSArray *reviceDataArray = [reviceDatas componentsSeparatedByString:@"\n"];
     

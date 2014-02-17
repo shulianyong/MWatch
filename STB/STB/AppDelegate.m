@@ -11,7 +11,6 @@
 #import "CommandClient.h"
 #import "UPNPTool.h"
 #import "VideoController.h"
-#import "VersionUpdate.h"
 #import "VerifySTBConnected.h"
 #import "STBSystemInfo.h"
 

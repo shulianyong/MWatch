@@ -40,6 +40,16 @@ static NSString *privateKey=@"";
     return instance;
 }
 
++ (BOOL)IsSTBRemindUpgrade
+{
+    
+    NSNumber *isRemind = [[NSUserDefaults standardUserDefaults] objectForKey:STB_RemindUpgrade];
+    if (isRemind==nil) {
+        isRemind = [NSNumber numberWithBool:YES];
+    }
+    return isRemind.boolValue;
+}
+
 #pragma mark ---------------提示框
 
 - (ConfirmUtil*)aConfirmUtil

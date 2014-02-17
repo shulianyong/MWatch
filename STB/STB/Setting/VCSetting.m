@@ -11,7 +11,6 @@
 #import "PasswordAlert.h"
 #import "LockInfo.h"
 #import "SearchChannelTool.h"
-#import "VersionUpdate.h"
 #import "ConfirmUtil.h"
 
 @interface VCSetting ()
@@ -210,17 +209,6 @@
     }withCancelBlock:^{
         
     }];
-
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Video" bundle:nil];
-//    UIViewController *wifiSetting = [storyboard instantiateViewControllerWithIdentifier:@"ChannelSearchView"];
-//    [self.navigationController pushViewController:wifiSetting animated:YES];
-    
-}
-- (IBAction)click_Version:(id)sender
-{
-    [self configAutoExitTimer];
-    
-    [[VersionUpdate shareInstance] uploadFile];
 }
 
 //恢复出厂设置

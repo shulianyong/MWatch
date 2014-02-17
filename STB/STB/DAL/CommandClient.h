@@ -56,30 +56,7 @@ typedef void(^HttpCallback)(id info,HTTPAccessState isSuccess);
 //信息系统
 + (void)commandSystemInfo:(HttpCallback)aCallback;
 
-//搜索节目
-//获取卫星列表
-+ (void)commandSatList:(HttpCallback)aCallback;
-//删除所有卫星
-+ (void)deleteSatWithCallback:(HttpCallback)aCallback;
-//添加默认卫星
-+ (void)commandSatAdd:(HttpCallback)aCallback;
-//获取频点列表
-+ (void)commandTpListWithSatId:(NSNumber*)aSatId  withCallback:(HttpCallback)aCallback;
-//添加频点
-+ (void)commandTPAddWithSatId:(NSNumber*)aSatId withDefaultTPInfo:(TPInfo*)aTPInfo withCallback:(HttpCallback)aCallback;
-//删除频点的所有的节目
-+ (void)commandDeleteChannelWithSatId:(NSNumber*)aSatId withTPId:(NSNumber*)aTPId withCallback:(HttpCallback)aCallback;
-//删除频点
-+ (void)commandDeleteTPWithSatId:(NSNumber*)aSatId withTPId:(NSNumber*)aTPId withCallback:(HttpCallback)aCallback;
-
-//卫星搜索
-+ (void)commandScanSatelliteWithSatId:(NSNumber*)aSatId withCallback:(HttpCallback)aCallback;
-//完成搜索
-+ (void)commandScanSaveWithCallback:(HttpCallback)aCallback;
-//同步机顶盒节目到机顶盒前台进行播放
-+ (void)syncProgramWithCallback:(HttpCallback)aCallback;
 #pragma mark --------一键搜索
-+ (void)scanOneKeyCommandWithTPInfo:(TPInfo*)aTPInfo   withCallback:(HttpCallback)aCallback;
 + (void)scanOneKeyCommandWithCallback:(HttpCallback)aCallback;
 #pragma mark ----------- 更新列表的监听请求
 + (void)postRefreshChannelEvent;

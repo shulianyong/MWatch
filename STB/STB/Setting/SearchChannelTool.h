@@ -18,9 +18,6 @@
 
 + (SearchChannelTool*)shareInstance;
 
-
 - (void)searchChannel;
-//完成搜索
-- (void)scanSave;
 
 @end

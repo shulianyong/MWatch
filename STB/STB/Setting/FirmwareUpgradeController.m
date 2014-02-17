@@ -7,7 +7,6 @@
 //
 
 #import "FirmwareUpgradeController.h"
-#import "VersionUpdate.h"
 #import "STBVersionCheck.h"
 
 @interface FirmwareUpgradeController ()
@@ -33,8 +32,8 @@
     [super viewDidLoad];
     
     [self boundMultiLanWithView:self.view];
-    self.btnSelected.selected = [VersionUpdate IsSTBRemindUpgrade];
-    [self.switchFirmwareUpgrade setOn:[VersionUpdate IsSTBRemindUpgrade] animated:YES];
+    self.btnSelected.selected = [STBVersionCheck IsSTBRemindUpgrade];
+    [self.switchFirmwareUpgrade setOn:[STBVersionCheck IsSTBRemindUpgrade] animated:YES];
 	// Do any additional setup after loading the view.
 }
 
@@ -70,30 +69,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)click_btnDownFirmware:(UIButton*)sender
-{
-    [[VersionUpdate shareInstance] updateVersionWithAuto:NO];
-    sender.enabled = false;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sleep(5);
-        sender.enabled = true;
-    });
-    
-}
-
 - (IBAction)click_btnUpgradeFirmware:(id)sender
 {
-//    [[VersionUpdate shareInstance] uploadFile];
     [[STBVersionCheck shareInstance] manualSTBUpdate];
 }
 
-- (IBAction)click_btnSelected:(UIButton*)sender
-{
-    BOOL isRemind = ![VersionUpdate IsSTBRemindUpgrade];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isRemind] forKey:STB_RemindUpgrade];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    sender.selected = isRemind;
-}
 - (IBAction)switchUpgrade:(id)sender
 {
     BOOL isRemind = self.switchFirmwareUpgrade.isOn;    

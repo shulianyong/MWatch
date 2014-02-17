@@ -156,7 +156,6 @@
 		A66F00CD183FBB0000A3C71F /* SearchChannelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A66F00CC183FBB0000A3C71F /* SearchChannelTool.m */; };
 		A66F00D0183FBFD900A3C71F /* SatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A66F00CF183FBFD900A3C71F /* SatInfo.m */; };
 		A66F00D3183FC8FE00A3C71F /* TPInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A66F00D2183FC8FE00A3C71F /* TPInfo.m */; };
-		A675F62F1846169000004AB9 /* ChannelSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = A675F62E1846169000004AB9 /* ChannelSearchController.m */; };
 		A675F634184617D000004AB9 /* imgTxtPolarLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = A675F630184617D000004AB9 /* imgTxtPolarLeft.png */; };
 		A675F635184617D000004AB9 /* imgTxtPolarLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A675F631184617D000004AB9 /* imgTxtPolarLeft@2x.png */; };
 		A675F636184617D000004AB9 /* imgTxtPolarRight.png in Resources */ = {isa = PBXBuildFile; fileRef = A675F632184617D000004AB9 /* imgTxtPolarRight.png */; };
@@ -209,7 +208,6 @@
 		A6A64DB7181C17D9007C6C2E /* SignalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A64DB6181C17D9007C6C2E /* SignalViewController.m */; };
 		A6A64DBA181C17EC007C6C2E /* SystemInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A64DB9181C17EC007C6C2E /* SystemInfoViewController.m */; };
 		A6A64DBD181C183F007C6C2E /* CAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A64DBC181C183F007C6C2E /* CAViewController.m */; };
-		A6A64DC0181C1D29007C6C2E /* VersionUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A64DBF181C1D29007C6C2E /* VersionUpdate.m */; };
 		A6A64DC3181C1D6D007C6C2E /* FactoryReset.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A64DC2181C1D6D007C6C2E /* FactoryReset.m */; };
 		A6AADB5D1813E59700BBD115 /* imgSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = A6AADB5B1813E59700BBD115 /* imgSeparator.png */; };
 		A6AADB5E1813E59700BBD115 /* imgSeparator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6AADB5C1813E59700BBD115 /* imgSeparator@2x.png */; };
@@ -524,8 +522,6 @@
 		A66F00CF183FBFD900A3C71F /* SatInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatInfo.m; sourceTree = "<group>"; };
 		A66F00D1183FC8FE00A3C71F /* TPInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPInfo.h; sourceTree = "<group>"; };
 		A66F00D2183FC8FE00A3C71F /* TPInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPInfo.m; sourceTree = "<group>"; };
-		A675F62D1846169000004AB9 /* ChannelSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelSearchController.h; sourceTree = "<group>"; };
-		A675F62E1846169000004AB9 /* ChannelSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelSearchController.m; sourceTree = "<group>"; };
 		A675F630184617D000004AB9 /* imgTxtPolarLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgTxtPolarLeft.png; sourceTree = "<group>"; };
 		A675F631184617D000004AB9 /* imgTxtPolarLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgTxtPolarLeft@2x.png"; sourceTree = "<group>"; };
 		A675F632184617D000004AB9 /* imgTxtPolarRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgTxtPolarRight.png; sourceTree = "<group>"; };
@@ -600,8 +596,6 @@
 		A6A64DB9181C17EC007C6C2E /* SystemInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInfoViewController.m; sourceTree = "<group>"; };
 		A6A64DBB181C183F007C6C2E /* CAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAViewController.h; sourceTree = "<group>"; };
 		A6A64DBC181C183F007C6C2E /* CAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAViewController.m; sourceTree = "<group>"; };
-		A6A64DBE181C1D29007C6C2E /* VersionUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionUpdate.h; sourceTree = "<group>"; };
-		A6A64DBF181C1D29007C6C2E /* VersionUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionUpdate.m; sourceTree = "<group>"; };
 		A6A64DC1181C1D6D007C6C2E /* FactoryReset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactoryReset.h; sourceTree = "<group>"; };
 		A6A64DC2181C1D6D007C6C2E /* FactoryReset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FactoryReset.m; sourceTree = "<group>"; };
 		A6AADB5B1813E59700BBD115 /* imgSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgSeparator.png; sourceTree = "<group>"; };
@@ -1259,8 +1253,6 @@
 			children = (
 				A66F00CB183FBB0000A3C71F /* SearchChannelTool.h */,
 				A66F00CC183FBB0000A3C71F /* SearchChannelTool.m */,
-				A675F62D1846169000004AB9 /* ChannelSearchController.h */,
-				A675F62E1846169000004AB9 /* ChannelSearchController.m */,
 			);
 			name = ChannelSearch;
 			sourceTree = "<group>";
@@ -1350,8 +1342,6 @@
 			isa = PBXGroup;
 			children = (
 				A6A30EC6184A274A00ADCC7A /* UploadSoft.h */,
-				A6A64DBE181C1D29007C6C2E /* VersionUpdate.h */,
-				A6A64DBF181C1D29007C6C2E /* VersionUpdate.m */,
 				A60DFC7918A8AE2B003DB8FD /* STBVersionCheck.h */,
 				A60DFC7A18A8AE2B003DB8FD /* STBVersionCheck.m */,
 				A6F38C6C1849BFC300EC207E /* DownLoadUtil.h */,
@@ -1619,7 +1609,6 @@
 				A660907D18080DDB005450DB /* KxMovieDecoder.m in Sources */,
 				A6F65776188909570036B8AF /* VerifySTBConnected.m in Sources */,
 				A644842617F70F7B0054CC5C /* CustomSegue.m in Sources */,
-				A6A64DC0181C1D29007C6C2E /* VersionUpdate.m in Sources */,
 				A6FAD0DD188FC2C50004EA33 /* DSTBSystemInfo.m in Sources */,
 				A6A188DD18B0A44D007CB130 /* BLLChannelIcon.m in Sources */,
 				A6004E5718181ACC00AAF2B3 /* GCDAsyncSocket.m in Sources */,
@@ -1633,7 +1622,6 @@
 				A6B7C3231839C86A00B79893 /* PasswordAlert.m in Sources */,
 				A6A64DC3181C1D6D007C6C2E /* FactoryReset.m in Sources */,
 				A644841F17F6E1860054CC5C /* VCManager.m in Sources */,
-				A675F62F1846169000004AB9 /* ChannelSearchController.m in Sources */,
 				A6A64DB7181C17D9007C6C2E /* SignalViewController.m in Sources */,
 				A64483DA17F68A960054CC5C /* AppDelegate.m in Sources */,
 				A66090821808210D005450DB /* VideoController.m in Sources */,

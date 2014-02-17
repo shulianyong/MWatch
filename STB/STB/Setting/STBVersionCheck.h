@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *STB_SOFTWARE_VER = @"STB_APPLICATION_VER";//@"STB_APPLICATION_DEV_VER";
+static NSString *STB_RemindUpgrade = @"STB_RemindUpgrade";
+static NSString *STB_SOFTWARE_TYPE = @"STB_SOFTWARE_TYPE";
 @interface STBVersionCheck : NSObject
 
 + (instancetype)shareInstance;
 
-
++ (BOOL)IsSTBRemindUpgrade;
 #pragma mark --------------------- 上传固件
 - (void)autoSTBUpgrade;
 - (void)manualSTBUpdate;
