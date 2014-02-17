@@ -697,6 +697,12 @@
 }
 
 #pragma mark --------------测试代码
+- (IBAction)click_Replay:(id)sender
+{
+    [self switchChannel:[self currentPlayPath]];
+}
+
+
 - (IBAction)click_Minbuffer:(id)sender
 {
     [InputAlert alertMessage:@"请输入MinBuffer" withResultBlock:^(NSString *aResult) {
