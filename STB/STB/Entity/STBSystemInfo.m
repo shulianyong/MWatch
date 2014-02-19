@@ -12,20 +12,6 @@
 
 static NSString *DefaultSystemInfo=@"DefaultSystemInfo";
 
-+ (instancetype)defaultSystemInfo
-{
-    NSData *tempData =  [[NSUserDefaults standardUserDefaults] objectForKey:DefaultSystemInfo];
-    STBSystemInfo *defaultSystemInfo = [NSKeyedUnarchiver unarchiveObjectWithData: tempData];
-    return defaultSystemInfo;
-}
-
-+ (void)setDefaultSystemInfo:(STBSystemInfo*)defaultSystemInfo
-{
-    NSData *archiveCarPriceData = [NSKeyedArchiver archivedDataWithRootObject:defaultSystemInfo];
-    [[NSUserDefaults standardUserDefaults] setObject:archiveCarPriceData forKey:DefaultSystemInfo];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     NSArray *allKeys = self.propertyKeys;

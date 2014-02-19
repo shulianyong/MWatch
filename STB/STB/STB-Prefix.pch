@@ -32,3 +32,4 @@
 //有最新版本
 #define HasLastVersion @"HasLastVersion"
 #define LocStbFileName @"flashrom.bin"
+static NSString *PrivateKey=@"";

@@ -15,8 +15,6 @@
 #import "CommonUtil.h"
 #import "ConfirmUtil.h"
 
-static NSString *privateKey=@"";
-
 @interface STBVersionCheck ()<MBProgressHUDDelegate>
 {
     MBProgressHUD *updateAlert;
@@ -345,7 +343,7 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
 //下载固件
 - (void)downloadFirmwareWithServerSTBInfo:(ServerSTBInfo*)aInfo   WithCallBack:(FileDownloadCallback)aCallback
 {
-    NSString *key = [NSString stringWithFormat:@"%@%@",aInfo.key,privateKey];
+    NSString *key = [NSString stringWithFormat:@"%@%@",aInfo.key,PrivateKey];
     key = [NSString MD5:key];
     key = [key lowercaseString];
     NSString *url = [aInfo.url stringByAppendingFormat:@"?&key=%@",key];

@@ -38,8 +38,8 @@
 
 #import "VerifySTBConnected.h"
 #import "DefaultChannelTool.h"
-#import "DSTBSystemInfo.h"
 #import "STBVersionCheck.h"
+#import "BLLChannelIcon.h"
 
 @interface VideoController ()<MovieViewDelegate,VideoControllerDelegate,VerifySTBConnectedDelegate>
 {
@@ -50,7 +50,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *tbarBottom;
 @property (strong, nonatomic) IBOutlet UIView *vMovie;
-@property (strong, nonatomic) IBOutlet VCManager *tblChannel;
+@property (strong, nonatomic) IBOutlet VCManager<ChannelRefreshIconDelegate> *tblChannel;
 @property (strong, nonatomic) IBOutlet UIButton *btnRefresh;
 @property (strong, nonatomic) IBOutlet UIView *leftSeparator;
 
@@ -178,7 +178,6 @@
             [CommandClient commandGetLockControl:^(id info, HTTPAccessState isSuccess) {
                 
             }];
-            [DSTBSystemInfo InitSTBSystemInfoFromSTB];
         });
     });
     
@@ -199,6 +198,11 @@
 //        [[VersionUpdate shareInstance] updateVersionWithAuto:YES];
     }
     [[STBVersionCheck shareInstance] checkInternetSTBInfo];
+    [[BLLChannelIcon shareInstance] checkChannelIconUpgrade:^(NSString *aChannelName) {
+        [self.tblChannel refreshIconWithChannelName:aChannelName];
+    }];
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:DisconnectedSTBNotification object:nil];
 }
 

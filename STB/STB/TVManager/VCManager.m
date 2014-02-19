@@ -11,6 +11,7 @@
 #import "CommonUtil.h"
 #import "CommandResult.h"
 #import "ChannelCell.h"
+#import "ChannelIcon.h"
 
 #import "CommandClient.h"
 #import "../../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
@@ -150,10 +151,10 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Channel *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    UIImage *imgChannel = [UIImage imageNamed:object.name];
-    if (!imgChannel) {
-        imgChannel = [UIImage imageNamed:@"imgDefaultchannel.png"];
-    }
+    ChannelIcon *iconItem = [[BLLChannelIcon channelIcons] objectForKey:object.name];
+    iconItem = (iconItem==nil)?[ChannelIcon createInstance]:iconItem;
+    
+    UIImage *imgChannel = [UIImage imageWithContentsOfFile:iconItem.iconPath];
     
     cell.imageView.image = imgChannel;
     cell.textLabel.text = object.name;
@@ -383,6 +384,18 @@
 - (void)playChannel:(Channel*)aChannel
 {
     [self.videoDelegate playChannel:aChannel];
+}
+
+#pragma mark ------------ChannelRefreshIconDelegate
+
+- (void)refreshIconWithChannelName:(NSString*)aName
+{
+    NSMutableArray *refreshIndexPaths = [[NSMutableArray alloc] init];
+    for (Channel *item in [self.fetchedResultsController fetchedObjects]) {
+        NSIndexPath *indexItem = [self.fetchedResultsController indexPathForObject:item];
+        [refreshIndexPaths addObject:indexItem];
+    }
+    [self reloadRowsAtIndexPaths:refreshIndexPaths withRowAnimation:UITableViewRowAnimationFade];
 }
 
 

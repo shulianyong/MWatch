@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef void(^RefreshChannelNameIcon)(NSString *aChannelName);
+
+
 @interface BLLChannelIcon : NSObject
 
 + (NSDictionary*)channelIcons;
@@ -19,5 +23,6 @@
 - (void)boundDefaultChannelIconFromChannels:(NSArray*)aChannels;
 
 //从服务器中获取
+- (void)checkChannelIconUpgrade:(RefreshChannelNameIcon)aRefreshCallback;
 
 @end

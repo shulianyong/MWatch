@@ -176,6 +176,7 @@
 		A682BA85186DB26300F6AC81 /* InputAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = A682BA84186DB26300F6AC81 /* InputAlert.m */; };
 		A691C44B18A77A6C00854CA0 /* UpdateSTBInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A691C44A18A77A6C00854CA0 /* UpdateSTBInfo.m */; };
 		A691C44E18A77C8400854CA0 /* AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A691C44D18A77C8400854CA0 /* AppInfo.m */; };
+		A694840E18B2F318008721EC /* OTV6.png in Resources */ = {isa = PBXBuildFile; fileRef = A694840D18B2F318008721EC /* OTV6.png */; };
 		A69AC69E1855A9CE005A5B2E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A69AC69D1855A9CE005A5B2E /* Default-568h@2x.png */; };
 		A69AC6A01855B7C5005A5B2E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A69AC69F1855B7C5005A5B2E /* icon.png */; };
 		A69AC6A31855B8D4005A5B2E /* icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A69AC6A11855B8D4005A5B2E /* icon-Small.png */; };
@@ -237,7 +238,6 @@
 		A6F657731889049E0036B8AF /* UPNPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A666C129182098610084478E /* UPNPTool.m */; };
 		A6F65776188909570036B8AF /* VerifySTBConnected.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F65775188909570036B8AF /* VerifySTBConnected.m */; };
 		A6FAD0DA188FACCB0004EA33 /* STBSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FAD0D9188FACCB0004EA33 /* STBSystemInfo.m */; };
-		A6FAD0DD188FC2C50004EA33 /* DSTBSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FAD0DC188FC2C50004EA33 /* DSTBSystemInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -554,6 +554,7 @@
 		A691C44A18A77A6C00854CA0 /* UpdateSTBInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateSTBInfo.m; sourceTree = "<group>"; };
 		A691C44C18A77C8400854CA0 /* AppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfo.h; sourceTree = "<group>"; };
 		A691C44D18A77C8400854CA0 /* AppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInfo.m; sourceTree = "<group>"; };
+		A694840D18B2F318008721EC /* OTV6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OTV6.png; sourceTree = "<group>"; };
 		A697B66F1883B925004BD7CD /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/MultiLanguage.strings; sourceTree = "<group>"; };
 		A69AC69D1855A9CE005A5B2E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A69AC69F1855B7C5005A5B2E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -638,8 +639,6 @@
 		A6F65775188909570036B8AF /* VerifySTBConnected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifySTBConnected.m; sourceTree = "<group>"; };
 		A6FAD0D8188FACCB0004EA33 /* STBSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STBSystemInfo.h; sourceTree = "<group>"; };
 		A6FAD0D9188FACCB0004EA33 /* STBSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STBSystemInfo.m; sourceTree = "<group>"; };
-		A6FAD0DB188FC2C50004EA33 /* DSTBSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSTBSystemInfo.h; sourceTree = "<group>"; };
-		A6FAD0DC188FC2C50004EA33 /* DSTBSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTBSystemInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -713,8 +712,6 @@
 				A67CE07B18099C75004DA9A8 /* CommandClient.m */,
 				A6F65774188909570036B8AF /* VerifySTBConnected.h */,
 				A6F65775188909570036B8AF /* VerifySTBConnected.m */,
-				A6FAD0DB188FC2C50004EA33 /* DSTBSystemInfo.h */,
-				A6FAD0DC188FC2C50004EA33 /* DSTBSystemInfo.m */,
 			);
 			path = DAL;
 			sourceTree = "<group>";
@@ -1315,6 +1312,7 @@
 		A6E8B48A1876B2BE00E21CDD /* ChannelImage */ = {
 			isa = PBXGroup;
 			children = (
+				A694840D18B2F318008721EC /* OTV6.png */,
 				A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */,
 				A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */,
 				A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */,
@@ -1545,6 +1543,7 @@
 				A66926971816B80D007D9EF0 /* img_btnLanguage@2x.png in Resources */,
 				A66926AC1816B80D007D9EF0 /* img_SettingSep.png in Resources */,
 				A649F7F2180D8ED900EC476C /* imgBGChannel.png in Resources */,
+				A694840E18B2F318008721EC /* OTV6.png in Resources */,
 				A6E8B4911876B2BE00E21CDD /* CCTV 1.png in Resources */,
 				A66926A71816B80D007D9EF0 /* img_NoSignal@2x.png in Resources */,
 				A649F7F3180D8ED900EC476C /* imgBGChannel@2x.png in Resources */,
@@ -1609,7 +1608,6 @@
 				A660907D18080DDB005450DB /* KxMovieDecoder.m in Sources */,
 				A6F65776188909570036B8AF /* VerifySTBConnected.m in Sources */,
 				A644842617F70F7B0054CC5C /* CustomSegue.m in Sources */,
-				A6FAD0DD188FC2C50004EA33 /* DSTBSystemInfo.m in Sources */,
 				A6A188DD18B0A44D007CB130 /* BLLChannelIcon.m in Sources */,
 				A6004E5718181ACC00AAF2B3 /* GCDAsyncSocket.m in Sources */,
 				A691C44B18A77A6C00854CA0 /* UpdateSTBInfo.m in Sources */,

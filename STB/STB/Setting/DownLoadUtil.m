@@ -129,6 +129,24 @@ withProcessBlock:(DownLoadProcess)processBlock
 withDownSuccessBlock:(dispatch_block_t)successBlock
 withDownFailBlck:(dispatch_block_t)failBlock
 {
+    [self downServerFileWithURL:aURL
+                   inFolderPath:[NSString cacheFolderPath]
+                withLocFileName:aLocFileName withProcessBlock:^(float aProcessValue) {
+                    processBlock(aProcessValue);
+                } withDownSuccessBlock:^{
+                    successBlock();
+                } withDownFailBlck:^{
+                    failBlock();
+                }];
+}
+
++ (void)downServerFileWithURL:(NSString*)aURL
+                 inFolderPath:(NSString*)aFolderPath
+              withLocFileName:(NSString*)aLocFileName
+             withProcessBlock:(DownLoadProcess)processBlock
+         withDownSuccessBlock:(dispatch_block_t)successBlock
+             withDownFailBlck:(dispatch_block_t)failBlock
+{
     INFO(@"current version:%f",[UIDevice currentDevice].systemVersion.doubleValue);
     
     NSURL *URL = [NSURL URLWithString:aURL];
@@ -144,7 +162,7 @@ withDownFailBlck:(dispatch_block_t)failBlock
         INFO(@"downProgress   size:%llu  progressSize:%llu   total:%llu  progressValue:%f",size,progressSize,total,progressValue);
         processBlock(progressValue);
         totalSize = total;
-    }];    
+    }];
     
     [request setCompletionBlock:^{
         INFO(@"CompletionBlock");
@@ -159,8 +177,7 @@ withDownFailBlck:(dispatch_block_t)failBlock
     }];
     
     //当request完成时，整个文件会被移动到这里
-    NSString *saveFilePath = [NSString cacheFolderPath];
-    saveFilePath = [saveFilePath stringByAppendingPathComponent:aLocFileName];
+    NSString *saveFilePath = [aFolderPath stringByAppendingPathComponent:aLocFileName];
     [request setDownloadDestinationPath:saveFilePath];
     
     NSString *tempFilePath = NSTemporaryDirectory();
@@ -170,9 +187,6 @@ withDownFailBlck:(dispatch_block_t)failBlock
         INFO(@"FailedBlock:%@",request.error);
         if ([[NSFileManager defaultManager] fileExistsAtPath:tempFilePath]) {
             [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
-        }
-        if ([[NSFileManager defaultManager] fileExistsAtPath:saveFilePath]) {
-            [[NSFileManager defaultManager] removeItemAtPath:saveFilePath error:nil];
         }
         failBlock();
     }];

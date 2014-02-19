@@ -27,5 +27,11 @@ withDownFailBlck:(dispatch_block_t)failBlock;
                withProcessBlock:(DownLoadProcess)processBlock
            withDownSuccessBlock:(dispatch_block_t)successBlock
                withDownFailBlck:(dispatch_block_t)failBlock;
++ (void)downServerFileWithURL:(NSString*)aURL
+                 inFolderPath:(NSString*)aFolderPath
+              withLocFileName:(NSString*)aLocFileName
+             withProcessBlock:(DownLoadProcess)processBlock
+         withDownSuccessBlock:(dispatch_block_t)successBlock
+             withDownFailBlck:(dispatch_block_t)failBlock;
 
 @end

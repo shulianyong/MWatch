@@ -10,9 +10,6 @@
 
 @interface STBSystemInfo : NSObject<NSCoding>
 
-+ (instancetype)defaultSystemInfo;
-+ (void)setDefaultSystemInfo:(STBSystemInfo*)defaultSystemInfo;
-
 @property (nonatomic,strong) NSNumber *result             ;
 @property (nonatomic,strong) NSString *error              ;
 @property (nonatomic,strong) NSString *BOXID              ;

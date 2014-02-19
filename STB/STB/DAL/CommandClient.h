@@ -61,8 +61,12 @@ typedef void(^HttpCallback)(id info,HTTPAccessState isSuccess);
 #pragma mark ----------- 更新列表的监听请求
 + (void)postRefreshChannelEvent;
 
+#pragma mark ----------外网
 //更新机顶盒
 + (void)getUpdateSTBInfo:(HttpCallback)aCallback;
 + (void)getInternetSTBInfo:(HttpCallback)aCallback;
+//获取台标图片更新信息
++ (void)getChannelIconInfoWithChannelIconList:(NSArray*)aList
+                                 withCallback:(HttpCallback)aCallback;
 
 @end

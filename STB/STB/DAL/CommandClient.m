@@ -22,6 +22,7 @@
 #import "ServerUpdateSTBInfo.h"
 
 #import "UPNPTool.h"
+#import "ChannelIcon.h"
 
 #import "../../../CommonUtil/CommonUtil/Categories/CategoriesUtil.h"
 
@@ -440,7 +441,6 @@ static NSString *STBInternetServer = @"http://rbei.aiwlan.com";
         NSDictionary *dicValue = [NSJSONSerialization JSONObjectWithData:responseObject
                                                                  options:kNilOptions
                                                                    error:&error];
-        INFO(@"getInternetSTBInfo Data: %@",operation.responseString);
         if (dicValue) {
             ServerUpdateSTBInfo *serverInfo = [[ServerUpdateSTBInfo alloc] init];
             NSDictionary *playerinfo = [dicValue objectForKey:@"playerinfo"];
@@ -463,6 +463,56 @@ static NSString *STBInternetServer = @"http://rbei.aiwlan.com";
         ERROR(@"getInternetSTBInfo Error: %@",error);
         aCallback(nil,HTTPAccessStateDisconnection);
     }];
+}
+
+#pragma mark ------------获取台标图片更新信息
++ (void)getChannelIconInfoWithChannelIconList:(NSArray*)aList
+                                 withCallback:(HttpCallback)aCallback
+{
+    if (aList&&aList.count>0)
+    {
+        NSMutableArray *parmeterList = [[NSMutableArray alloc] init];
+        [parmeterList addObject:@"type=1"];
+        NSString *iconFormat = @"programname[%d]=%@&programver[%d]=%@";
+        NSString *iconParmeter= nil;
+        for (int i=0; i<aList.count; i++)
+        {
+            ChannelIcon *iconItem = aList[i];
+            iconParmeter = [NSString stringWithFormat:iconFormat,i,[NSString urlEncode:iconItem.name],i,iconItem.version];
+            [parmeterList addObject:iconParmeter];
+        }
+        NSString *parmeter = [parmeterList componentsJoinedByString:@"&"];
+        NSString *urlString = @"download.html";
+        urlString = [urlString stringByAppendingFormat:@"?%@",parmeter];
+        
+        INFO(@"request:%@",urlString);
+        [[self internetHTTPClient] GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSError *error = nil;
+            INFO(@"getChannelIconInfoWithChannelIconList Data: %@",operation.responseString);
+            NSDictionary *dicValue = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                     options:kNilOptions
+                                                                       error:&error];
+            if (dicValue) {
+                NSArray *propramList = [dicValue objectForKey:@"program_list"];
+                NSMutableArray *serverIconList = [[NSMutableArray alloc] initWithCapacity:propramList.count];
+                for (NSDictionary *dicItem in propramList) {
+                    ServerChannelIcon *serverItem = [[ServerChannelIcon alloc] init];
+                    [serverItem reflectDataFromOtherObject:dicItem];
+                    [serverIconList addObject:serverItem];
+                }
+                aCallback(serverIconList,HTTPAccessStateSuccess);
+            }
+            else
+            {
+                aCallback(nil,HTTPAccessStateFail);
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            ERROR(@"getChannelIconInfoWithChannelIconList Error: %@",error);
+            aCallback(nil,HTTPAccessStateDisconnection);
+        }];
+        
+    }
 }
 
 @end

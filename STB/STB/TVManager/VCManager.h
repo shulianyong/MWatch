@@ -17,7 +17,13 @@ static NSString *CurrentChannelName = @"CurrentChannelName";
 
 @end
 
-@interface VCManager : UITableView<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate>
+@protocol ChannelRefreshIconDelegate<NSObject>
+
+- (void)refreshIconWithChannelName:(NSString*)aName;
+
+@end
+
+@interface VCManager : UITableView<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate,ChannelRefreshIconDelegate>
 
 - (void)deleteAllChannel;
 - (void)refreshChannel;

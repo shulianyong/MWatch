@@ -13,7 +13,7 @@
 #import "SearchChannelTool.h"
 #import "ConfirmUtil.h"
 
-@interface VCSetting ()
+@interface VCSetting ()<UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *btnTitle;
 //自动退出timer
@@ -106,10 +106,16 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(configAutoExitTimer)];
     tapGesture.numberOfTapsRequired = 1;
     tapGesture.numberOfTouchesRequired=1;
+    tapGesture.delegate = self;
     [self.navigationController.view addGestureRecognizer:tapGesture];
     
     //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnectedSTB:) name:DisconnectedSTBNotification object:nil];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return NO;
 }
 
 //断开机顶盒时的消息处理

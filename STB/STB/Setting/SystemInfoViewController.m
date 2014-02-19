@@ -39,7 +39,7 @@
         if (isSuccess==HTTPAccessStateSuccess) {
             STBSystemInfo *currentSystemInfo = [[STBSystemInfo alloc] init];
             [currentSystemInfo reflectDataFromOtherObject:info];
-            [STBSystemInfo setDefaultSystemInfo:currentSystemInfo];
+//            [STBSystemInfo setDefaultSystemInfo:currentSystemInfo];
             
             
             self.lblBoxId.text = currentSystemInfo.BOXID;

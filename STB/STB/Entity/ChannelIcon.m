@@ -16,6 +16,16 @@
     if (iconFolder==nil) {
         iconFolder = [NSString cacheFolderPath];
         iconFolder = [iconFolder stringByAppendingPathComponent:@"IconFolder"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:iconFolder]) {
+            NSError *error = nil;
+            BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:iconFolder
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:&error];
+            if (!result) {
+                ERROR(@"Create ICON Folder Error:%@",error);
+            }
+        }
     }
     return iconFolder;
 }
@@ -50,13 +60,12 @@
     if (_name) {
         NSString *iconName = [_name stringByAppendingPathExtension:@"png"];
         iconPath = [[ChannelIcon iconFolder] stringByAppendingPathComponent:iconName];
-        
-        if (iconPath==nil || ![[NSFileManager defaultManager] fileExistsAtPath:iconPath]) {
-            iconPath = [[NSBundle mainBundle] pathForResource:iconName ofType:@"png"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:iconPath]) {
+            iconPath = [[NSBundle mainBundle] pathForResource:_name ofType:@"png"];
         }
-        if (iconPath==nil || ![[NSFileManager defaultManager] fileExistsAtPath:iconPath]) {
-            iconPath = [[NSBundle mainBundle] pathForResource:@"imgDefaultchannel" ofType:@"png"];
-        }
+    }
+    if (iconPath==nil || ![[NSFileManager defaultManager] fileExistsAtPath:iconPath]) {
+        iconPath = [[NSBundle mainBundle] pathForResource:@"imgDefaultchannel" ofType:@"png"];
     }
     return iconPath;
 }
