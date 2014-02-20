@@ -222,7 +222,7 @@
 		A6E8B4911876B2BE00E21CDD /* CCTV 1.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */; };
 		A6E8B4921876B2BE00E21CDD /* CCTV 10.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */; };
 		A6E8B4931876B2BE00E21CDD /* CCTV 12.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */; };
-		A6E8B4941876B2BE00E21CDD /* hnstv.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48E1876B2BE00E21CDD /* hnstv.png */; };
+		A6E8B4941876B2BE00E21CDD /* HNSTV.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48E1876B2BE00E21CDD /* HNSTV.png */; };
 		A6E8B4951876B2BE00E21CDD /* BTV.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B48F1876B2BE00E21CDD /* BTV.png */; };
 		A6E8B4961876B2BE00E21CDD /* SBN.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E8B4901876B2BE00E21CDD /* SBN.png */; };
 		A6F05A321850C077005D9D49 /* FirmwareUpgradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F05A311850C077005D9D49 /* FirmwareUpgradeController.m */; };
@@ -619,7 +619,7 @@
 		A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCTV 1.png"; sourceTree = "<group>"; };
 		A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCTV 10.png"; sourceTree = "<group>"; };
 		A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCTV 12.png"; sourceTree = "<group>"; };
-		A6E8B48E1876B2BE00E21CDD /* hnstv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hnstv.png; sourceTree = "<group>"; };
+		A6E8B48E1876B2BE00E21CDD /* HNSTV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HNSTV.png; sourceTree = "<group>"; };
 		A6E8B48F1876B2BE00E21CDD /* BTV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BTV.png; sourceTree = "<group>"; };
 		A6E8B4901876B2BE00E21CDD /* SBN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SBN.png; sourceTree = "<group>"; };
 		A6F05A301850C077005D9D49 /* FirmwareUpgradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareUpgradeController.h; sourceTree = "<group>"; };
@@ -1316,7 +1316,7 @@
 				A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */,
 				A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */,
 				A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */,
-				A6E8B48E1876B2BE00E21CDD /* hnstv.png */,
+				A6E8B48E1876B2BE00E21CDD /* HNSTV.png */,
 				A6E8B48F1876B2BE00E21CDD /* BTV.png */,
 				A6E8B4901876B2BE00E21CDD /* SBN.png */,
 			);
@@ -1499,7 +1499,7 @@
 				A64D047118B0F25100F9CCB8 /* icon57.png in Resources */,
 				A66926B01816B80D007D9EF0 /* img_txtPasswordBG.png in Resources */,
 				A66926A21816B80D007D9EF0 /* img_btnVersion.png in Resources */,
-				A6E8B4941876B2BE00E21CDD /* hnstv.png in Resources */,
+				A6E8B4941876B2BE00E21CDD /* HNSTV.png in Resources */,
 				A66926981816B80D007D9EF0 /* img_btnMenuPassword.png in Resources */,
 				A66926AB1816B80D007D9EF0 /* img_SettingHeader@2x.png in Resources */,
 				A64BDCB21812F03400F9CAD5 /* imgInfo@2x.png in Resources */,

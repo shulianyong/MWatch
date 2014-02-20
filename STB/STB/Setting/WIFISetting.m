@@ -219,7 +219,13 @@
                              withPassword:self.txtPassword.text.trim
                               withNeedPwd:self.switchNeedPwd.on
                                withResult:^(id info, HTTPAccessState isSuccess) {
-                                   [weakSelf.navigationController popViewControllerAnimated:YES];
+                                   if (isSuccess==HTTPAccessStateSuccess) {
+                                       [weakSelf.navigationController popViewControllerAnimated:YES];
+                                   }
+                                   else
+                                   {
+                                       [CommonUtil showMessage:MyLocalizedString(@"WIFI password setting failed")];
+                                   }
                                }];
         }
     }

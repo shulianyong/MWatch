@@ -58,13 +58,13 @@ static NSString *ChannelIcons = @"ChannelIcons";
         NSMutableDictionary *currentIcons = [NSMutableDictionary dictionaryWithDictionary:defaultIcon];
         for (Channel *temp in aChannels)
         {
-            ChannelIcon *iconItem = [currentIcons objectForKey:temp.name];
+            ChannelIcon *iconItem = [currentIcons objectForKey:temp.name.uppercaseString];
             if (iconItem==nil)
             {
                 iconItem = [[ChannelIcon alloc] init];
                 iconItem.name = temp.name;
                 iconItem.version = @"1.0.0";
-                [currentIcons setObject:iconItem forKey:temp.name];
+                [currentIcons setObject:iconItem forKey:temp.name.uppercaseString];
             }
         }
         [BLLChannelIcon setChannelIcons:currentIcons];       
@@ -92,20 +92,21 @@ static NSString *ChannelIcons = @"ChannelIcons";
     NSString *iconUrl = nil;
     NSString *key = nil;
     for (ServerChannelIcon *iconItem in iconList) {
-        key = [iconItem.key stringByAppendingString:PrivateKey];
+        key = [NSString stringWithFormat:@"%@%@",iconItem.key,PrivateKey];
         key = [NSString MD5:key];
+        key = [key lowercaseString];
         iconUrl = [NSString stringWithFormat:@"%@?&key=%@",iconItem.url,key];
         
         [DownLoadUtil downServerFileWithURL:iconUrl
                                inFolderPath:[ChannelIcon iconFolder]
-                            withLocFileName:iconItem.name
+                            withLocFileName:[iconItem.name.uppercaseString stringByAppendingPathExtension:@"png"]
                            withProcessBlock:^(float aProcessValue) {
                                
                            } withDownSuccessBlock:^{
                                RefreshCallback(iconItem.name);
                                //设置最新icon版本号
                                NSDictionary *dicIcons = [BLLChannelIcon channelIcons];
-                               ChannelIcon *localItem = [dicIcons objectForKey:iconItem.name];
+                               ChannelIcon *localItem = [dicIcons objectForKey:iconItem.name.uppercaseString];
                                if (localItem) {
                                    localItem.version = iconItem.version;
                                    [BLLChannelIcon setChannelIcons:dicIcons];

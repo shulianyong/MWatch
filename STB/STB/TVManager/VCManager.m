@@ -154,7 +154,7 @@
     ChannelIcon *iconItem = [[BLLChannelIcon channelIcons] objectForKey:object.name];
     iconItem = (iconItem==nil)?[ChannelIcon createInstance]:iconItem;
     
-    UIImage *imgChannel = [UIImage imageWithContentsOfFile:iconItem.iconPath];
+    UIImage *imgChannel = iconItem.icon;
     
     cell.imageView.image = imgChannel;
     cell.textLabel.text = object.name;
@@ -282,9 +282,9 @@
             }
             else
             {
-                [weakSelf insertNewObjects:channels];
                 [[BLLChannelIcon shareInstance] boundDefaultChannelIconFromChannels:self.fetchedResultsController.fetchedObjects];
             }
+            [weakSelf insertNewObjects:channels];
         }
         else
         {

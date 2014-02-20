@@ -14,7 +14,7 @@
 
 @property (nonatomic,strong)NSString *name;
 @property (nonatomic,strong)NSString *version;
-- (NSString*)iconPath;
+- (UIImage*)icon;
 
 @end
 

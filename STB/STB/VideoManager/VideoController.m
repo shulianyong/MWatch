@@ -202,7 +202,6 @@
         [self.tblChannel refreshIconWithChannelName:aChannelName];
     }];
     
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:DisconnectedSTBNotification object:nil];
 }
 

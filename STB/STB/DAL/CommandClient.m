@@ -433,7 +433,7 @@ static NSString *STBInternetServer = @"http://rbei.aiwlan.com";
     NSString *urlString = @"download.html";
     urlString = [urlString stringByAppendingFormat:@"?%@",parmeters];
     
-    INFO(@"request:%@",urlString);
+    INFO(@"getInternetSTBInfo request:%@",urlString);
     [[self internetHTTPClient] GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
         NSError *error = nil;
@@ -485,7 +485,7 @@ static NSString *STBInternetServer = @"http://rbei.aiwlan.com";
         NSString *urlString = @"download.html";
         urlString = [urlString stringByAppendingFormat:@"?%@",parmeter];
         
-        INFO(@"request:%@",urlString);
+        INFO(@"getChannelIconInfoWithChannelIconList request:%@",urlString);
         [[self internetHTTPClient] GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSError *error = nil;
             INFO(@"getChannelIconInfoWithChannelIconList Data: %@",operation.responseString);

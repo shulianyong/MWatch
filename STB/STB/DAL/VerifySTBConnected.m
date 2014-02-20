@@ -14,12 +14,14 @@
 + (void)verifyConnectedWithBackDelegate:(id<VerifySTBConnectedDelegate>)aDelegate;
 {
     static BOOL startVerify;
+    static BOOL needSecondRequest;
     if (startVerify) {
         return;
     }
     
     startVerify = YES;
-    [CommandClient monitorSTB:^(id info, HTTPAccessState isSuccess) {
+    [CommandClient monitorSTB:^(id info, HTTPAccessState isSuccess)
+    {
         BOOL ret = NO;
         if (isSuccess==HTTPAccessStateSuccess) {
             ret = YES;
@@ -28,6 +30,15 @@
         {
             ret = NO;
         }
+        
+        //两次请求
+        if (!ret&&!needSecondRequest) {
+            needSecondRequest = YES;
+            startVerify = NO;
+            [self verifyConnectedWithBackDelegate:aDelegate];
+            return;
+        }
+        
         
         BOOL oldConnected = [STBInfo shareInstance].connected;
         [STBInfo shareInstance].connected = ret;
@@ -41,7 +52,7 @@
         {
             [aDelegate ConnectedSTBFail];
         }
-        
+        needSecondRequest = NO;
         startVerify = NO;
     }];
 }

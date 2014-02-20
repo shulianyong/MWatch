@@ -129,26 +129,6 @@ withProcessBlock:(DownLoadProcess)processBlock
 withDownSuccessBlock:(dispatch_block_t)successBlock
 withDownFailBlck:(dispatch_block_t)failBlock
 {
-    [self downServerFileWithURL:aURL
-                   inFolderPath:[NSString cacheFolderPath]
-                withLocFileName:aLocFileName withProcessBlock:^(float aProcessValue) {
-                    processBlock(aProcessValue);
-                } withDownSuccessBlock:^{
-                    successBlock();
-                } withDownFailBlck:^{
-                    failBlock();
-                }];
-}
-
-+ (void)downServerFileWithURL:(NSString*)aURL
-                 inFolderPath:(NSString*)aFolderPath
-              withLocFileName:(NSString*)aLocFileName
-             withProcessBlock:(DownLoadProcess)processBlock
-         withDownSuccessBlock:(dispatch_block_t)successBlock
-             withDownFailBlck:(dispatch_block_t)failBlock
-{
-    INFO(@"current version:%f",[UIDevice currentDevice].systemVersion.doubleValue);
-    
     NSURL *URL = [NSURL URLWithString:aURL];
     request = [ASIHTTPRequest requestWithURL:URL];
     request.timeOutSeconds = 5*60;
@@ -174,6 +154,54 @@ withDownFailBlck:(dispatch_block_t)failBlock
         {
             successBlock();
         }
+    }];
+    
+    //当request完成时，整个文件会被移动到这里
+    NSString *saveFilePath = [[NSString cacheFolderPath] stringByAppendingPathComponent:aLocFileName];
+    [request setDownloadDestinationPath:saveFilePath];
+    
+    NSString *tempFilePath = NSTemporaryDirectory();
+    tempFilePath = [tempFilePath stringByAppendingPathComponent:aLocFileName];
+    
+    [request setFailedBlock:^{
+        INFO(@"FailedBlock:%@",request.error);
+        if ([[NSFileManager defaultManager] fileExistsAtPath:tempFilePath]) {
+            [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
+        }
+        failBlock();
+    }];
+    
+    
+    [request setTemporaryFileDownloadPath:tempFilePath];
+    [request startAsynchronous];
+    
+}
+
++ (void)downServerFileWithURL:(NSString*)aURL
+                 inFolderPath:(NSString*)aFolderPath
+              withLocFileName:(NSString*)aLocFileName
+             withProcessBlock:(DownLoadProcess)processBlock
+         withDownSuccessBlock:(dispatch_block_t)successBlock
+             withDownFailBlck:(dispatch_block_t)failBlock
+{
+    INFO(@"current version:%f",[UIDevice currentDevice].systemVersion.doubleValue);
+    
+    NSURL *URL = [NSURL URLWithString:aURL];
+    request = [ASIHTTPRequest requestWithURL:URL];
+    request.timeOutSeconds = 5*60;
+    
+    [request setBytesReceivedBlock:^(unsigned long long size, unsigned long long total) {
+        if (total<1024) {
+            [request setCompletionBlock:^{
+                INFO(@"不是下载数据:%@   %@  Totle:%lld",aURL,aLocFileName,total);
+                failBlock();
+            }];
+        }
+    }];
+    
+    [request setCompletionBlock:^{
+        INFO(@"CompletionBlock:%@   %@",aURL,aLocFileName);
+        successBlock();
     }];
     
     //当request完成时，整个文件会被移动到这里

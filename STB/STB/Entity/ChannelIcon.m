@@ -58,16 +58,31 @@
 {
     NSString *iconPath=nil;
     if (_name) {
-        NSString *iconName = [_name stringByAppendingPathExtension:@"png"];
+        NSString *iconName = [_name.uppercaseString stringByAppendingPathExtension:@"png"];
         iconPath = [[ChannelIcon iconFolder] stringByAppendingPathComponent:iconName];
         if (![[NSFileManager defaultManager] fileExistsAtPath:iconPath]) {
-            iconPath = [[NSBundle mainBundle] pathForResource:_name ofType:@"png"];
+            iconPath = [[NSBundle mainBundle] pathForResource:_name.uppercaseString ofType:@"png"];
         }
+        else if ([UIImage imageWithContentsOfFile:iconPath]==nil)
+        {
+            iconPath = nil;
+        }
+            
     }
     if (iconPath==nil || ![[NSFileManager defaultManager] fileExistsAtPath:iconPath]) {
         iconPath = [[NSBundle mainBundle] pathForResource:@"imgDefaultchannel" ofType:@"png"];
     }
     return iconPath;
+}
+
+- (UIImage*)icon
+{
+    UIImage *icon = [UIImage imageWithContentsOfFile:[self iconPath]];
+    if (icon==nil) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"imgDefaultchannel" ofType:@"png"];
+        icon = [UIImage imageWithContentsOfFile:path];
+    }
+    return icon;
 }
 
 @end
