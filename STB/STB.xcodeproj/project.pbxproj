@@ -17,6 +17,17 @@
 		A618F2731803A358002EB4AE /* STB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A618F2711803A358002EB4AE /* STB.xcdatamodeld */; };
 		A618F2DD1803AC0E002EB4AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A618F2DC1803AC0E002EB4AE /* CoreData.framework */; };
 		A618F2E01803ADBA002EB4AE /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A618F2DF1803ADBA002EB4AE /* DataManager.m */; };
+		A6358C9718B636FB007A623E /* AL JAZEERA SPORT NEWS.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C8C18B636FB007A623E /* AL JAZEERA SPORT NEWS.png */; };
+		A6358C9818B636FB007A623E /* AL JAZEERA.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C8D18B636FB007A623E /* AL JAZEERA.png */; };
+		A6358C9918B636FB007A623E /* ARABIA.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C8E18B636FB007A623E /* ARABIA.png */; };
+		A6358C9A18B636FB007A623E /* CNBC.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C8F18B636FB007A623E /* CNBC.png */; };
+		A6358C9B18B636FB007A623E /* MBC 1.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C9018B636FB007A623E /* MBC 1.png */; };
+		A6358C9C18B636FB007A623E /* MBC DRAMA.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C9118B636FB007A623E /* MBC DRAMA.png */; };
+		A6358C9D18B636FB007A623E /* ROTANA CINEMA.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C9218B636FB007A623E /* ROTANA CINEMA.png */; };
+		A6358C9E18B636FB007A623E /* ROTANA CLIP.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C9318B636FB007A623E /* ROTANA CLIP.png */; };
+		A6358C9F18B636FB007A623E /* SPACETOON.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C9418B636FB007A623E /* SPACETOON.png */; };
+		A6358CA018B636FB007A623E /* WANASAH.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C9518B636FB007A623E /* WANASAH.png */; };
+		A6358CA118B636FB007A623E /* ZEE AFLAM.png in Resources */ = {isa = PBXBuildFile; fileRef = A6358C9618B636FB007A623E /* ZEE AFLAM.png */; };
 		A63F0D2C184B2CE8006580CD /* ConfirmUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F0D2B184B2CE8006580CD /* ConfirmUtil.m */; };
 		A63F0D2F184B3609006580CD /* ConfirmMunePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F0D2E184B3609006580CD /* ConfirmMunePassword.m */; };
 		A63FD1551889480600BE5552 /* DefaultChannelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A63FD1541889480600BE5552 /* DefaultChannelTool.m */; };
@@ -267,6 +278,17 @@
 		A618F2DC1803AC0E002EB4AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A618F2DE1803ADBA002EB4AE /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		A618F2DF1803ADBA002EB4AE /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		A6358C8C18B636FB007A623E /* AL JAZEERA SPORT NEWS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AL JAZEERA SPORT NEWS.png"; sourceTree = "<group>"; };
+		A6358C8D18B636FB007A623E /* AL JAZEERA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AL JAZEERA.png"; sourceTree = "<group>"; };
+		A6358C8E18B636FB007A623E /* ARABIA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ARABIA.png; sourceTree = "<group>"; };
+		A6358C8F18B636FB007A623E /* CNBC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CNBC.png; sourceTree = "<group>"; };
+		A6358C9018B636FB007A623E /* MBC 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MBC 1.png"; sourceTree = "<group>"; };
+		A6358C9118B636FB007A623E /* MBC DRAMA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MBC DRAMA.png"; sourceTree = "<group>"; };
+		A6358C9218B636FB007A623E /* ROTANA CINEMA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ROTANA CINEMA.png"; sourceTree = "<group>"; };
+		A6358C9318B636FB007A623E /* ROTANA CLIP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ROTANA CLIP.png"; sourceTree = "<group>"; };
+		A6358C9418B636FB007A623E /* SPACETOON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SPACETOON.png; sourceTree = "<group>"; };
+		A6358C9518B636FB007A623E /* WANASAH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WANASAH.png; sourceTree = "<group>"; };
+		A6358C9618B636FB007A623E /* ZEE AFLAM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZEE AFLAM.png"; sourceTree = "<group>"; };
 		A63F0D2A184B2CE8006580CD /* ConfirmUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmUtil.h; sourceTree = "<group>"; };
 		A63F0D2B184B2CE8006580CD /* ConfirmUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmUtil.m; sourceTree = "<group>"; };
 		A63F0D2D184B3609006580CD /* ConfirmMunePassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmMunePassword.h; sourceTree = "<group>"; };
@@ -714,6 +736,38 @@
 				A6F65775188909570036B8AF /* VerifySTBConnected.m */,
 			);
 			path = DAL;
+			sourceTree = "<group>";
+		};
+		A6358C8B18B636FB007A623E /* ForeignChannelIcon */ = {
+			isa = PBXGroup;
+			children = (
+				A6358C8C18B636FB007A623E /* AL JAZEERA SPORT NEWS.png */,
+				A6358C8D18B636FB007A623E /* AL JAZEERA.png */,
+				A6358C8E18B636FB007A623E /* ARABIA.png */,
+				A6358C8F18B636FB007A623E /* CNBC.png */,
+				A6358C9018B636FB007A623E /* MBC 1.png */,
+				A6358C9118B636FB007A623E /* MBC DRAMA.png */,
+				A6358C9218B636FB007A623E /* ROTANA CINEMA.png */,
+				A6358C9318B636FB007A623E /* ROTANA CLIP.png */,
+				A6358C9418B636FB007A623E /* SPACETOON.png */,
+				A6358C9518B636FB007A623E /* WANASAH.png */,
+				A6358C9618B636FB007A623E /* ZEE AFLAM.png */,
+			);
+			path = ForeignChannelIcon;
+			sourceTree = "<group>";
+		};
+		A6358CA218B6370A007A623E /* ChinaChannelIcon */ = {
+			isa = PBXGroup;
+			children = (
+				A694840D18B2F318008721EC /* OTV6.png */,
+				A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */,
+				A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */,
+				A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */,
+				A6E8B48E1876B2BE00E21CDD /* HNSTV.png */,
+				A6E8B48F1876B2BE00E21CDD /* BTV.png */,
+				A6E8B4901876B2BE00E21CDD /* SBN.png */,
+			);
+			name = ChinaChannelIcon;
 			sourceTree = "<group>";
 		};
 		A63F47CD181B4E4300F7B0E1 /* upnp */ = {
@@ -1312,13 +1366,8 @@
 		A6E8B48A1876B2BE00E21CDD /* ChannelImage */ = {
 			isa = PBXGroup;
 			children = (
-				A694840D18B2F318008721EC /* OTV6.png */,
-				A6E8B48B1876B2BE00E21CDD /* CCTV 1.png */,
-				A6E8B48C1876B2BE00E21CDD /* CCTV 10.png */,
-				A6E8B48D1876B2BE00E21CDD /* CCTV 12.png */,
-				A6E8B48E1876B2BE00E21CDD /* HNSTV.png */,
-				A6E8B48F1876B2BE00E21CDD /* BTV.png */,
-				A6E8B4901876B2BE00E21CDD /* SBN.png */,
+				A6358C8B18B636FB007A623E /* ForeignChannelIcon */,
+				A6358CA218B6370A007A623E /* ChinaChannelIcon */,
 			);
 			path = ChannelImage;
 			sourceTree = "<group>";
@@ -1437,6 +1486,7 @@
 				A66926B51816B80D007D9EF0 /* img_btnSystemInfo@2x.png in Resources */,
 				A669269B1816B80D007D9EF0 /* img_btnParentLock@2x.png in Resources */,
 				A6521E44180ED3720025EB2A /* imgDefaultchannel@2x.png in Resources */,
+				A6358C9B18B636FB007A623E /* MBC 1.png in Resources */,
 				A66926AE1816B80D007D9EF0 /* img_btnSignalQuality.png in Resources */,
 				A6F28002186FF8420017186B /* Default~iphone.png in Resources */,
 				A64483E217F68A960054CC5C /* Images.xcassets in Resources */,
@@ -1447,11 +1497,13 @@
 				A669269C1816B80D007D9EF0 /* img_btnSettingBG.png in Resources */,
 				A66926941816B80D007D9EF0 /* img_btnFactoryReset.png in Resources */,
 				A66F00C9183FA66100A3C71F /* imgBtnSettingSearch.png in Resources */,
+				A6358C9C18B636FB007A623E /* MBC DRAMA.png in Resources */,
 				A648EAC2186EFDC10094452C /* player-progress-h@2x.png in Resources */,
 				A6E8B4951876B2BE00E21CDD /* BTV.png in Resources */,
 				A69AC6A61855B9A1005A5B2E /* icon-120.png in Resources */,
 				A66F00CA183FA66100A3C71F /* imgBtnSettingSearch@2x.png in Resources */,
 				A675F637184617D000004AB9 /* imgTxtPolarRight@2x.png in Resources */,
+				A6358C9D18B636FB007A623E /* ROTANA CINEMA.png in Resources */,
 				A644841B17F6C72C0054CC5C /* imgUserUncheck.png in Resources */,
 				A69AC6A81855BADA005A5B2E /* icon-Small-80.png in Resources */,
 				A649F7E7180D83F400EC476C /* imgAudiotrack.png in Resources */,
@@ -1459,14 +1511,18 @@
 				A66926A61816B80D007D9EF0 /* img_NoSignal.png in Resources */,
 				A6A64DB4181C0BF2007C6C2E /* img_btnOKHeight.png in Resources */,
 				A669269F1816B80D007D9EF0 /* img_btnSettingBGHight@2x.png in Resources */,
+				A6358C9A18B636FB007A623E /* CNBC.png in Resources */,
 				A66926A41816B80D007D9EF0 /* img_btnWIFI.png in Resources */,
 				A644841A17F6C72C0054CC5C /* imgUserCheck@2x.png in Resources */,
 				A6A64DB3181C0BF2007C6C2E /* img_btnOK.png in Resources */,
+				A6358C9818B636FB007A623E /* AL JAZEERA.png in Resources */,
 				A6A2F1FA18423457002C0C30 /* MultiLanguage.strings in Resources */,
 				A677D10D1841D7E20031726B /* 37x-Checkmark@2x.png in Resources */,
+				A6358C9918B636FB007A623E /* ARABIA.png in Resources */,
 				A69AC6A31855B8D4005A5B2E /* icon-Small.png in Resources */,
 				A648EAC4186EFDC10094452C /* player-progress-point-h@2x.png in Resources */,
 				A648EAC3186EFDC10094452C /* player-progress-loading@2x.png in Resources */,
+				A6358CA018B636FB007A623E /* WANASAH.png in Resources */,
 				A644842117F6E2EC0054CC5C /* test@2x.png in Resources */,
 				A644840717F68F5C0054CC5C /* imgToolSetings@2x.png in Resources */,
 				A6A64DA8181C02AB007C6C2E /* img_unselected@2x.png in Resources */,
@@ -1484,6 +1540,7 @@
 				A69AC69E1855A9CE005A5B2E /* Default-568h@2x.png in Resources */,
 				A64BDCB11812F03400F9CAD5 /* imgInfo.png in Resources */,
 				A64483D417F68A960054CC5C /* InfoPlist.strings in Resources */,
+				A6358C9718B636FB007A623E /* AL JAZEERA SPORT NEWS.png in Resources */,
 				A6E8B4921876B2BE00E21CDD /* CCTV 10.png in Resources */,
 				A6A044471835D1DB0074A68D /* imgArtRight.png in Resources */,
 				A644840017F68D260054CC5C /* Video.storyboard in Resources */,
@@ -1517,6 +1574,7 @@
 				A6A64DAC181C0580007C6C2E /* img_SettingOtherBack@2x.png in Resources */,
 				A644840817F68F5C0054CC5C /* test.png in Resources */,
 				A616E73A182F851E00A04F54 /* imgMuted.png in Resources */,
+				A6358CA118B636FB007A623E /* ZEE AFLAM.png in Resources */,
 				A649F7E9180D83F400EC476C /* imgVolume.png in Resources */,
 				A66926B41816B80D007D9EF0 /* img_btnSystemInfo.png in Resources */,
 				A649F7E8180D83F400EC476C /* imgSetting.png in Resources */,
@@ -1534,6 +1592,8 @@
 				A677D10C1841D7E20031726B /* 37x-Checkmark.png in Resources */,
 				A6F28004186FF8D70017186B /* Default.png in Resources */,
 				A64D046F18B0F24200F9CCB8 /* icon29.png in Resources */,
+				A6358C9E18B636FB007A623E /* ROTANA CLIP.png in Resources */,
+				A6358C9F18B636FB007A623E /* SPACETOON.png in Resources */,
 				A644841C17F6C72C0054CC5C /* imgUserUncheck@2x.png in Resources */,
 				A6A044481835D1DB0074A68D /* imgArtRight@2x.png in Resources */,
 				A66926A11816B80D007D9EF0 /* img_btnSettingCA@2x.png in Resources */,
