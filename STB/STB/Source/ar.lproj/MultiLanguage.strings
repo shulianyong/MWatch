@@ -115,3 +115,4 @@
 "Password"="كلمة السر";
 "Need Password"="كلمة المرور المطلوبة";
 "Please Input WIFI Name"="الرجاء إدخال اسم واي فاي";
+"WIFI password setting failed"="تم تعيين كلمة مرور لWIFI تفشل";
