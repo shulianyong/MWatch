@@ -299,7 +299,7 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
         if (isSuccess==HTTPAccessStateSuccess)
         {
             
-            if (info.stbinfo)//检查固件
+            if (info.stbinfo.count>0)//检查固件
             {
                 [weakSelf.aConfirmUtil showConfirmWithTitle:MyLocalizedString(@"Alert")
                                              withMessage:MyLocalizedString(@"Do you want to download the latest firmware")
