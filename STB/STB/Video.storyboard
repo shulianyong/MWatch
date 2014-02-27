@@ -83,6 +83,17 @@
                                                     <action selector="clickBtnSetting:" destination="YAh-it-lgL" eventType="touchUpInside" id="7gb-AV-eSF"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="abk-hi-xM0" userLabel="btnReplay">
+                                                <rect key="frame" x="55" y="0.0" width="44" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" image="imgBtnReplay.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="click_Replay:" destination="YAh-it-lgL" eventType="touchUpInside" id="OQp-7L-UJ2"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" id="vQg-vD-hqX" customClass="YDSlider">
                                                 <rect key="frame" x="266" y="6" width="104" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -1250,6 +1261,7 @@
     <resources>
         <image name="imgArtLeft.png" width="241" height="23"/>
         <image name="imgArtRight.png" width="240" height="23"/>
+        <image name="imgBtnReplay.png" width="19" height="17"/>
         <image name="imgBtnSettingSearch.png" width="22" height="21"/>
         <image name="imgMenuBGBottom.png" width="554" height="44"/>
         <image name="imgMuted.png" width="15" height="11"/>

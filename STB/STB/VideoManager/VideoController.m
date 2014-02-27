@@ -564,4 +564,10 @@
     }
 }
 
+#pragma mark ----------------- 重新播放
+- (IBAction)click_Replay:(id)sender
+{
+    [self switchChannel:[self currentPlayPath]];
+}
+
 @end
