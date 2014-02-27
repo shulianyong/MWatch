@@ -153,6 +153,7 @@
     Channel *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     ChannelIcon *iconItem = [[BLLChannelIcon channelIcons] objectForKey:object.name];
     iconItem = (iconItem==nil)?[ChannelIcon createInstance]:iconItem;
+    iconItem.name = [NSString isEmpty:iconItem.name]?object.name:iconItem.name;
     
     UIImage *imgChannel = iconItem.icon;
     

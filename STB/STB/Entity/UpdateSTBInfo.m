@@ -64,7 +64,7 @@ static NSString *DownLoadFirmwareInfos = @"FirmwaresInfos";
 {
     NSData *tempData =  [[NSUserDefaults standardUserDefaults] objectForKey:DownLoadFirmwareInfos];
     NSDictionary *firwareInfos = nil;
-    if (tempData==nil) {
+    if (tempData) {
         firwareInfos = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
     }
     return firwareInfos;
@@ -74,6 +74,9 @@ static NSString *DownLoadFirmwareInfos = @"FirmwaresInfos";
     NSData *archiveCarPriceData = [NSKeyedArchiver archivedDataWithRootObject:firmwares];
     [[NSUserDefaults standardUserDefaults] setObject:archiveCarPriceData forKey:DownLoadFirmwareInfos];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSDictionary *values = [self downLoadFirmwareInfos];
+    INFO(@"value:%@",values);
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder

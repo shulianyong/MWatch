@@ -182,7 +182,7 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
     [self checkSTBUPdateVersion:^(bool isUpdate) {
         if (!isUpdate)
         {
-            [CommonUtil showMessage:@"Is the latest firmware"];
+            [CommonUtil showMessage:MyLocalizedString(@"Is the latest firmware")];
         }
     }];
 }
@@ -286,6 +286,33 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
 
 #pragma mark ---------------- 下载逻辑
 
+//判断服务器是否有最新固件
+- (BOOL)hasUpdateFirmwareFromServerUpdateSTBInfo:(ServerUpdateSTBInfo*)aInfo
+{
+    BOOL result = NO;
+    
+    UpdateSTBInfo *stbInfo = [UpdateSTBInfo currentUpdateSTBInfo];
+    NSDictionary *dicDownloadFirmwareInfo = [DownLoadFirmwareInfo downLoadFirmwareInfos];
+    if (dicDownloadFirmwareInfo&&aInfo&&aInfo.stbinfo.count>0)
+    {
+        DownLoadFirmwareInfo *localServerSTBInfo = [dicDownloadFirmwareInfo objectForKey:stbInfo.hwversion];
+        ServerSTBInfo *currentServerInfo = aInfo.stbinfo[0];
+        if (localServerSTBInfo&&currentServerInfo) {
+            ServerSTBInfo *localServerFirmwareInfo = localServerSTBInfo.serverFirmwareInfo;
+            
+            if (localServerFirmwareInfo)
+            {
+                result = !([localServerFirmwareInfo.hwversion isEqualToString:currentServerInfo.hwversion]
+                          && [localServerFirmwareInfo.swversion isEqualToString:currentServerInfo.swversion]
+                          && [localServerSTBInfo.stb.stbid isEqualToString:stbInfo.stbid]);
+            }
+            
+        }
+        
+    }
+    return result;
+}
+
 #pragma mark －－－－－－－－－－－－－从服务器，判断是否有最新固件，下载固件，总控制
 - (void)checkInternetSTBInfo
 {
@@ -299,7 +326,7 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
         if (isSuccess==HTTPAccessStateSuccess)
         {
             
-            if (info.stbinfo.count>0)//检查固件
+            if (info.stbinfo.count>0 && [self hasUpdateFirmwareFromServerUpdateSTBInfo:info])//检查固件
             {
                 [weakSelf.aConfirmUtil showConfirmWithTitle:MyLocalizedString(@"Alert")
                                              withMessage:MyLocalizedString(@"Do you want to download the latest firmware")
@@ -390,7 +417,7 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
 - (void)limitDownloadFirmware
 {
     NSDictionary *tempArray = [DownLoadFirmwareInfo downLoadFirmwareInfos];
-    if (tempArray&&tempArray.allValues.count==0) {
+    if (tempArray&&tempArray.allValues.count==5) {
          NSMutableDictionary *dicFirmwares = [[NSMutableDictionary alloc] initWithDictionary:tempArray];
         NSString *firstKey = dicFirmwares.allKeys[0];
         
