@@ -295,20 +295,23 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
     NSDictionary *dicDownloadFirmwareInfo = [DownLoadFirmwareInfo downLoadFirmwareInfos];
     if (dicDownloadFirmwareInfo&&aInfo&&aInfo.stbinfo.count>0)
     {
-        DownLoadFirmwareInfo *localServerSTBInfo = [dicDownloadFirmwareInfo objectForKey:stbInfo.hwversion];
-        ServerSTBInfo *currentServerInfo = aInfo.stbinfo[0];
-        if (localServerSTBInfo&&currentServerInfo) {
-            ServerSTBInfo *localServerFirmwareInfo = localServerSTBInfo.serverFirmwareInfo;
-            
-            if (localServerFirmwareInfo)
-            {
-                result = !([localServerFirmwareInfo.hwversion isEqualToString:currentServerInfo.hwversion]
-                          && [localServerFirmwareInfo.swversion isEqualToString:currentServerInfo.swversion]
-                          && [localServerSTBInfo.stb.stbid isEqualToString:stbInfo.stbid]);
+            DownLoadFirmwareInfo *localServerSTBInfo = [dicDownloadFirmwareInfo objectForKey:stbInfo.hwversion];
+            ServerSTBInfo *currentServerInfo = aInfo.stbinfo[0];
+            if (localServerSTBInfo&&currentServerInfo) {
+                ServerSTBInfo *localServerFirmwareInfo = localServerSTBInfo.serverFirmwareInfo;
+                
+                if (localServerFirmwareInfo)
+                {
+                    result = !([localServerFirmwareInfo.hwversion isEqualToString:currentServerInfo.hwversion]
+                               && [localServerFirmwareInfo.swversion isEqualToString:currentServerInfo.swversion]
+                               && [localServerSTBInfo.stb.stbid isEqualToString:stbInfo.stbid]);
+                }
+                
             }
-            
-        }
-        
+    }
+    else if(aInfo&&aInfo.stbinfo.count>0)
+    {
+        result = YES;
     }
     return result;
 }
