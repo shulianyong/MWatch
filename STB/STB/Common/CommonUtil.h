@@ -21,6 +21,8 @@ FileDownState;
 
 typedef void(^FileDownloadCallback)(id info,FileDownState isSuccess);
 
++ (NSString*)serverIP;
+
 //提示
 + (void)showMessage:(NSString*)aMessgae;
 //提示

@@ -34,7 +34,7 @@
     }
     else
     {
-        tempIP = @"192.168.0.1";
+        tempIP = @"";
     }
     ip = tempIP;
     

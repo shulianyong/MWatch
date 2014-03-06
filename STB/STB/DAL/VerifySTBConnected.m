@@ -8,6 +8,7 @@
 
 #import "VerifySTBConnected.h"
 #import "CommandClient.h"
+#import "CommonUtil.h"
 
 @implementation VerifySTBConnected
 
@@ -20,6 +21,15 @@
     }
     
     startVerify = YES;
+    
+    if (![[STBInfo shareInstance].stbIP isEqualToString:[CommonUtil serverIP]]) {
+        [aDelegate ConnectedSTBFail];
+        startVerify = NO;
+        return;
+    }
+    
+    
+    
     [CommandClient monitorSTB:^(id info, HTTPAccessState isSuccess)
     {
         BOOL ret = NO;
