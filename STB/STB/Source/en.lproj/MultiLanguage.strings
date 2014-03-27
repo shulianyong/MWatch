@@ -106,6 +106,7 @@
 "Connect STB to upgrade firmware"="Connect to STB to update firmware";
 "Remind me of the firmware upgrade"="Remind to update firmware";
 "Do not power off or turn off"="Do not cut power off or turn off the device";
+"Download the latest APP?"="Download the latest APP?";
 
 //WIFI 设置
 "WIFI Name"="Wifi name";

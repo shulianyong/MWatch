@@ -106,6 +106,7 @@
 "Connect STB to upgrade firmware"="الاتصال STB لتحديث البرامج الثابتة";
 "Remind me of the firmware upgrade"="تذكير لتحديث البرامج الثابتة";
 "Do not power off or turn off"="لا تقطع الكهرباءأو إيقاف تشغيل الجهاز";
+"Download the latest APP?"="سواء لتحميل أحدث APP؟";
 
 //WIFI 设置
 "WIFI Name"="اسم واي فاي";

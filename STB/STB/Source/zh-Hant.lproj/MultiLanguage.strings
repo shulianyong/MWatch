@@ -105,6 +105,7 @@
 "Connect STB to upgrade firmware"="連接機頂盒升級固件";
 "Remind me of the firmware upgrade"="提醒固件更新";
 "Do not power off or turn off"="切勿斷電或關機";
+"Download the latest APP?"="是否下載最新的APP？";
 
 //WIFI 設置
 "WIFI Name"="WIFI名";

@@ -14,6 +14,7 @@
 #import "MBProgressHUD.h"
 #import "CommonUtil.h"
 #import "ConfirmUtil.h"
+#import "AppInfo.h"
 
 @interface STBVersionCheck ()<MBProgressHUDDelegate>
 {
@@ -326,8 +327,8 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
     [CommandClient getInternetSTBInfo:^(ServerUpdateSTBInfo *info, HTTPAccessState isSuccess) {
         if (isSuccess==HTTPAccessStateSuccess)
         {
-            
-            if (info.stbinfo.count>0 && [self hasUpdateFirmwareFromServerUpdateSTBInfo:info])//检查固件
+            //固件下载
+            if (info.stbinfo.count>0 && [self hasUpdateFirmwareFromServerUpdateSTBInfo:info]&&[STBVersionCheck IsSTBRemindUpgrade])//检查固件
             {
                 [weakSelf.aConfirmUtil showConfirmWithTitle:MyLocalizedString(@"Alert")
                                              withMessage:MyLocalizedString(@"Do you want to download the latest firmware")
@@ -346,6 +347,12 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
                 
                 
             }
+            
+            //app下载
+            if (![NSString isEmpty:info.playerversion]) {
+                [self checkAppVersion:info.playerversion];
+            }
+            
         }
         
     }];
@@ -438,6 +445,31 @@ typedef void(^STBUPdateVersionCallback)(bool isUpdate);
         
         [dicFirmwares removeObjectForKey:firstKey];
         [DownLoadFirmwareInfo setDownLoadFirmwareInfos:dicFirmwares];
+    }
+}
+
+#pragma mark -------------------更改APP
+- (void)checkAppVersion:(NSString*)aVersion
+{
+    static ConfirmUtil *appUpgradeConfimUtil=nil;
+    if (appUpgradeConfimUtil==nil) {
+        appUpgradeConfimUtil = [ConfirmUtil createInstance];
+    }
+    
+    NSComparisonResult result =  [[AppInfo AppVersion] compare:aVersion];
+    if (result==NSOrderedAscending)
+    {
+        [appUpgradeConfimUtil showConfirmWithTitle:MyLocalizedString(@"Alert")
+                                       withMessage:MyLocalizedString(@"Download the latest APP?")
+                                       WithOKBlcok:^{
+                                           NSString *storeURLString = @"https://itunes.apple.com/cn/app/msight/id799326403?mt=8";
+                                           NSURL *storeURL = [NSURL URLWithString:storeURLString];
+                                           [[UIApplication sharedApplication] openURL:storeURL];
+                                       }
+                                   withCancelBlock:^{
+                                       
+                                   }];
+        
     }
 }
 

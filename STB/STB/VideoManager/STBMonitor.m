@@ -76,16 +76,10 @@
 {
     
     if ([SearchChannelTool shareInstance].searchAlert) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            sleep(3);
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [SearchChannelTool shareInstance].searchAlert.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-                [SearchChannelTool shareInstance].searchAlert.mode = MBProgressHUDModeCustomView;
-                [SearchChannelTool shareInstance].searchAlert.labelText = MyLocalizedString(@"Completed");
-                [[SearchChannelTool shareInstance].searchAlert hide:YES];
-            });
-        });
-        
+        [SearchChannelTool shareInstance].searchAlert.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+        [SearchChannelTool shareInstance].searchAlert.mode = MBProgressHUDModeCustomView;
+        [SearchChannelTool shareInstance].searchAlert.labelText = MyLocalizedString(@"Completed");
+        [[SearchChannelTool shareInstance].searchAlert hide:YES afterDelay:3];
     }
 }
 

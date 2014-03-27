@@ -192,12 +192,10 @@
 {
     [SingleAlert showMessage:MyLocalizedString(@"TV box not found，please check!")];
     [self.player pause];
-    if ([STBVersionCheck IsSTBRemindUpgrade])
-    {
-        //更新更新机顶盒固件
-//        [[VersionUpdate shareInstance] updateVersionWithAuto:YES];
-    }
+    
+    //更新更新机顶盒固件
     [[STBVersionCheck shareInstance] checkInternetSTBInfo];
+    
     [[BLLChannelIcon shareInstance] checkChannelIconUpgrade:^(NSString *aChannelName) {
         [self.tblChannel refreshIconWithChannelName:aChannelName];
     }];
