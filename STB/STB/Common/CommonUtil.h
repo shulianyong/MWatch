@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *ExpiredTimeUserDefault=@"ExpiredTimeUserDefault";
+static NSString *ExpiredTime=@"2014-04-15";
+
 @interface CommonUtil : NSObject
 
 typedef enum
@@ -27,6 +30,8 @@ typedef void(^FileDownloadCallback)(id info,FileDownState isSuccess);
 + (void)showMessage:(NSString*)aMessgae;
 //提示
 + (void)showMessage:(NSString*)aMessgae withCannelBlock:(dispatch_block_t)aBlock;
+
++ (BOOL)expired;
 
 @end
 

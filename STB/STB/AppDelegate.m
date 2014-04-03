@@ -13,6 +13,7 @@
 #import "VideoController.h"
 #import "VerifySTBConnected.h"
 #import "STBSystemInfo.h"
+#import "CommonUtil.h"
 
 #import "STBVersionCheck.h"
 
@@ -50,6 +51,17 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    //设置过期时间
+    NSDate *saveTime = [[NSUserDefaults standardUserDefaults] objectForKey:ExpiredTimeUserDefault];
+    NSDate *dateNow = [NSDate date];
+    if (saveTime==nil) {
+        saveTime = dateNow;
+    }
+    else if (saveTime.timeIntervalSince1970<dateNow.timeIntervalSince1970) {
+        saveTime = dateNow;
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:saveTime forKey:ExpiredTimeUserDefault];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     //每次进行，都进行upnp扫描
     
@@ -59,6 +71,10 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PlayNotification object:nil];
+    
+    
+    
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

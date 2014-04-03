@@ -88,4 +88,40 @@
     [alertView show];
 }
 
+#pragma mark ---------过期
+
+//是否在有效期内
++ (BOOL)expired
+{
+	static NSDateFormatter *formatter = nil;
+	if (formatter == nil)  {
+		formatter = [[NSDateFormatter alloc] init];
+		NSLocale *enUS = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+		[formatter setLocale:enUS];
+		[formatter setDateFormat:@"yyyy-MM-dd"];
+	}
+    
+    //设置有效期
+    NSString *validString = ExpiredTime;
+    NSDate *validDate = [formatter dateFromString:validString];
+    
+    NSDate *saveTime = [[NSUserDefaults standardUserDefaults] objectForKey:ExpiredTimeUserDefault];
+    NSDate *nowtime = [NSDate date];
+    
+    
+    BOOL expired = NO;
+    if (saveTime.timeIntervalSince1970>nowtime.timeIntervalSince1970 ||
+        nowtime.timeIntervalSince1970>validDate.timeIntervalSince1970)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:MyLocalizedString(@"Alert")
+                                                        message:MyLocalizedString(@"Version is expired")
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
+        expired = YES;
+    }
+    return expired;
+}
+
+
 @end

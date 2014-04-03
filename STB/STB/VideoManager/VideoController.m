@@ -316,6 +316,10 @@
 #pragma mark ---- 正式切换播放
 - (void)switchChannel:(NSString*)path
 {
+    if ([CommonUtil expired]) {
+        return;
+    }
+    
     //播放方法
     dispatch_block_t playBlock = ^{
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -545,6 +549,10 @@
 #pragma mark -------------------- 设置
 - (IBAction)clickBtnSetting:(id)sender
 {
+    if ([CommonUtil expired]) {
+        return;
+    }
+    
     if (![STBInfo shareInstance].connected) {
        [SingleAlert showMessage:MyLocalizedString(@"Please connect TV Box")];
     }
